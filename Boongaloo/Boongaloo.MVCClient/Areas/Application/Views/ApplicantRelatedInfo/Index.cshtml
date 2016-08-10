@@ -1,0 +1,122 @@
+﻿@model Boongaloo.MVCClient.Areas.Application.Models.Applicant
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Hello, @Model.FirstName @Model.LastName.</h2>
+<span>You are an applicant. Please, fill up the additional information.</span>
+
+<form id="additionalInfoForm">
+    <input id="add-skill-btn" type="button" value="Add skill"/><br>
+    <div id="skills-container" style="border: solid">
+
+    </div>
+    <input id="add-experience-btn" type="button" value="Add experience" /><br>
+    <div id="experiences-container" style="border: solid">
+
+    </div>
+</form>
+
+
+<input id="submitButton" type="submit" value="Submit" />
+
+<script type="text/javascript">
+    var skillTemplate = 
+        '<div>Skill name: <input type="text" name="sname"><br>Skill level: <input type="text" name="slevel"><input class="rem-skill" type="button" value="Remove skill"></div>';
+
+    var companyTemplate =
+        '<div>Name: <input type="text" name="comName"><br>' +
+        'Industry: <input type="text" name="indName"><br>'+
+        'Size: <input type="text" name="sizName"><br>' +
+        'Type: <input type="text" name="typName"><br>' +
+        '</div>';
+
+    var experienceTemplate =
+        '<div><h4>Position deatails:</h4>' +
+        'Title: <input type="text" name="jobTitle"><br>' +
+        'Summary: <input type="text" name="jobSummary"><br>' +
+        'Started: <input type="date" name="jobStarted"><br>' +
+        'Endted: <input type="date" name="jobEnded"><br>' +
+        '<input type="checkbox" name="isJobCurrent">Is current<br>' +
+        'Location: <input type="text" name="jobLocation"><br>' +
+        '<h4>Company deatails:</h4>' +
+        '<div style="background-color: lightblue;">' + companyTemplate + '</div>' +
+        '<input class="rem-experience" type="button" value="Remove experience"></div>';
+
+    $(document)
+        .ready(function () {
+            $('input#submitButton')
+                .click(function () {
+                    var dataInfo = { "Skills": [], "Experiences": [], "Educations" : [], "Certificates" : [] };
+
+                    // Extract skills
+                    $("#skills-container > div")
+                        .each(function(index, element) {
+                            var skillName = $(this).find("input[name='sname']").val();
+                            var skillLevel = $(this).find("input[name='slevel']").val();
+
+                            dataInfo.Skills.push({ "Name": skillName, "Level": skillLevel });
+                        });
+
+                    // Extract experiences
+                    $("#experiences-container > div")
+                        .each(function (index, element) {
+                            var experienceTitle = $(this).find("input[name='jobTitle']").val();
+                            var experiencejobSummary = $(this).find("input[name='jobSummary']").val();
+                            var experiencejobStarted = $(this).find("input[name='jobStarted']").val();
+                            var experiencejobEnded = $(this).find("input[name='jobEnded']").val();
+                            var experienceLocation = $(this).find("input[name='jobLocation']").val();
+
+                            dataInfo.Experiences.push({
+                                "Title": experienceTitle,
+                                "Summary": experiencejobSummary,
+                                "StartDate": experiencejobStarted,
+                                "EndDate": experiencejobEnded,
+                                "Location": experienceLocation
+                            });
+                        });
+
+                    alert(JSON.stringify(dataInfo.Experiences));
+
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        url: '/Application/ApplicantRelatedInfo/SubmitAdditionalUserData',
+                        data: JSON.stringify(dataInfo), // serializes the form's elements.
+                        success: function (data) {
+                            alert(data);
+                        }
+                    });
+                });
+
+            // Skills management
+            $("#add-skill-btn")
+                .on('click',
+                    function () {
+                        $("#skills-container").append(skillTemplate);
+                    });
+
+            $("#skills-container")
+                .on("click", ".rem-skill",
+                    function () {
+                        var $this = $(this);
+                        $this.parent().remove();
+                    });
+
+            // Experience management
+            $("#add-experience-btn")
+                .on('click',
+                    function () {
+                        $("#experiences-container").append(experienceTemplate);
+                    });
+
+            $("#experiences-container")
+                .on("click", ".rem-experience",
+                    function () {
+                        var $this = $(this);
+                        $this.parent().remove();
+                    });
+        });
+</script>
