@@ -1,0 +1,18 @@
+﻿@using System.Security.Claims
+@model IEnumerable<System.Security.Claims.Claim>
+
+@{
+    ViewBag.Title = "Welcome!";
+}
+
+<h2>Welcome, @Model.FirstOrDefault(claim => claim.Type == IdentityModel.JwtClaimTypes.GivenName).Value!</h2>
+<h4>All we know about you is:</h4><br>
+
+<table>
+    @foreach (var claim in Model)
+    {
+        <tr>
+            <td><b>@claim.Type</b></td><td>@claim.Value</td>
+        </tr>
+    }
+</table>

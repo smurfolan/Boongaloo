@@ -46,14 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Trip.cs" />
-    <Compile Include="Entities\TripContext.cs" />
-    <Compile Include="Entities\Picture.cs" />
-    <Compile Include="ITripRepository.cs" />
-    <Compile Include="IUserDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TripRepository.cs" />
-    <Compile Include="UserDataRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

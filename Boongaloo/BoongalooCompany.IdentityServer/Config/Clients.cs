@@ -8,20 +8,7 @@ namespace BoongalooCompany.IdentityServer.Config
         public static IEnumerable<Client> Get()
         {
             return new[]
-             { 
-                 new Client 
-                {
-                     ClientId = "tripgalleryclientcredentials",
-                     ClientName = "Trip Gallery (Client Credentials)",
-                     Flow = Flows.ClientCredentials,  
-                     AllowAccessToAllScopes = true,
-
-                    ClientSecrets = new List<Secret>()
-                    {
-                        new Secret(Boongaloo.Constants.BoongalooClientSecret.Sha256())
-                    }                  
-                }
-                ,
+             {                
                 new Client 
                 {
                     ClientId = "tripgalleryauthcode",
@@ -64,19 +51,6 @@ namespace BoongalooCompany.IdentityServer.Config
                     {
                         Boongaloo.Constants.BoongalooAngular  + "index.html"
                     }
-                }
-                ,
-                new Client 
-                {
-                    ClientId = "tripgalleryropc",
-                    ClientName = "Trip Gallery (Resource Owner Password Credentials)",
-                    Flow = Flows.ResourceOwner, 
-                    AllowAccessToAllScopes = true,
-
-                    ClientSecrets = new List<Secret>()
-                    {
-                        new Secret(Boongaloo.Constants.BoongalooClientSecret.Sha256())
-                    }                    
                 },
                 new Client 
                 {

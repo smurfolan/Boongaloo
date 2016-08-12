@@ -10,6 +10,7 @@ namespace Boongaloo.API.Helpers
 {
     public static class TokenIdentityHelper
     {
+        // The combination between issuer and identity provider is consider to uniquely identify a user.
         public static string GetOwnerIdFromToken()
         {
             var identity = HttpContext.Current.User.Identity as ClaimsIdentity;

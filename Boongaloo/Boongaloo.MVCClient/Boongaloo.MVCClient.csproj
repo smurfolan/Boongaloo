@@ -165,30 +165,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\Application\ApplicationAreaRegistration.cs" />
-    <Compile Include="Areas\Application\Controllers\ApplicantRelatedInfoController.cs" />
-    <Compile Include="Areas\Application\Models\Applicant.cs" />
-    <Compile Include="Areas\Recruitment\Controllers\RecruiterRelatedInfoController.cs" />
-    <Compile Include="Areas\Recruitment\Models\Recruiter.cs" />
-    <Compile Include="Areas\Recruitment\RecruitmentAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PicturesController.cs" />
-    <Compile Include="Controllers\TripsController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\BoongalooWebApiProxy.cs" />
     <Compile Include="Helpers\ClaimsTransformations.cs" />
     <Compile Include="Helpers\ExceptionHelper.cs" />
     <Compile Include="Helpers\HttpClientExtensions.cs" />
     <Compile Include="Helpers\TokenHelper.cs" />
     <Compile Include="Helpers\BoongalooHttpClient.cs" />
-    <Compile Include="Models\BaseUserViewModel.cs" />
-    <Compile Include="Models\PictureCreateViewModel.cs" />
-    <Compile Include="Models\PicturesIndexViewModel.cs" />
-    <Compile Include="Models\TripCreateViewModel.cs" />
-    <Compile Include="Models\TripsIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -210,14 +196,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Areas\Recruitment\Views\web.config" />
-    <Content Include="Areas\Application\Views\web.config" />
-    <Content Include="Areas\Application\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Application\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Application\Views\ApplicantRelatedInfo\Index.cshtml" />
-    <Content Include="Areas\Recruitment\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Recruitment\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Recruitment\Views\RecruiterRelatedInfo\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -248,16 +226,12 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Trips\Create.cshtml" />
-    <Content Include="Views\Trips\Index.cshtml" />
-    <Content Include="Views\Pictures\Index.cshtml" />
-    <Content Include="Views\Pictures\Create.cshtml" />
-    <Content Include="Views\Trips\Album.cshtml" />
+    <Content Include="Views\Home\PostAuthorization.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
     <Folder Include="Scripts\Boongaloo\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

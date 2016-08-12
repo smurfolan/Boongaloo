@@ -138,48 +138,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Images\169501_4638522883979_2063126443_o.jpg" />
-    <Content Include="Images\195040_4638510123660_980261724_o.jpg" />
-    <Content Include="Images\259112_4638528844128_1518308143_o.jpg" />
-    <Content Include="Images\414780_3615532069848_2102572639_o.jpg" />
-    <Content Include="Images\456386_3615755555435_984578638_o.jpg" />
-    <Content Include="Images\459797_3615642312604_1370618209_o.jpg" />
-    <Content Include="Images\461023_3614625087174_2001310148_o.jpg" />
-    <Content Include="Images\462233_4638521763951_969425614_o.jpg" />
-    <Content Include="Images\465079_3614723209627_467364041_o.jpg" />
-    <Content Include="Images\466664_3615515869443_317468512_o.jpg" />
-    <Content Include="Images\466699_3615599471533_1196606751_o.jpg" />
-    <Content Include="Images\467772_3614649447783_135439700_o.jpg" />
-    <Content Include="Images\468412_3614694528910_1928514412_o.jpg" />
-    <Content Include="Images\468942_3615644352655_1819977785_o.jpg" />
-    <Content Include="Images\476865_3614613286879_254524626_o.jpg" />
-    <Content Include="Images\477325_3615590111299_1614737679_o.jpg" />
-    <Content Include="Images\77719_4638524004007_595705513_o.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
-    <Compile Include="Controllers\PicturesController.cs" />
-    <Compile Include="Controllers\TripsController.cs" />
-    <Compile Include="Controllers\UserDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\IEnumerableExtensions.cs" />
     <Compile Include="Helpers\IListExtensions.cs" />
-    <Compile Include="Helpers\ValueResolvers.cs" />
     <Compile Include="Helpers\TokenIdentityHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
-    <Compile Include="UnitOfWork\Picture\CreatePicture.cs" />
-    <Compile Include="UnitOfWork\Picture\DeletePicture.cs" />
-    <Compile Include="UnitOfWork\Picture\GetPictures.cs" />
-    <Compile Include="UnitOfWork\Trip\CreateTrip.cs" />
-    <Compile Include="UnitOfWork\Trip\GetTrip.cs" />
-    <Compile Include="UnitOfWork\Trip\GetTrips.cs" />
-    <Compile Include="UnitOfWork\Trip\PartiallyUpdateTrip.cs" />
     <Compile Include="UnitOfWork\UnitOfWorkResult.cs" />
     <Compile Include="UnitOfWork\UnitOfWorkStatus.cs" />
   </ItemGroup>
@@ -207,6 +179,9 @@
       <Project>{95C07FA1-F974-4E4A-A169-C4F4F881965E}</Project>
       <Name>Boongaloo.Repository</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
