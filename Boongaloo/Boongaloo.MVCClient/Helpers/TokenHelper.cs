@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IdentityModel.Claims;
 using System.Linq;
 using System.Text;
 using Boongaloo.DTO;
+using IdentityModel;
 using Newtonsoft.Json.Linq;
 
 namespace Boongaloo.MVCClient.Helpers
@@ -21,15 +23,11 @@ namespace Boongaloo.MVCClient.Helpers
             var deserializedInfo = ParseJsonFromToken(token);
             var jsonNetObject = JObject.Parse(deserializedInfo);
 
-            // TODO: Remove strings and use IdentityServer3 constants and optimize Role assignment
             return new UserInfoFromAccessToken()
             {
-                FirstName = jsonNetObject.GetValue("given_name").Value<string>(),
-                LastName = jsonNetObject.GetValue("family_name").Value<string>(),
-                Role = (RolesEnum) Enum.Parse(typeof(RolesEnum), jsonNetObject.GetValue("role").ToString()),
-                Email = jsonNetObject.GetValue("email").Value<string>(),
-                SkypeName = jsonNetObject.GetValue("skypename").Value<string>(),
-                PhoneNumber = jsonNetObject.GetValue("phone_number").Value<string>()
+                FirstName = jsonNetObject.GetValue(JwtClaimTypes.GivenName).Value<string>(),
+                LastName = jsonNetObject.GetValue(JwtClaimTypes.FamilyName).Value<string>(),
+                Email = jsonNetObject.GetValue(JwtClaimTypes.Email).Value<string>()
             };
         }
 

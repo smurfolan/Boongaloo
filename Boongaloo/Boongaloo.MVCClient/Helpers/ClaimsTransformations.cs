@@ -34,21 +34,11 @@ namespace Boongaloo.MVCClient.Helpers
             var familyNameClaim = new Claim(IdentityModel.JwtClaimTypes.FamilyName, claimsFromAccessToken.LastName);
             // n.AuthenticationTicket.Identity.FindFirst(IdentityModel.JwtClaimTypes.FamilyName);
 
-            // ROLE
-            var roleClaim = new Claim(IdentityModel.JwtClaimTypes.Role, claimsFromAccessToken.Role.ToString());
-            // n.AuthenticationTicket.Identity.FindFirst(IdentityModel.JwtClaimTypes.Role);
-
             // SUBJECT
             var subClaim = n.AuthenticationTicket.Identity.FindFirst(IdentityModel.JwtClaimTypes.Subject);
 
             // EMAIL
             var emailClaim = new Claim(IdentityModel.JwtClaimTypes.Email, claimsFromAccessToken.Email); 
-
-            // PHONE
-            var phoneNumberClaim = new Claim(IdentityModel.JwtClaimTypes.PhoneNumber, claimsFromAccessToken.PhoneNumber);
-            
-            // SKYPE
-            var skypeNameClaim = new Claim("skypename", claimsFromAccessToken.SkypeName);
 
             // create a new claims, issuer + sub as unique identifier
             var nameClaim = new Claim(IdentityModel.JwtClaimTypes.Name, Constants.BoongalooIssuerUri + subClaim.Value);
@@ -60,11 +50,8 @@ namespace Boongaloo.MVCClient.Helpers
 
             newClaimsIdentity.AddClaim(nameClaim);
             newClaimsIdentity.AddClaim(givenNameClaim);
-            newClaimsIdentity.AddClaim(familyNameClaim);          
-            newClaimsIdentity.AddClaim(roleClaim);
+            newClaimsIdentity.AddClaim(familyNameClaim);  
             newClaimsIdentity.AddClaim(emailClaim);
-            newClaimsIdentity.AddClaim(phoneNumberClaim);
-            newClaimsIdentity.AddClaim(skypeNameClaim);
 
             // request a refresh token
             var tokenClientForRefreshToekn = new TokenClient(

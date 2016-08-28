@@ -24,7 +24,7 @@ namespace BoongalooCompany.IdentityServer.Controllers
                 return View("No partially signed-in user found.");
             }
 
-            return View(new CompleteAdditionalInformationModel() {ExternalProvider = provider});
+            return View(new CompleteAdditionalInformationModel() {ExternalProviderName = provider});
         }
 
         [HttpPost]
@@ -52,7 +52,7 @@ namespace BoongalooCompany.IdentityServer.Controllers
                     newUser.UserLogins.Add(new UserLogin()
                     {
                         Subject = newUser.Subject,
-                        LoginProvider = model.ExternalProvider.ToLower(),
+                        LoginProvider = model.ExternalProviderName,
                         ProviderKey = partialSignInUser.Claims.First(c => c.Type == "external_provider_user_id").Value
                     });
 
@@ -105,55 +105,7 @@ namespace BoongalooCompany.IdentityServer.Controllers
                 Subject = newUser.Subject,
                 ClaimType = IdentityServer3.Core.Constants.ClaimTypes.FamilyName,
                 ClaimValue = partialSignInUser.Claims.First(c => c.Type == "family_name").Value
-            });
-
-            // we could use the access token to obtain user info from linkedin
-            //if (model.ExternalProvider.ToLower() == "linkedin")
-            //{
-            //    newUser.UserClaims.Add(new UserClaim()
-            //    {
-            //        Id = Guid.NewGuid().ToString(),
-            //        Subject = newUser.Subject,
-            //        ClaimType = IdentityServer3.Core.Constants.ClaimTypes.AccessTokenHash,
-            //        ClaimValue = partialSignInUser.Claims.First(c => c.Type == "urn:linkedin:accesstoken").Value
-            //    });
-            //}                
-
-            // ROLE
-            newUser.UserClaims.Add(new UserClaim()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Subject = newUser.Subject,
-                ClaimType = IdentityServer3.Core.Constants.ClaimTypes.Role,
-                ClaimValue = model.Role
-            });
-
-            // SKYPE NAME
-            newUser.UserClaims.Add(new UserClaim()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Subject = newUser.Subject,
-                ClaimType = "skypename",
-                ClaimValue = model.SkypeName
-            });
-
-            // PHONE NUMBER
-            newUser.UserClaims.Add(new UserClaim()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Subject = newUser.Subject,
-                ClaimType = IdentityServer3.Core.Constants.ClaimTypes.PhoneNumber,
-                ClaimValue = model.PhoneNumber
-            });
-
-            // EXTERNAL PROVIDER
-            newUser.UserClaims.Add(new UserClaim()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Subject = newUser.Subject,
-                ClaimType = "externalprovider",
-                ClaimValue = model.ExternalProvider
-            });
+            });             
         }
     }
 }

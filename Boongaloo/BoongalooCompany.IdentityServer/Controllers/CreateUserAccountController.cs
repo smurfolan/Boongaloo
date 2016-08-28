@@ -78,33 +78,6 @@ namespace BoongalooCompany.IdentityServer.Controllers
                 ClaimType = Constants.ClaimTypes.FamilyName,
                 ClaimValue = model.LastName
             });
-
-            // ROLE
-            newUser.UserClaims.Add(new UserClaim()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Subject = newUser.Subject,
-                ClaimType = Constants.ClaimTypes.Role,
-                ClaimValue = model.Role
-            });
-
-            // SKYPE NAME
-            newUser.UserClaims.Add(new UserClaim()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Subject = newUser.Subject,
-                ClaimType = "skypename",
-                ClaimValue = model.SkypeName
-            });
-
-            // PHONE NUMBER
-            newUser.UserClaims.Add(new UserClaim()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Subject = newUser.Subject,
-                ClaimType = Constants.ClaimTypes.PhoneNumber,
-                ClaimValue = model.PhoneNumber
-            });
         }
     }
 }

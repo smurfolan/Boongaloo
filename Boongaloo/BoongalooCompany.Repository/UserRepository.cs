@@ -56,16 +56,11 @@ namespace BoongalooCompany.Repository
 
         public User GetUserForExternalProvider(string loginProvider, string providerKey)
         {
-            foreach (var user in _ctx.Users)
-            {
-                if (user.UserLogins.Any(l => l.LoginProvider.ToLowerInvariant() == loginProvider.ToLowerInvariant()
-                    && l.ProviderKey.ToLowerInvariant() == providerKey.ToLowerInvariant()))
-                {
-                    return user;
-                }
-            }
-
-            return null;
+            return _ctx.Users
+                .Where(user => user.UserLogins.Any())
+                .FirstOrDefault(user => user.UserLogins.Any(
+                    l => l.LoginProvider.ToLowerInvariant() == loginProvider.ToLowerInvariant() && 
+                    l.ProviderKey.ToLowerInvariant() == providerKey.ToLowerInvariant()));
         }
 
         public User GetUserByEmail(string email)

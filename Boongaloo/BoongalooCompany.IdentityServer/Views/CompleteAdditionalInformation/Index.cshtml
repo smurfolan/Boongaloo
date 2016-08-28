@@ -8,24 +8,14 @@
 
 @using (Html.BeginForm())
 {
+    <h1>
+        If external information is needed by the user, we are filling it up here and update CompleteAdditionalInformationModel with fields.
+    </h1>
+
     <div class="form-group" hidden="hidden">
-        @Html.TextBoxFor(m => m.ExternalProvider, new {@class = "form-control"})
+        @Html.TextBoxFor(m => m.ExternalProviderName, new { @class = "form-control" })
     </div>
 
-    <div class="form-group">
-        <label for="First">Skype Name</label>
-        @Html.TextBoxFor(m => m.SkypeName, new {@class = "form-control"})
-    </div>
-
-    <div class="form-group">
-        <label for="First">Phone number</label>
-        @Html.TextBoxFor(m => m.PhoneNumber, new {@class = "form-control"})
-    </div>
-
-    <div class="form-group" required="required">
-        <label for="Last">Your Boongaloo role</label>
-        @Html.DropDownListFor(m => m.Role, Model.Roles, new { @class = "form-control" })
-    </div>
     <div class="form-group">
         <button class="btn btn-primary">Register</button>
     </div>

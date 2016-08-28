@@ -30,10 +30,7 @@ namespace BoongalooCompany.IdentityServer.Config
                         Claims = new List<ScopeClaim>()
                         {
                             // All of these claims go into the access token.
-                            new ScopeClaim(IdentityServer3.Core.Constants.ClaimTypes.Role, false),
                             new ScopeClaim(IdentityServer3.Core.Constants.ClaimTypes.Email),
-                            new ScopeClaim(IdentityServer3.Core.Constants.ClaimTypes.PhoneNumber),
-                            new ScopeClaim("skypename"),
                             new ScopeClaim(IdentityServer3.Core.Constants.ClaimTypes.GivenName),
                             new ScopeClaim(IdentityServer3.Core.Constants.ClaimTypes.FamilyName)
                         }
