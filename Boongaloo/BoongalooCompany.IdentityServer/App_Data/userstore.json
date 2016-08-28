@@ -1,1 +1,84 @@
-[{"Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf","UserName":"Kevin","Password":"secret","IsActive":true,"UserClaims":[{"Id":"61a9cd7b-9ff3-4f10-bc80-9459a1cff29e","Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf","ClaimType":"given_name","ClaimValue":"Kevin"},{"Id":"e2ccb661-f978-4c3f-8715-6e2d6f822e98","Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf","ClaimType":"family_name","ClaimValue":"Dockx"},{"Id":"9e5f36c9-5b55-4971-af27-c01c0ac47ac7","Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf","ClaimType":"address","ClaimValue":"1, Main Street, Antwerp, Belgium"},{"Id":"1a852299-0ea3-43ca-905b-0df3ec4e8a4f","Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf","ClaimType":"role","ClaimValue":"PayingUser"},{"Id":"613373b9-65d5-44c3-8432-218020f20ae5","Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf","ClaimType":"email","ClaimValue":"kevin.dockx@gmail.com"}],"UserLogins":[]},{"Subject":"bb61e881-3a49-42a7-8b62-c13dbe102018","UserName":"Sven","Password":"secret","IsActive":true,"UserClaims":[{"Id":"9e996e42-cbf5-4c07-a01f-6f1eb79bb512","Subject":"bb61e881-3a49-42a7-8b62-c13dbe102018","ClaimType":"given_name","ClaimValue":"Sven"},{"Id":"33e00239-c60b-49b1-bd6c-38b1e37b830b","Subject":"bb61e881-3a49-42a7-8b62-c13dbe102018","ClaimType":"family_name","ClaimValue":"Vercauteren"},{"Id":"79bd0ef1-0420-4888-a826-5909f107f01a","Subject":"bb61e881-3a49-42a7-8b62-c13dbe102018","ClaimType":"address","ClaimValue":"2, Main Road, Antwerp, Belgium"},{"Id":"0852fc93-fa72-4c4f-a782-54cb008ef74b","Subject":"bb61e881-3a49-42a7-8b62-c13dbe102018","ClaimType":"role","ClaimValue":"FreeUser"},{"Id":"51027a4a-2280-476a-86fb-5f53ecbbd744","Subject":"bb61e881-3a49-42a7-8b62-c13dbe102018","ClaimType":"email","ClaimValue":"svenisanonymous@somedomain.com"}],"UserLogins":[]},{"Subject":"164bdb65-efef-4323-bc0f-1eb407ca8022","UserName":null,"Password":null,"IsActive":true,"UserClaims":[{"Id":"1d224fa4-f875-449b-a2bd-40694115331e","Subject":"164bdb65-efef-4323-bc0f-1eb407ca8022","ClaimType":"email","ClaimValue":"kristian.azmanov@gmail.com"},{"Id":"7a7e0e7f-59bb-47b3-a3b6-d288bc73e68c","Subject":"164bdb65-efef-4323-bc0f-1eb407ca8022","ClaimType":"given_name","ClaimValue":"Kristian"},{"Id":"04145c44-33e4-4e24-aec9-2157b74fc679","Subject":"164bdb65-efef-4323-bc0f-1eb407ca8022","ClaimType":"family_name","ClaimValue":"Azmanov"},{"Id":"62268984-01d0-4a11-98c4-dfe72d945a04","Subject":"164bdb65-efef-4323-bc0f-1eb407ca8022","ClaimType":"role","ClaimValue":"JobApplicant"},{"Id":"c2c70741-fbed-4c5a-8112-29d531f89271","Subject":"164bdb65-efef-4323-bc0f-1eb407ca8022","ClaimType":"skypename","ClaimValue":"asdasd"},{"Id":"54bc3b28-4c6b-4cd2-b2e3-b506e213901d","Subject":"164bdb65-efef-4323-bc0f-1eb407ca8022","ClaimType":"phone_number","ClaimValue":"423423"},{"Id":"8f26e3db-41d2-4e95-bb68-bc84f3971f20","Subject":"164bdb65-efef-4323-bc0f-1eb407ca8022","ClaimType":"externalprovider","ClaimValue":"Google"}],"UserLogins":[{"Subject":"164bdb65-efef-4323-bc0f-1eb407ca8022","LoginProvider":"google","ProviderKey":"111015751769275062624"}]},{"Subject":"e000b257-1508-414f-b57f-067a214e9a6e","UserName":"Mevin","Password":"secret","IsActive":true,"UserClaims":[{"Id":"3909f7c7-26e2-42e5-8ec5-67dc0a07ad0f","Subject":"e000b257-1508-414f-b57f-067a214e9a6e","ClaimType":"email","ClaimValue":"asdas@asd.bg"},{"Id":"bac6a777-1ecf-49d9-b87a-b22440c5cdbf","Subject":"e000b257-1508-414f-b57f-067a214e9a6e","ClaimType":"given_name","ClaimValue":"Me"},{"Id":"f80eeb53-67e3-49fd-802f-a1ac8889070f","Subject":"e000b257-1508-414f-b57f-067a214e9a6e","ClaimType":"family_name","ClaimValue":"Vin"},{"Id":"cc86d3da-f436-480e-9efb-a82d69f147ce","Subject":"e000b257-1508-414f-b57f-067a214e9a6e","ClaimType":"role","ClaimValue":"Recruiter"},{"Id":"dd670eb7-1fa4-4bf0-96f1-aad17cc09adc","Subject":"e000b257-1508-414f-b57f-067a214e9a6e","ClaimType":"skypename","ClaimValue":"asd.asd.asd"},{"Id":"f9973433-f174-4fc3-a93d-691f63e99964","Subject":"e000b257-1508-414f-b57f-067a214e9a6e","ClaimType":"phone_number","ClaimValue":"934299423"}],"UserLogins":[]},{"Subject":"470838c0-e1bd-42d1-bcb9-807eb1345587","UserName":"dadasdas","Password":"asdasd","IsActive":true,"UserClaims":[{"Id":"390adba7-4a6f-4b4b-beba-e00e3b50f868","Subject":"470838c0-e1bd-42d1-bcb9-807eb1345587","ClaimType":"email","ClaimValue":"asdas@asd.bg"},{"Id":"7e730371-fd6b-4bdc-b0b9-5b6df3ad4488","Subject":"470838c0-e1bd-42d1-bcb9-807eb1345587","ClaimType":"given_name","ClaimValue":"adasd"},{"Id":"416334cf-79e0-45c2-8c00-1c9636ceb808","Subject":"470838c0-e1bd-42d1-bcb9-807eb1345587","ClaimType":"family_name","ClaimValue":"asdasd"},{"Id":"be08ddba-2568-417d-9bea-379640a8e623","Subject":"470838c0-e1bd-42d1-bcb9-807eb1345587","ClaimType":"role","ClaimValue":"Recruiter"},{"Id":"120a2c90-10a0-4bc6-ad5a-7f7801ed7732","Subject":"470838c0-e1bd-42d1-bcb9-807eb1345587","ClaimType":"skypename","ClaimValue":"asd.asd.asd"},{"Id":"120f1a97-29a3-4078-952f-0b0ee825239e","Subject":"470838c0-e1bd-42d1-bcb9-807eb1345587","ClaimType":"phone_number","ClaimValue":"934299423"}],"UserLogins":[]}]
+[  
+   {  
+      "Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+      "UserName":"Kevin",
+      "Password":"secret",
+      "IsActive":true,
+      "UserClaims":[  
+         {  
+            "Id":"61a9cd7b-9ff3-4f10-bc80-9459a1cff29e",
+            "Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+            "ClaimType":"given_name",
+            "ClaimValue":"Kevin"
+         },
+         {  
+            "Id":"e2ccb661-f978-4c3f-8715-6e2d6f822e98",
+            "Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+            "ClaimType":"family_name",
+            "ClaimValue":"Dockx"
+         },
+         {  
+            "Id":"9e5f36c9-5b55-4971-af27-c01c0ac47ac7",
+            "Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+            "ClaimType":"address",
+            "ClaimValue":"1, Main Street, Antwerp, Belgium"
+         },
+         {  
+            "Id":"1a852299-0ea3-43ca-905b-0df3ec4e8a4f",
+            "Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+            "ClaimType":"role",
+            "ClaimValue":"PayingUser"
+         },
+         {  
+            "Id":"613373b9-65d5-44c3-8432-218020f20ae5",
+            "Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+            "ClaimType":"email",
+            "ClaimValue":"kevin.dockx@gmail.com"
+         }
+      ],
+      "UserLogins":[  
+
+      ]
+   },
+   {  
+      "Subject":"bb61e881-3a49-42a7-8b62-c13dbe102018",
+      "UserName":"Sven",
+      "Password":"secret",
+      "IsActive":true,
+      "UserClaims":[  
+         {  
+            "Id":"9e996e42-cbf5-4c07-a01f-6f1eb79bb512",
+            "Subject":"bb61e881-3a49-42a7-8b62-c13dbe102018",
+            "ClaimType":"given_name",
+            "ClaimValue":"Sven"
+         },
+         {  
+            "Id":"33e00239-c60b-49b1-bd6c-38b1e37b830b",
+            "Subject":"bb61e881-3a49-42a7-8b62-c13dbe102018",
+            "ClaimType":"family_name",
+            "ClaimValue":"Vercauteren"
+         },
+         {  
+            "Id":"79bd0ef1-0420-4888-a826-5909f107f01a",
+            "Subject":"bb61e881-3a49-42a7-8b62-c13dbe102018",
+            "ClaimType":"address",
+            "ClaimValue":"2, Main Road, Antwerp, Belgium"
+         },
+         {  
+            "Id":"0852fc93-fa72-4c4f-a782-54cb008ef74b",
+            "Subject":"bb61e881-3a49-42a7-8b62-c13dbe102018",
+            "ClaimType":"role",
+            "ClaimValue":"FreeUser"
+         },
+         {  
+            "Id":"51027a4a-2280-476a-86fb-5f53ecbbd744",
+            "Subject":"bb61e881-3a49-42a7-8b62-c13dbe102018",
+            "ClaimType":"email",
+            "ClaimValue":"svenisanonymous@somedomain.com"
+         }
+      ],
+      "UserLogins":[  
+
+      ]
+   }
+]
