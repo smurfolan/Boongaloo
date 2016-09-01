@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boongaloo.API", "Boongaloo.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boongaloo.DTO", "Boongaloo.DTO\Boongaloo.DTO.csproj", "{BB37F09A-7FD4-4480-A065-4511A7899191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boongaloo.Repository", "Boongaloo.Repository\Boongaloo.Repository.csproj", "{95C07FA1-F974-4E4A-A169-C4F4F881965E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boongaloo.DAL", "Boongaloo.Repository\Boongaloo.DAL.csproj", "{95C07FA1-F974-4E4A-A169-C4F4F881965E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{72FEFBCB-1305-4DA7-9EB0-73C0D81745E9}"
 EndProject
@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boongaloo.MVCClient", "Boon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boongaloo.Constants", "Boongaloo.Constants\Boongaloo.Constants.csproj", "{1BEC8DBC-04F3-4EEA-B3D7-422D80A6ACD1}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Boongaloo.AngularClient", "http://localhost:15745", "{428EB0F2-A452-48CF-B882-71E18997017F}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TripGallery.AngularClient", "http://localhost:15745", "{428EB0F2-A452-48CF-B882-71E18997017F}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
