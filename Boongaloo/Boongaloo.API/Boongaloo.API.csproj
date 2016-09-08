@@ -164,6 +164,7 @@
     <Content Include="packages.config" />
     <Content Include="App_Data\tripstore.json" />
     <Content Include="App_Data\userinfostore.json" />
+    <None Include="Properties\PublishProfiles\boongalooapi.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

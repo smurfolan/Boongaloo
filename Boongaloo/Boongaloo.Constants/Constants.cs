@@ -12,7 +12,7 @@ namespace Boongaloo
         public const string BoongalooClientSecret = "myrandomclientsecret";
 
         public const string BoongalooIssuerUri = "https://boongaloocompanysts/identity";
-        public const string BoongalooSTSOrigin = "https://localhost:44317";
+        public const string BoongalooSTSOrigin = "https://boongalooidsrv.azurewebsites.net";
         public const string BoongalooSTS = BoongalooSTSOrigin + "/identity";
         public const string BoongalooSTSTokenEndpoint = BoongalooSTS + "/connect/token";
         public const string BoongalooSTSAuthorizationEndpoint = BoongalooSTS + "/connect/authorize";
