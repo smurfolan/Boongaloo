@@ -36,6 +36,12 @@ namespace Boongaloo.API.Controllers
         }
 
         // GET /api/v1/groups/342342
+        /// <summary>
+        /// Extracts specific group by its id.
+        /// </summary>
+        /// <param name="id">Unique identifier of a group</param>
+        /// <returns>A single group object.</returns>
+        /// <exception cref="NotImplementedException"></exception>
         [HttpGet]
         [Route("{id:int}")]
         public IHttpActionResult Get(int id)

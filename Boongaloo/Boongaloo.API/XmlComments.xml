@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Boongaloo.API</name>
+    </assembly>
+    <members>
+        <member name="M:Boongaloo.API.Controllers.GroupsController.Get(System.Int32)">
+            <summary>
+            Extracts specific group by its id.
+            </summary>
+            <param name="id">Unique identifier of a group</param>
+            <returns>A single group object.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+    </members>
+</doc>
