@@ -4,6 +4,22 @@
         <name>Boongaloo.API</name>
     </assembly>
     <members>
+        <member name="M:Boongaloo.API.Controllers.GroupsController.Get(System.Double,System.Double)">
+            <summary>
+            Returns all the groups that contain this point(lat/lon) as part of their diameter 
+            </summary>
+            <param name="lat"></param>
+            <param name="lon"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Boongaloo.API.Controllers.GroupsController.Post(System.Double,System.Double)">
+            <summary>
+            Creates a new group centered with the coordinates that were passed.
+            </summary>
+            <param name="lat">lattitude</param>
+            <param name="lon">longitude</param>
+            <returns></returns>
+        </member>
         <member name="M:Boongaloo.API.Controllers.GroupsController.Get(System.Int32)">
             <summary>
             Extracts specific group by its id.
