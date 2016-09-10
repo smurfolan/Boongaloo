@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Boongaloo.Repository.Entities
 {
-    public class User
+    public class GroupToUser
     {
-        public Guid Id { get; set; }
-        public string IdsrvUniqueId { get; set; }
+        public int GroupId { get; set; }
+        public int UserId { get; set; }
     }
 }

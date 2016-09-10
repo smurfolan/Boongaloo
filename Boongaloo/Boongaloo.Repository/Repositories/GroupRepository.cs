@@ -20,6 +20,11 @@ namespace Boongaloo.Repository.Repositories
             _groupContext = groupContext;
         }
 
+        public GroupRepository()
+        {
+            _groupContext = new GroupContext("groupStore.json");
+        }
+
         public IEnumerable<Group> GetGroups()
         {
             return this._groupContext.Groups;

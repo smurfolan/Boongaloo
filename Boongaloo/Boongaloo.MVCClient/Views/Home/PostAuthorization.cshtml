@@ -16,3 +16,54 @@
         </tr>
     }
 </table>
+
+<br><br>
+<h2>Create new boonga</h2><br>
+
+<form id="getGroupsAroundCoords">
+    <div id="name-group" class="form-group">
+        <label for="lat">Latitude</label>
+        <input type="number" step="0.0000001" class="form-control" name="lat">
+    </div>
+
+    <div id="name-group" class="form-group">
+        <label for="lon">Longitude</label>
+        <input type="number" step="0.0000001" class="form-control" name="lon">
+    </div>
+    <button type="submit" class="btn btn-success">Submit <span class="fa fa-arrow-right"></span></button>
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#getGroupsAroundCoords').submit(function (event) {
+            var lat = $("#getGroupsAroundCoords input[name='lat']").val();
+            var lon = $("#getGroupsAroundCoords input[name='lon']").val();
+
+            jQuery.support.cors = true;
+            //$.ajax({
+            //    url: 'https://localhost:44315/api/v1/groups/' + lat + '/' + lon + '/',
+            //    type: 'GET',
+            //    dataType: "json",
+            //    success: function() {
+            //        alert("All good");
+            //    },
+            //    error: function (jqXHR, exception) {
+            //        alert(JSON.stringify(jqXHR));
+            //        alert(JSON.stringify(exception));
+            //    }
+            //});
+            $.ajax({
+                type: "POST",
+                url: 'https://localhost:44315/api/v1/groups/' + lat + '/' + lon + '/',
+                success: function (data, status, xhr) {
+                    alert("Success mother fucker!: " + xhr.status + " : " + xhr.statusText + ":" + JSON.stringify(data));
+                },
+                error: function (jqXHR, exception) {
+                    alert("Error: " + JSON.stringify(jqXHR) + " : " + JSON.stringify(exception));
+                }
+            });
+
+            event.preventDefault();
+        });
+    });
+</script>

@@ -22,14 +22,15 @@ namespace Boongaloo.Repository.Contexts
 
             IFileInfo fi;
             if (!fileSystem.TryGetFileInfo(_resourceFileLocation, out fi))
-                return;
+                throw new FileNotFoundException("File:" + resourceFileLocation + " is not available.");
 
             var json = File.ReadAllText(fi.PhysicalPath);
             var result = JsonConvert.DeserializeObject<List<Group>>(json);
 
             Groups = result.ToList();
         }
-
+        /*Here we could add lists of Area and User which would require additional json files.*/
+        /*Except fot that, we could also add two additional files playing the role of bridges for Area-Group, Group-User tables*/
         public IList<Group> Groups { get; set; }
 
         public bool SaveChanges()

@@ -12,12 +12,11 @@
             <param name="lon"></param>
             <returns></returns>
         </member>
-        <member name="M:Boongaloo.API.Controllers.GroupsController.Post(System.Double,System.Double)">
+        <member name="M:Boongaloo.API.Controllers.GroupsController.Post(Boongaloo.Repository.Entities.Group)">
             <summary>
             Creates a new group centered with the coordinates that were passed.
             </summary>
-            <param name="lat">lattitude</param>
-            <param name="lon">longitude</param>
+            <param name="newGroup"></param>
             <returns></returns>
         </member>
         <member name="M:Boongaloo.API.Controllers.GroupsController.Get(System.Int32)">

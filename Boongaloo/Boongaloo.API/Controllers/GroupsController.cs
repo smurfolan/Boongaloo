@@ -2,6 +2,9 @@
 using System.Net;
 using System.Web.Http;
 using Boongaloo.API.Helpers;
+using Boongaloo.Repository.Contexts;
+using Boongaloo.Repository.Entities;
+using Boongaloo.Repository.Repositories;
 
 namespace Boongaloo.API.Controllers
 {
@@ -35,17 +38,30 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Creates a new group centered with the coordinates that were passed.
         /// </summary>
-        /// <param name="lat">lattitude</param>
-        /// <param name="lon">longitude</param>
+        /// <param name="newGroup"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("{lat:double}/{lon:double}")]
-        public IHttpActionResult Post(double lat, double lon)
+        public IHttpActionResult Post(Group newGroup)/*double lat, double lon*/
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            return Content(HttpStatusCode.Created, "You successfuly created new group by passing coordinates");
+            try
+            {
+                using (var groupRepository = new GroupRepository())
+                {
+                    
+                }
+
+                return Content(HttpStatusCode.Created, "You successfuly created new group by passing coordinates");
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
+            
         }
 
         // GET /api/v1/groups/342342
