@@ -5,6 +5,7 @@ using Boongaloo.API.Helpers;
 using Boongaloo.Repository.Contexts;
 using Boongaloo.Repository.Entities;
 using Boongaloo.Repository.Repositories;
+using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers
 {
@@ -12,8 +13,11 @@ namespace Boongaloo.API.Controllers
     [RoutePrefix("api/v1/groups")]
     public class GroupsController : ApiController
     {
+        private BoongalooDbUnitOfWork _unitOfWork;
+
         public GroupsController(/*Comma separated arguments of type interface*/)
         {
+            _unitOfWork = new BoongalooDbUnitOfWork();
             // Handle assignment by DI
         }
 
@@ -46,22 +50,8 @@ namespace Boongaloo.API.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
-            try
-            {
-                using (var groupRepository = new GroupRepository())
-                {
-                    
-                }
-
-                return Content(HttpStatusCode.Created, "You successfuly created new group by passing coordinates");
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
-
             
+            throw new NotImplementedException();
         }
 
         // GET /api/v1/groups/342342
@@ -78,7 +68,9 @@ namespace Boongaloo.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            return Content(HttpStatusCode.OK, "You successfuly extracted specific group by its id");
+            var result = _unitOfWork.GroupRepository.GetGroupById(id);
+
+            return Ok(result);
         }
     }
 }

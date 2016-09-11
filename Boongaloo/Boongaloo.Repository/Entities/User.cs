@@ -8,7 +8,7 @@ namespace Boongaloo.Repository.Entities
 {
     public class User
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string IdsrvUniqueId { get; set; }
     }
 }

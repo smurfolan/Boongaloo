@@ -11,7 +11,7 @@ namespace Boongaloo.Repository.Entities
 
         public IEnumerable<TagEnum> Tags { get; set; }
 
-        public IEnumerable<User> Users { get; set; }
+        //public IEnumerable<User> Users { get; set; }
 
         public RadiusEnum Radius { get; set; } /*Has to go into the Area.cs class*/
     }

@@ -48,15 +48,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoongalooDtos\GroupDto.cs" />
-    <Compile Include="Contexts\GroupContext.cs" />
+    <Compile Include="Contexts\BoongalooDbContext.cs" />
     <Compile Include="Entities\Area.cs" />
     <Compile Include="Entities\AreaToGroup.cs" />
     <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\GroupToUser.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\IGroupRepository.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AreaRepository.cs" />
     <Compile Include="Repositories\GroupRepository.cs" />
+    <Compile Include="Interfaces\IAreaRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="UnitOfWork\BoongalooDbUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
