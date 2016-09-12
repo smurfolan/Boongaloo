@@ -12,12 +12,16 @@
     @foreach (var claim in Model)
     {
         <tr>
-            <td><b>@claim.Type</b></td><td>@claim.Value</td>
+            <td><b>@claim.Type</b></td><td><div id="@claim.Type">@claim.Value</div></td>
         </tr>
     }
 </table>
 
 <br><br>
+<h2>Create new user</h2><br>
+<button id="createUserBtn" class="btn btn-success">Create user <span class="fa fa-arrow-right"></span></button>
+<hr>
+
 <h2>Create new boonga</h2><br>
 
 <form id="getGroupsAroundCoords">
@@ -40,18 +44,7 @@
             var lon = $("#getGroupsAroundCoords input[name='lon']").val();
 
             jQuery.support.cors = true;
-            //$.ajax({
-            //    url: 'https://localhost:44315/api/v1/groups/' + lat + '/' + lon + '/',
-            //    type: 'GET',
-            //    dataType: "json",
-            //    success: function() {
-            //        alert("All good");
-            //    },
-            //    error: function (jqXHR, exception) {
-            //        alert(JSON.stringify(jqXHR));
-            //        alert(JSON.stringify(exception));
-            //    }
-            //});
+
             $.ajax({
                 type: "POST",
                 url: 'https://localhost:44315/api/v1/groups/' + lat + '/' + lon + '/',
@@ -65,5 +58,34 @@
 
             event.preventDefault();
         });
+
+        $('#createUserBtn')
+            .on('click',
+                function() {
+                    var userIdsrvId = $("#name").val();
+                    var userEmail = $("#email").val();
+                    var userGivenName = $("#given_name").val();
+                    var userFamilyName = $("#family_name").val();
+
+                    var userData = {
+                        'IdsrvUniqueId': userIdsrvId,
+                        'FirstName': userGivenName,
+                        'LastName': userFamilyName,
+                        'Email': userEmail
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json",
+                        url: 'https://localhost:44315/api/v1/users',
+                        data: JSON.stringify(userData),
+                        success: function(data) {
+                            alert("FUCKING SUCCESS");
+                        },
+                        error: function(jqXHR, exception) {
+                            alert("SHIT Error: " + JSON.stringify(jqXHR) + " : " + JSON.stringify(exception));
+                        }
+                    });
+                });
     });
 </script>
