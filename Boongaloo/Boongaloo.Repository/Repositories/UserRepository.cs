@@ -7,9 +7,11 @@ using Boongaloo.Repository.Interfaces;
 
 namespace Boongaloo.Repository.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository, IDisposable
     {
         private BoongalooDbContext _dbContext;
+
+        private bool _disposed = false;
 
         public UserRepository(BoongalooDbContext dbContext)
         {
@@ -55,6 +57,24 @@ namespace Boongaloo.Repository.Repositories
         public void Save()
         {
             throw new NotImplementedException();
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    this._dbContext.Dispose();
+                }
+            }
+            this._disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

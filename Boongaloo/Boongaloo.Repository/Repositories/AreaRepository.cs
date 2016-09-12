@@ -12,6 +12,8 @@ namespace Boongaloo.Repository.Repositories
     {
         private BoongalooDbContext _dbContext;
 
+        private bool _disposed = false;
+
         public AreaRepository(BoongalooDbContext dbContext)
         {
             this._dbContext = dbContext;
@@ -57,6 +59,24 @@ namespace Boongaloo.Repository.Repositories
         public void Save()
         {
             _dbContext.SaveChanges();
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    this._dbContext.Dispose();
+                }
+            }
+            this._disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
