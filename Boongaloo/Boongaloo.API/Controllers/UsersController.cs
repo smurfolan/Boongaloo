@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Boongaloo.Repository.Entities;
 using Boongaloo.Repository.UnitOfWork;
 
@@ -29,12 +30,13 @@ namespace Boongaloo.API.Controllers
         }
 
         [HttpPost]
+        [Route("")]
         public IHttpActionResult Post([FromBody]User newUser)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            throw new NotImplementedException();
+            return Created("Cool! You just created new user", 56);
         }
     }
 }

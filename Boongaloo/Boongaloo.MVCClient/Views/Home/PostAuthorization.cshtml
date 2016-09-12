@@ -67,23 +67,17 @@
                     var userGivenName = $("#given_name").val();
                     var userFamilyName = $("#family_name").val();
 
-                    var userData = {
-                        'IdsrvUniqueId': userIdsrvId,
-                        'FirstName': userGivenName,
-                        'LastName': userFamilyName,
-                        'Email': userEmail
-                    };
+                    var userData = {'IdsrvUniqueId': userIdsrvId, 'FirstName': userGivenName, 'LastName': userFamilyName, 'Email': userEmail};
 
                     $.ajax({
                         type: "POST",
-                        contentType: "application/json",
                         url: 'https://localhost:44315/api/v1/users',
                         data: JSON.stringify(userData),
                         success: function(data) {
                             alert("FUCKING SUCCESS");
                         },
                         error: function(jqXHR, exception) {
-                            alert("SHIT Error: " + JSON.stringify(jqXHR) + " : " + JSON.stringify(exception));
+                            alert("SHIT Error");
                         }
                     });
                 });
