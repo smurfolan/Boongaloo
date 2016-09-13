@@ -41,12 +41,33 @@ namespace Boongaloo.MVCClient.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                return Redirect(this.Request.UrlReferrer.AbsolutePath);
+                return Redirect(Request.UrlReferrer.AbsolutePath);
             }
             else
             {
                 return Content(response.ReasonPhrase);
             }            
+        }
+
+        public async Task<ActionResult> CreateNewGroup(GroupDto group)
+        {
+            var client = BoongalooHttpClient.GetClient();
+
+            // serialize & POST
+            var serializedItemToCreate = JsonConvert.SerializeObject(group);
+
+            var response = await client.PostAsync("api/v1/groups",
+                    new StringContent(serializedItemToCreate,
+                    System.Text.Encoding.Unicode, "application/json"));
+
+            if (response.IsSuccessStatusCode)
+            {
+                return Redirect(Request.UrlReferrer.AbsolutePath);
+            }
+            else
+            {
+                return Content(response.ReasonPhrase);
+            }
         }
     }
 }

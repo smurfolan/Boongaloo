@@ -49,8 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoongalooWebApiDto\GroupDto.cs" />
     <Compile Include="BoongalooWebApiDto\UserAddedResponse.cs" />
     <Compile Include="BoongalooWebApiDto\UserDto.cs" />
+    <Compile Include="Enums\RadiusEnum.cs" />
+    <Compile Include="Enums\TagEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesEnum.cs" />
     <Compile Include="UserInfoFromAccessToken.cs" />

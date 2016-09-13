@@ -60,9 +60,7 @@ namespace Boongaloo.Repository.Repositories
                 return;
 
             toBeUpdated.Name = updatedGroup.Name;
-            toBeUpdated.Radius = updatedGroup.Radius;
             toBeUpdated.Tags = updatedGroup.Tags;
-            //toBeUpdated.Users = updatedGroup.Users;
         }
 
         public void Save()

@@ -49,8 +49,7 @@ namespace Boongaloo.API.Controllers
                 this._unitOfWork.UserRepository.InsertUser(newUser);
                 this._unitOfWork.Save();
 
-                return Created("users", newUser);
-                //return CreatedAtRoute("api/v1/users", new { id = newUser.IdsrvUniqueId }, newUser);
+                return Created("users", newUser);/*TODO: Investigate what should be returned here in the args.*/
             }
             catch (Exception ex)
             {
