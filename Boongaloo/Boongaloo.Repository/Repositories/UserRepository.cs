@@ -37,6 +37,7 @@ namespace Boongaloo.Repository.Repositories
 
         public void InsertUser(User user)
         {
+            user.Id = this.GetUsers().Count() + 1;
             _dbContext.Users.Add(user);
         }
         public void DeleteUser(int userId)
