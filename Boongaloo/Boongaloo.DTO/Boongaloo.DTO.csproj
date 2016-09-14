@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoongalooWebApiDto\GroupDto.cs" />
-    <Compile Include="BoongalooWebApiDto\SubscribeUserToGroupsDto.cs" />
+    <Compile Include="BoongalooWebApiDto\RelateUserToGroupsDto.cs" />
     <Compile Include="BoongalooWebApiDto\UserAddedResponse.cs" />
     <Compile Include="BoongalooWebApiDto\UserDto.cs" />
     <Compile Include="Enums\RadiusEnum.cs" />
