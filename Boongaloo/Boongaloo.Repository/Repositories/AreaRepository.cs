@@ -53,7 +53,8 @@ namespace Boongaloo.Repository.Repositories
             if (toBeUpdated == null)
                 return;
 
-            toBeUpdated.Center = area.Center;
+            toBeUpdated.Latitude = area.Latitude;
+            toBeUpdated.Longitude = area.Longitude;
             toBeUpdated.Radius = area.Radius;
         }
 

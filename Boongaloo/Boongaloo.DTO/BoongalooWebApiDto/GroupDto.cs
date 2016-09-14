@@ -12,8 +12,8 @@ namespace Boongaloo.DTO.BoongalooWebApiDto
         public IEnumerable<TagEnum> Tags { get; set; }
 
         #region These should not be null if NewAreaGroup is true
-        public decimal? Latitutude { get; set; }
-        public decimal? Longtitude { get; set; }
+        public double? Latitutude { get; set; }
+        public double? Longtitude { get; set; }
         public RadiusEnum? Radius { get; set; }
         #endregion
 

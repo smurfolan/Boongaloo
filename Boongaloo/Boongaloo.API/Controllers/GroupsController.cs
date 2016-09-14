@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Globalization;
 using System.Linq.Dynamic;
 using System.Net;
 using System.Web.Http;
 using Boongaloo.API.Helpers;
 using Boongaloo.DTO.BoongalooWebApiDto;
 using Boongaloo.DTO.Enums;
-using Boongaloo.Repository.Contexts;
 using Boongaloo.Repository.Entities;
-using Boongaloo.Repository.Repositories;
 using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers
@@ -40,7 +38,17 @@ namespace Boongaloo.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            return Content(HttpStatusCode.OK, "You successfuly extracted all groups around coordiantes");
+            try
+            {
+                var result = this._unitOfWork.GroupRepository.GetGroups(lat, lon);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                BoongalooApiLogger.LogError("Error while getting groups around coordinates.", ex);
+                return InternalServerError();
+            }
         }
 
         // POST /api/v1/groups/
@@ -64,7 +72,8 @@ namespace Boongaloo.API.Controllers
                 {
                     this._unitOfWork.AreaRepository.InsertArea(new Area()
                     {
-                        Center = $"POINT(\"{newGroup.Latitutude}\", \"{newGroup.Latitutude}\")",
+                        Latitude = newGroup.Latitutude.Value,
+                        Longitude = newGroup.Longtitude.Value,
                         Radius = (RadiusEnum) newGroup.Radius
                     });
                    

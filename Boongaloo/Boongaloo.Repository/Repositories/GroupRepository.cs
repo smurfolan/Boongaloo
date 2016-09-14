@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Device.Location;/*Consider moving this away and replacing it with own calculations class.*/
 using System.Linq;
 using Boongaloo.Repository.Contexts;
 using Boongaloo.Repository.Entities;
@@ -64,7 +65,7 @@ namespace Boongaloo.Repository.Repositories
         }
 
         // Consider moving these away when DbContext is changes. We keep these methods because we are artificially maintaining RDB
-        // using JSON files.
+        // using JSON files. We manage our ow bridge tables and maintain them by our ow which is not a good practice.
         public void InsertGroup(Group grouToInsert, IEnumerable<int> areaIds)
         {
             grouToInsert.Id = this.GetGroups().Count() + 1;
@@ -89,6 +90,20 @@ namespace Boongaloo.Repository.Repositories
                 Tags = grouToInsert.Tags
             });
         }
+        public IEnumerable<Group> GetGroups(double latitude, double longitude)
+        {
+            var currentUserLocation = new GeoCoordinate(latitude, longitude);
+
+            var areasInsideOfWhichUserIsCurrentlyIn = this._dbContext.Areas
+                .Where(x => currentUserLocation.GetDistanceTo(new GeoCoordinate(x.Latitude, x.Longitude)) <= (double)x.Radius)
+                .Select(y => y.Id);
+
+            var groupIds =
+                this._dbContext.AreaToGroup.Where(x => areasInsideOfWhichUserIsCurrentlyIn.Contains(x.AreaId))
+                    .Select(m => m.GroupId);
+
+            return this._dbContext.Groups.Where(x => groupIds.Contains(x.Id));
+        }
 
         public void Save()
         {
@@ -106,7 +121,6 @@ namespace Boongaloo.Repository.Repositories
             }
             this._disposed = true;
         }
-
         public void Dispose()
         {
             Dispose(true);
