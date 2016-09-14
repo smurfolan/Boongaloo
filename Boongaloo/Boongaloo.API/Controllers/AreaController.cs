@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using Boongaloo.API.Helpers;
 using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers
@@ -38,7 +35,17 @@ namespace Boongaloo.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            throw new NotImplementedException();
+            try
+            {
+                var result = this._unitOfWork.AreaRepository.GetAreas(lat, lon);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                BoongalooApiLogger.LogError("Error while getting groups around coordinates.", ex);
+                return InternalServerError();
+            }
         }
     }
 }

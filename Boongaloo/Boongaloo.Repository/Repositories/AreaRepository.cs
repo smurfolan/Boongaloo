@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Device.Location;/*Consider moving this away and replacing it with own calculations class.*/
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Boongaloo.Repository.Contexts;
 using Boongaloo.Repository.Entities;
 using Boongaloo.Repository.Interfaces;
@@ -56,6 +56,14 @@ namespace Boongaloo.Repository.Repositories
             toBeUpdated.Latitude = area.Latitude;
             toBeUpdated.Longitude = area.Longitude;
             toBeUpdated.Radius = area.Radius;
+        }
+
+        public IEnumerable<Area> GetAreas(double latitude, double longitude)
+        {
+            var currentUserLocation = new GeoCoordinate(latitude, longitude);
+
+            return this._dbContext.Areas
+                .Where(x => currentUserLocation.GetDistanceTo(new GeoCoordinate(x.Latitude, x.Longitude)) <= (double)x.Radius);
         }
 
         public void Save()
