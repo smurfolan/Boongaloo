@@ -13,6 +13,8 @@ namespace Boongaloo.Repository.Interfaces
         void DeleteArea(int areaId);
         void UpdateArea(Area area);
 
+        IEnumerable<Area> GetAreas(double latitude, double longitude);
+
         void Save();
     }
 }

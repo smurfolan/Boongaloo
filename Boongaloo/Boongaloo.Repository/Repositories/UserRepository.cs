@@ -37,6 +37,7 @@ namespace Boongaloo.Repository.Repositories
 
         public void InsertUser(User user)
         {
+            user.Id = this.GetUsers().Count() + 1;
             _dbContext.Users.Add(user);
         }
         public void DeleteUser(int userId)
@@ -52,6 +53,30 @@ namespace Boongaloo.Repository.Repositories
                 return;
 
             // TODO: Do the update
+        }
+
+        public void SubscribeUserForGroups(int userId, IEnumerable<int> groupIds)
+        {
+            foreach (var groupId in groupIds)
+            {
+                var lastRecord = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
+                var nextRecordId = lastRecord?.Id + 1 ?? 1;
+
+                this._dbContext.GroupToUser.Add(new GroupToUser()
+                {
+                    GroupId = groupId,
+                    UserId = userId,
+                    Id = nextRecordId
+                });
+            }
+        }
+        public void UnsubscribeUserFromGroups(int userId, IEnumerable<int> groupIds)
+        {
+            foreach (var groupId in groupIds)
+            {
+                var recordToBeRemoved = _dbContext.GroupToUser.FirstOrDefault(x => x.GroupId == groupId && x.UserId == userId);
+                this._dbContext.GroupToUser.Remove(recordToBeRemoved);
+            }
         }
 
         public void Save()

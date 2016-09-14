@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Spatial;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Boongaloo.DTO.Enums;
 
 namespace Boongaloo.Repository.Entities
 {
@@ -12,7 +7,7 @@ namespace Boongaloo.Repository.Entities
         public int Id { get; set; }
         public RadiusEnum Radius { get; set; }
 
-        // It has to be stored in a 'well known' format for DbGeography. POINT("", "")
-        public string Center { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
 }

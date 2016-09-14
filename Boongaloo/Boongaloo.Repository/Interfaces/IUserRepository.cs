@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Boongaloo.Repository.Entities;
 
 namespace Boongaloo.Repository.Interfaces
@@ -16,6 +12,9 @@ namespace Boongaloo.Repository.Interfaces
         void InsertUser(User area);
         void DeleteUser(int areaId);
         void UpdateUser(User area);
+
+        void SubscribeUserForGroups(int userId, IEnumerable<int> groupIds);
+        void UnsubscribeUserFromGroups(int userId, IEnumerable<int> groupIds);
 
         void Save();
     }

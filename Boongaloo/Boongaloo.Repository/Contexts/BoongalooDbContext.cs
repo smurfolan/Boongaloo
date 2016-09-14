@@ -96,9 +96,9 @@ namespace Boongaloo.Repository.Contexts
             var fi = this.GetStoreFileInfo(groupToUserStoreFileName);
 
             var json = File.ReadAllText(fi.PhysicalPath);
-            var result = JsonConvert.DeserializeObject<List<AreaToGroup>>(json);
+            var result = JsonConvert.DeserializeObject<List<GroupToUser>>(json);
 
-            AreaToGroup = result.ToList();
+            GroupToUser = result.ToList();
         }
 
         private void ExtractAreaToGroupsFromFile(string areaToGroupStoreFileName)
@@ -106,9 +106,9 @@ namespace Boongaloo.Repository.Contexts
             var fi = this.GetStoreFileInfo(areaToGroupStoreFileName);
 
             var json = File.ReadAllText(fi.PhysicalPath);
-            var result = JsonConvert.DeserializeObject<List<GroupToUser>>(json);
+            var result = JsonConvert.DeserializeObject<List<AreaToGroup>>(json);
 
-            GroupToUser = result.ToList();
+            AreaToGroup = result.ToList();
         }
 
         private IFileInfo GetStoreFileInfo(string resourceFileLocation)
