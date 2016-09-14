@@ -49,20 +49,76 @@
 }
 <hr>
 
-<h2>Create new boonga(No existing areas around)</h2><br>
+<h2>Create new boonga</h2><br>
 
-<form id="getGroupsAroundCoords">
+@using (Ajax.BeginForm("CreateNewGroup", "Home", null, new AjaxOptions
+{
+    HttpMethod = "POST",
+}, new { id = "create-new-group" })) // set new Id name for  Form
+{
+    @Html.AntiForgeryToken()
+
     <div id="name-group" class="form-group">
-        <label for="lat">Latitude</label>
-        <input type="number" step="0.0000001" class="form-control" name="lat">
+        <input id="create-as-new-area-chb" type="radio" name="NewAreaGroup" value="true"> Create the group as a new area
+        <input id="add-to-existing-area-chb" type="radio" name="NewAreaGroup" value="false"> Add the group to already existing areas<br>
     </div>
 
     <div id="name-group" class="form-group">
-        <label for="lon">Longitude</label>
-        <input type="number" step="0.0000001" class="form-control" name="lon">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" name="Name">
     </div>
+
+    <div id="name-group" class="form-group">
+        <span>Tags:</span><br>
+
+        <select multiple name="Tags" size="4">
+            <option value="Help">Help</option>
+            <option value="Sport">Sport</option>
+            <option value="Fun">Fun</option>
+            <option value="Dating">Dating</option>
+        </select>
+    </div><br>
+
+    <div id="name-group" class="form-group">
+        <div id="new-area-specific">
+            <div id="name-group" class="form-group">
+                <label for="Latitutude">Latitude</label>
+                <input type="number" step="0.0000001" class="form-control" name="Latitutude">
+            </div>
+            <div id="name-group" class="form-group">
+                <label for="Longtitude">Longitude</label>
+                <input type="number" step="0.0000001" class="form-control" name="Longtitude">
+            </div>
+
+            <label>Radius</label>
+            <select name="Radius">
+                <option value="50">50m.(Eye-sight reachable area)</option>
+                <option value="150">150m.(Stadium, concert hall, small-sized park, Mall, university faculty)</option>
+                <option value="300">300m.(Small neighbourhood, middle-to-big hospital)</option>
+                <option value="500">500m.(Middle-sized neighbourhood, small village)</option>
+            </select>
+            <br>
+        </div>
+    </div>
+
+    <div id="name-group" class="form-group">
+        <div id="existing-area-specific">
+            <div id="name-group" class="form-group">
+                <span>Area Ids:</span><br>
+
+                <select multiple name="AreaIds" size="4">
+                    <option value="1111">1111</option>
+                    <option value="2222">2222</option>
+                    <option value="3333">3333</option>
+                    <option value="4444">4444</option>
+                </select>
+            </div>
+            <br>
+        </div>
+    </div>
+
     <button type="submit" class="btn btn-success">Submit <span class="fa fa-arrow-right"></span></button>
-</form>
+}
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -85,5 +141,19 @@
 
             event.preventDefault();
         });
+
+        $("#create-as-new-area-chb")
+            .on("change",
+                function() {
+                    $("#existing-area-specific").addClass('hidden');
+                    $("#new-area-specific").removeClass('hidden');
+                });
+
+        $("#add-to-existing-area-chb")
+            .on("change",
+                function () {
+                    $("#existing-area-specific").removeClass('hidden');
+                    $("#new-area-specific").addClass('hidden');
+                });
     });
 </script>

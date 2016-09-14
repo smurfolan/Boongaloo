@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq.Dynamic;
 using System.Net;
 using System.Web.Http;
 using Boongaloo.API.Helpers;
+using Boongaloo.DTO.BoongalooWebApiDto;
+using Boongaloo.DTO.Enums;
 using Boongaloo.Repository.Contexts;
 using Boongaloo.Repository.Entities;
 using Boongaloo.Repository.Repositories;
@@ -38,20 +43,52 @@ namespace Boongaloo.API.Controllers
             return Content(HttpStatusCode.OK, "You successfuly extracted all groups around coordiantes");
         }
 
-        // POST /api/v1/groups/34.234456/42.234/
+        // POST /api/v1/groups/
         /// <summary>
         /// Creates a new group centered with the coordinates that were passed.
         /// </summary>
         /// <param name="newGroup"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("{lat:double}/{lon:double}")]
-        public IHttpActionResult Post(Group newGroup)/*double lat, double lon*/
+        [Route("")]
+        public IHttpActionResult Post([FromBody]GroupDto newGroup)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            
-            throw new NotImplementedException();
+
+            try
+            {
+                var newGroupEntity = new Group(){ Name = newGroup.Name, Tags = newGroup.Tags };
+
+                if (newGroup.NewAreaGroup && newGroup.AreaIds == null)
+                {
+                    this._unitOfWork.AreaRepository.InsertArea(new Area()
+                    {
+                        Center = $"POINT(\"{newGroup.Latitutude}\", \"{newGroup.Latitutude}\")",
+                        Radius = (RadiusEnum) newGroup.Radius
+                    });
+                   
+                    this._unitOfWork.GroupRepository.InsertGroup(
+                        newGroupEntity, 
+                        new List<int>()
+                        {
+                            this._unitOfWork.AreaRepository.GetAreas().Count()
+                        });
+                }
+                else
+                {
+                    this._unitOfWork.GroupRepository.InsertGroup(newGroupEntity, newGroup.AreaIds);
+                }
+
+                this._unitOfWork.Save();
+
+                return Created("groups", newGroupEntity);/*TODO: Investigate what should be returned here in the args.*/
+            }
+            catch (Exception ex)
+            {
+                BoongalooApiLogger.LogError("Error while inserting a new group.", ex);
+                return InternalServerError();
+            }
         }
 
         // GET /api/v1/groups/342342

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
+using Boongaloo.API.Helpers;
 using Boongaloo.Repository.Entities;
 using Boongaloo.Repository.UnitOfWork;
 
@@ -32,6 +33,9 @@ namespace Boongaloo.API.Controllers
             return Ok(result);
         }
 
+        // Get all users for a group 
+        // Get all users for an area
+
         [HttpPost]
         [Route("")]
         public IHttpActionResult Post([FromBody]User newUser)
@@ -53,7 +57,7 @@ namespace Boongaloo.API.Controllers
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error while inserting a new user. More:" + ex.Message);
+                BoongalooApiLogger.LogError("Error while inserting a new user.", ex);
                 return InternalServerError();
             }
         }

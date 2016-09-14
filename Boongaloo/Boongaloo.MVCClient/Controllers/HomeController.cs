@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.Http;
 using System.Web.Mvc;
 using Boongaloo.DTO;
 using Boongaloo.DTO.BoongalooWebApiDto;
@@ -17,7 +18,7 @@ namespace Boongaloo.MVCClient.Controllers
             
         }
 
-        [Authorize]
+        [System.Web.Mvc.Authorize]
         public ActionResult PostAuthorization()
         {
             // This is the point where the user was successfuly authorized by the STS
@@ -49,7 +50,7 @@ namespace Boongaloo.MVCClient.Controllers
             }            
         }
 
-        public async Task<ActionResult> CreateNewGroup(GroupDto group)
+        public async Task<ActionResult> CreateNewGroup([FromBody]GroupDto group)
         {
             var client = BoongalooHttpClient.GetClient();
 

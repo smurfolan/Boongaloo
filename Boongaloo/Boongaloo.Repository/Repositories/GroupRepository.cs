@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Boongaloo.Repository.Contexts;
@@ -61,6 +61,33 @@ namespace Boongaloo.Repository.Repositories
 
             toBeUpdated.Name = updatedGroup.Name;
             toBeUpdated.Tags = updatedGroup.Tags;
+        }
+
+        // Consider moving these away when DbContext is changes. We keep these methods because we are artificially maintaining RDB
+        // using JSON files.
+        public void InsertGroup(Group grouToInsert, IEnumerable<int> areaIds)
+        {
+            grouToInsert.Id = this.GetGroups().Count() + 1;
+            
+            // Insert into the bridge table AreaGroup
+            foreach (var areaId in areaIds)
+            {
+                var nextAreaToGroupId = this._dbContext.AreaToGroup.Count() + 1;
+                this._dbContext.AreaToGroup.Add(new AreaToGroup()
+                {
+                    AreaId = areaId,
+                    GroupId = grouToInsert.Id,
+                    Id = nextAreaToGroupId
+                });
+            }
+
+            // Insert the new group
+            this._dbContext.Groups.Add(new Group()
+            {
+                Id = grouToInsert.Id,
+                Name = grouToInsert.Name,
+                Tags = grouToInsert.Tags
+            });
         }
 
         public void Save()

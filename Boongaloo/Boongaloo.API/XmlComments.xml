@@ -12,7 +12,7 @@
             <param name="lon"></param>
             <returns></returns>
         </member>
-        <member name="M:Boongaloo.API.Controllers.GroupsController.Post(Boongaloo.Repository.Entities.Group)">
+        <member name="M:Boongaloo.API.Controllers.GroupsController.Post(Boongaloo.DTO.BoongalooWebApiDto.GroupDto)">
             <summary>
             Creates a new group centered with the coordinates that were passed.
             </summary>

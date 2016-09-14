@@ -38,6 +38,7 @@ namespace Boongaloo.Repository.Repositories
 
         public void InsertArea(Area area)
         {
+            area.Id = this.GetAreas().Count() + 1;
             _dbContext.Areas.Add(area);
         }
         public void DeleteArea(int areaId)
