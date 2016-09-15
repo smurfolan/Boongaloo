@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Boongaloo.DTO.BoongalooWebApiDto;
 using Boongaloo.Repository.Contexts;
 using Boongaloo.Repository.Entities;
 using Boongaloo.Repository.Interfaces;
@@ -55,28 +56,47 @@ namespace Boongaloo.Repository.Repositories
             // TODO: Do the update
         }
 
-        public void SubscribeUserForGroups(int userId, IEnumerable<int> groupIds)
+        public void UpdateUserSubscriptionsToGroups(int userId, IEnumerable<GroupSubscriptionDto> groupSubscriptions)
         {
-            foreach (var groupId in groupIds)
+            foreach (var groupSubscriptionDto in groupSubscriptions)
             {
-                var lastRecord = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
-                var nextRecordId = lastRecord?.Id + 1 ?? 1;
-
-                this._dbContext.GroupToUser.Add(new GroupToUser()
+                if (groupSubscriptionDto.IsSubscribtionRequest)
                 {
-                    GroupId = groupId,
-                    UserId = userId,
-                    Id = nextRecordId
-                });
+                    var lastRecord = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
+                    var nextRecordId = lastRecord?.Id + 1 ?? 1;
+
+                    this._dbContext.GroupToUser.Add(new GroupToUser()
+                    {
+                        GroupId = groupSubscriptionDto.GroupId,
+                        UserId = userId,
+                        Id = nextRecordId
+                    });
+                }
+                else
+                {
+                    var recordToBeRemoved = _dbContext.GroupToUser
+                        .FirstOrDefault(x => x.GroupId == groupSubscriptionDto.GroupId && x.UserId == userId);
+                    this._dbContext.GroupToUser.Remove(recordToBeRemoved);
+                }
             }
         }
-        public void UnsubscribeUserFromGroups(int userId, IEnumerable<int> groupIds)
+
+
+        public IEnumerable<User> GetUsersFromGroup(int groupId)
         {
-            foreach (var groupId in groupIds)
-            {
-                var recordToBeRemoved = _dbContext.GroupToUser.FirstOrDefault(x => x.GroupId == groupId && x.UserId == userId);
-                this._dbContext.GroupToUser.Remove(recordToBeRemoved);
-            }
+            var userIds = this._dbContext.GroupToUser.Where(x => x.GroupId == groupId).Select(y => y.UserId);
+
+            return this._dbContext.Users.Where(x => userIds.Contains(x.Id));
+        }
+        public IEnumerable<User> GetUsersFromArea(int areaId)
+        {
+            var userIds = (from item1 in _dbContext.AreaToGroup
+                join item2 in _dbContext.GroupToUser
+                    on item1.GroupId equals item2.GroupId
+                where item1.AreaId == areaId
+                select item2.UserId).ToList();
+
+            return this._dbContext.Users.Where(x => userIds.Contains(x.Id));
         }
 
         public void Save()

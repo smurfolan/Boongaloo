@@ -20,6 +20,11 @@ namespace Boongaloo.API.Controllers
             // Handle assignment by DI
         }
 
+        /// <summary>
+        /// Example: GET api/v1/users/1
+        /// </summary>
+        /// <param name="id">Unique identifier of the user. Not the one that comes from identity server.</param>
+        /// <returns>User by his id</returns>
         [HttpGet]
         [Route("{id:int}")]
         public IHttpActionResult Get(int id)
@@ -32,9 +37,11 @@ namespace Boongaloo.API.Controllers
             return Ok(result);
         }
 
-        // Get all users for a group 
-        // Get all users for an area
-
+        /// <summary>
+        /// Example: POST api/v1/users/ChangeGroupsSubscribtion
+        /// </summary>
+        /// <param name="userToGroupsModel">The model contains userId and list of pairs groupId-SubscribtionType that indicate if you are un/subscribing</param>
+        /// <returns>Http.OK if the operation was successful or Http.500 if there was an error.</returns>
         [HttpPost]
         [Route("ChangeGroupsSubscribtion")]
         public IHttpActionResult Post([FromBody]RelateUserToGroupsDto userToGroupsModel)
@@ -44,17 +51,9 @@ namespace Boongaloo.API.Controllers
 
             try
             {
-                if (userToGroupsModel.SubscribeRequest)
-                {
-                    this._unitOfWork.UserRepository
-                        .SubscribeUserForGroups(userToGroupsModel.UserId, userToGroupsModel.GroupIds);
-                }
-                else
-                {
-                    this._unitOfWork.UserRepository
-                        .UnsubscribeUserFromGroups(userToGroupsModel.UserId, userToGroupsModel.GroupIds);
-                }
-                
+                this._unitOfWork.UserRepository
+                    .UpdateUserSubscriptionsToGroups(userToGroupsModel.UserId, userToGroupsModel.GroupsSubscriptions);
+
                 this._unitOfWork.Save();
 
                 return Ok();
@@ -66,6 +65,11 @@ namespace Boongaloo.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Example: POST api/v1/users
+        /// </summary>
+        /// <param name="newUser"></param>
+        /// <returns>Http status code 201 if user was succesfuly created or 500 if error has occured.</returns>
         [HttpPost]
         [Route("")]
         public IHttpActionResult Post([FromBody]User newUser)

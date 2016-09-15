@@ -4,28 +4,77 @@
         <name>Boongaloo.API</name>
     </assembly>
     <members>
+        <member name="M:Boongaloo.API.Controllers.AreaController.Get(System.Int32)">
+            <summary>
+            Example: GET /api/v1/areas/342342
+            </summary>
+            <param name="id">Id of the area.</param>
+            <returns>Returns area by its id.</returns>
+        </member>
+        <member name="M:Boongaloo.API.Controllers.AreaController.Get(System.Double,System.Double)">
+            <summary>
+            Example: GET /api/v1/areas/34.234456/42.234/
+            </summary>
+            <param name="lat">Latitude</param>
+            <param name="lon">Longitude</param>
+            <returns>All the areas around coordinates.</returns>
+        </member>
+        <member name="M:Boongaloo.API.Controllers.AreaController.GetUsers(System.Int32)">
+            <summary>
+            Example: GET api/v1/areas/{id}/users
+            </summary>
+            <param name="id">Id of the area.</param>
+            <returns>All the users falling into specific area</returns>
+        </member>
         <member name="M:Boongaloo.API.Controllers.GroupsController.Get(System.Double,System.Double)">
             <summary>
-            Returns all the groups that contain this point(lat/lon) as part of their diameter 
+            Example: GET /api/v1/groups/{lat}/{lon}/
             </summary>
-            <param name="lat"></param>
-            <param name="lon"></param>
-            <returns></returns>
+            <param name="lat">Latitude</param>
+            <param name="lon">Longitude</param>
+            <returns>All the groups that contain this point(lat/lon) as part of their diameter</returns>
         </member>
         <member name="M:Boongaloo.API.Controllers.GroupsController.Post(Boongaloo.DTO.BoongalooWebApiDto.GroupDto)">
             <summary>
-            Creates a new group centered with the coordinates that were passed.
+            Example: POST /api/v1/groups/
             </summary>
-            <param name="newGroup"></param>
-            <returns></returns>
+            <param name="newGroup">The new group to be created</param>
+            <returns>HTTP Code 201 if successfuly created and 500 if not.</returns>
         </member>
         <member name="M:Boongaloo.API.Controllers.GroupsController.Get(System.Int32)">
             <summary>
-            Extracts specific group by its id.
+            Example: GET /api/v1/groups/{id}
             </summary>
             <param name="id">Unique identifier of a group</param>
-            <returns>A single group object.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
+            <returns>Specific group by its id.</returns>
+        </member>
+        <member name="M:Boongaloo.API.Controllers.GroupsController.GetUsers(System.Int32)">
+            <summary>
+            Example: GET api/v1/groups/{id}/users
+            </summary>
+            <param name="id">Unique identifier of the group you are getting the users from</param>
+            <returns>All the users for a specific group</returns>
+        </member>
+        <member name="M:Boongaloo.API.Controllers.UsersController.Get(System.Int32)">
+            <summary>
+            Example: GET api/v1/users/1
+            </summary>
+            <param name="id">Unique identifier of the user. Not the one that comes from identity server.</param>
+            <returns>User by his id</returns>
+        </member>
+        <member name="M:Boongaloo.API.Controllers.UsersController.Post(Boongaloo.DTO.BoongalooWebApiDto.RelateUserToGroupsDto)">
+            <summary>
+            Example: POST api/v1/users/ChangeGroupsSubscribtion
+            </summary>
+            <param name="userToGroupsModel">The model contains userId and list of pairs groupId-SubscribtionType that indicate if you are un/subscribing</param>
+            <returns>Http.OK if the operation was successful or Http.500 if there was an error.</returns>
+        </member>
+        <member name="M:Boongaloo.API.Controllers.UsersController.Post(Boongaloo.Repository.Entities.User)">
+            <summary>
+            Example: POST api/v1/users
+            </summary>
+            <param name="newUser"></param>
+            <returns>Http status code 201 if user was succesfuly created or 500 if error has occured.</returns>
         </member>
     </members>
 </doc>
