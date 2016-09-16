@@ -4,16 +4,21 @@
         <name>Boongaloo.API</name>
     </assembly>
     <members>
+        <member name="T:Boongaloo.API.Controllers.ApiDocumentationController">
+            <summary>
+            Consider moving this helper controller away and replace it with proper documenting tool. E.g. Swagger/Swashbuckle.
+            </summary>
+        </member>
         <member name="M:Boongaloo.API.Controllers.AreaController.Get(System.Int32)">
             <summary>
-            Example: GET /api/v1/areas/342342
+            Example: GET /api/v1/areas/{id:int}
             </summary>
             <param name="id">Id of the area.</param>
             <returns>Returns area by its id.</returns>
         </member>
         <member name="M:Boongaloo.API.Controllers.AreaController.Get(System.Double,System.Double)">
             <summary>
-            Example: GET /api/v1/areas/34.234456/42.234/
+            Example: GET /api/v1/areas/{lat:double}/{lon:double}/
             </summary>
             <param name="lat">Latitude</param>
             <param name="lon">Longitude</param>
@@ -21,14 +26,14 @@
         </member>
         <member name="M:Boongaloo.API.Controllers.AreaController.GetUsers(System.Int32)">
             <summary>
-            Example: GET api/v1/areas/{id}/users
+            Example: GET api/v1/areas/{id:int}/users
             </summary>
             <param name="id">Id of the area.</param>
             <returns>All the users falling into specific area</returns>
         </member>
         <member name="M:Boongaloo.API.Controllers.GroupsController.Get(System.Double,System.Double)">
             <summary>
-            Example: GET /api/v1/groups/{lat}/{lon}/
+            Example: GET /api/v1/groups/{lat:double}/{lon:double}/
             </summary>
             <param name="lat">Latitude</param>
             <param name="lon">Longitude</param>
@@ -38,26 +43,30 @@
             <summary>
             Example: POST /api/v1/groups/
             </summary>
-            <param name="newGroup">The new group to be created</param>
+            <param name="newGroup">{'NewAreaGroup':bool, 'Name':string, 'Tags':[{TagEnum}], 'Latitutude':double?, 'Longtitude':double?, 'Radius': RadiusEnum?, 'AreaIds': IEnumerable(int)}
+            NOTE: TagEnum?->Nullable, enumerable type. Possible values: Help(0), Sport(1), Fun(2), Dating(3)
+            NOTE: RadiusEnum->Nullable, enumerable type. Possible values: FiftyMeters(50), HunderdAndFiftyMeters(150), ThreeHundredMeters(300), FiveHundredMeters(500)
+            NOTE: 'Latitutude', 'Longtitude', 'Radius' MUST be NULL if you are just joining to existing areas(NewAreaGroup=false)
+            NOTE: AreaIds MUST be empty/null if you are creating a new area(NewAreaGroup=true)</param>
             <returns>HTTP Code 201 if successfuly created and 500 if not.</returns>
         </member>
         <member name="M:Boongaloo.API.Controllers.GroupsController.Get(System.Int32)">
             <summary>
-            Example: GET /api/v1/groups/{id}
+            Example: GET /api/v1/groups/{id:int}
             </summary>
             <param name="id">Unique identifier of a group</param>
             <returns>Specific group by its id.</returns>
         </member>
         <member name="M:Boongaloo.API.Controllers.GroupsController.GetUsers(System.Int32)">
             <summary>
-            Example: GET api/v1/groups/{id}/users
+            Example: GET api/v1/groups/{id:int}/users
             </summary>
             <param name="id">Unique identifier of the group you are getting the users from</param>
             <returns>All the users for a specific group</returns>
         </member>
         <member name="M:Boongaloo.API.Controllers.UsersController.Get(System.Int32)">
             <summary>
-            Example: GET api/v1/users/1
+            Example: GET api/v1/users/{id:int}
             </summary>
             <param name="id">Unique identifier of the user. Not the one that comes from identity server.</param>
             <returns>User by his id</returns>
@@ -66,14 +75,14 @@
             <summary>
             Example: POST api/v1/users/ChangeGroupsSubscribtion
             </summary>
-            <param name="userToGroupsModel">The model contains userId and list of pairs groupId-SubscribtionType that indicate if you are un/subscribing</param>
+            <param name="userToGroupsModel">{'UserId':int, 'GroupsSubscriptions':[{'GroupId':int, 'IsSubscribtionRequest':bool}]}</param>
             <returns>Http.OK if the operation was successful or Http.500 if there was an error.</returns>
         </member>
         <member name="M:Boongaloo.API.Controllers.UsersController.Post(Boongaloo.Repository.Entities.User)">
             <summary>
             Example: POST api/v1/users
             </summary>
-            <param name="newUser"></param>
+            <param name="newUser">{'Id':int, 'IdsrvUniqueId':string, 'FirstName':string, 'LastName':string, 'Email':string,}</param>
             <returns>Http status code 201 if user was succesfuly created or 500 if error has occured.</returns>
         </member>
     </members>

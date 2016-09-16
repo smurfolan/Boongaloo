@@ -23,7 +23,7 @@ namespace Boongaloo.API.Controllers
         }
 
         /// <summary>
-        /// Example: GET /api/v1/groups/{lat}/{lon}/
+        /// Example: GET /api/v1/groups/{lat:double}/{lon:double}/
         /// </summary>
         /// <param name="lat">Latitude</param>
         /// <param name="lon">Longitude</param>
@@ -51,7 +51,11 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Example: POST /api/v1/groups/
         /// </summary>
-        /// <param name="newGroup">The new group to be created</param>
+        /// <param name="newGroup">{'NewAreaGroup':bool, 'Name':string, 'Tags':[{TagEnum}], 'Latitutude':double?, 'Longtitude':double?, 'Radius': RadiusEnum?, 'AreaIds': IEnumerable(int)}
+        /// NOTE: TagEnum?->Nullable, enumerable type. Possible values: Help(0), Sport(1), Fun(2), Dating(3)
+        /// NOTE: RadiusEnum->Nullable, enumerable type. Possible values: FiftyMeters(50), HunderdAndFiftyMeters(150), ThreeHundredMeters(300), FiveHundredMeters(500)
+        /// NOTE: 'Latitutude', 'Longtitude', 'Radius' MUST be NULL if you are just joining to existing areas(NewAreaGroup=false)
+        /// NOTE: AreaIds MUST be empty/null if you are creating a new area(NewAreaGroup=true)</param>
         /// <returns>HTTP Code 201 if successfuly created and 500 if not.</returns>
         [HttpPost]
         [Route("")]
@@ -98,7 +102,7 @@ namespace Boongaloo.API.Controllers
         }
 
         /// <summary>
-        /// Example: GET /api/v1/groups/{id}
+        /// Example: GET /api/v1/groups/{id:int}
         /// </summary>
         /// <param name="id">Unique identifier of a group</param>
         /// <returns>Specific group by its id.</returns>
@@ -115,7 +119,7 @@ namespace Boongaloo.API.Controllers
         }
 
         /// <summary>
-        /// Example: GET api/v1/groups/{id}/users
+        /// Example: GET api/v1/groups/{id:int}/users
         /// </summary>
         /// <param name="id">Unique identifier of the group you are getting the users from</param>
         /// <returns>All the users for a specific group</returns>

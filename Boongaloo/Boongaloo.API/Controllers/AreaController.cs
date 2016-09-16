@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Web.Http;
 using Boongaloo.API.Helpers;
+using Boongaloo.DTO.BoongalooWebApiDto;
 using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers
@@ -18,7 +20,7 @@ namespace Boongaloo.API.Controllers
         }
         
         /// <summary>
-        /// Example: GET /api/v1/areas/342342
+        /// Example: GET /api/v1/areas/{id:int}
         /// </summary>
         /// <param name="id">Id of the area.</param>
         /// <returns>Returns area by its id.</returns>
@@ -35,7 +37,7 @@ namespace Boongaloo.API.Controllers
         }
 
         /// <summary>
-        /// Example: GET /api/v1/areas/34.234456/42.234/
+        /// Example: GET /api/v1/areas/{lat:double}/{lon:double}/
         /// </summary>
         /// <param name="lat">Latitude</param>
         /// <param name="lon">Longitude</param>
@@ -61,7 +63,7 @@ namespace Boongaloo.API.Controllers
         }
 
         /// <summary>
-        /// Example: GET api/v1/areas/{id}/users
+        /// Example: GET api/v1/areas/{id:int}/users
         /// </summary>
         /// <param name="id">Id of the area.</param>
         /// <returns>All the users falling into specific area</returns>
