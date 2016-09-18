@@ -95,5 +95,21 @@ namespace Boongaloo.API.Controllers
                 return InternalServerError();
             }
         }
+
+        /// <summary>
+        /// Example: PUT api/v1/users/{id:int}
+        /// </summary>
+        /// <param name="id">Unique identifier of the user that will be updated</param>
+        /// <param name="updateUserData">Updated user data</param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("{id:int}")]
+        public IHttpActionResult Put(int id, [FromBody]User updateUserData)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest();
+
+            throw new NotImplementedException();
+        }
     }
 }

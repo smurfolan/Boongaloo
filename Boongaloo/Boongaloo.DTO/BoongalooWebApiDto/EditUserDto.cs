@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using Boongaloo.DTO.Enums;
 
-namespace Boongaloo.Repository.Entities
+namespace Boongaloo.DTO.BoongalooWebApiDto
 {
-    public class User
+    public class EditUserDto
     {
-        public int Id { get; set; }
-        public string IdsrvUniqueId { get; set; }
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

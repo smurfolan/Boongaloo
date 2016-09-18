@@ -50,6 +50,11 @@ namespace Boongaloo.MVCClient.Controllers
             }            
         }
 
+        public ActionResult UpdateUser(int id, EditUserDto editedUser)
+        {
+            return null;
+        }
+
         public async Task<ActionResult> CreateNewGroup([FromBody]GroupDto group)
         {
             var client = BoongalooHttpClient.GetClient();

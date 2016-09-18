@@ -85,5 +85,13 @@
             <param name="newUser">{'Id':int, 'IdsrvUniqueId':string, 'FirstName':string, 'LastName':string, 'Email':string,}</param>
             <returns>Http status code 201 if user was succesfuly created or 500 if error has occured.</returns>
         </member>
+        <member name="M:Boongaloo.API.Controllers.UsersController.Put(System.Int32,Boongaloo.Repository.Entities.User)">
+            <summary>
+            Example: PUT api/v1/users/{id:int}
+            </summary>
+            <param name="id">Unique identifier of the user that will be updated</param>
+            <param name="updateUserData">Updated user data</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
