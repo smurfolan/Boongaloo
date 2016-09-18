@@ -109,7 +109,20 @@ namespace Boongaloo.API.Controllers
             if(!ModelState.IsValid)
                 return BadRequest();
 
-            throw new NotImplementedException();
+            try
+            {
+                updateUserData.Id = id;
+                this._unitOfWork.UserRepository.UpdateUser(updateUserData);
+
+                this._unitOfWork.Save();
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                BoongalooApiLogger.LogError("Error while updating user.", ex);
+                return InternalServerError();
+            }
         }
     }
 }

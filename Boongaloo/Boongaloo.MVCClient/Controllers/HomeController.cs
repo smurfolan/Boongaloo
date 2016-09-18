@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -75,5 +76,27 @@ namespace Boongaloo.MVCClient.Controllers
                 return Content(response.ReasonPhrase);
             }
         }
+
+        #region Area
+        public async Task<JsonResult> GetAllAreaIds(double lat, double lon)
+        {
+            var client = BoongalooHttpClient.GetClient();
+
+            var response = await client.GetAsync($"api/v1/areas/{lat}/{lon}/");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var listOfAreasAsString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                var listOfActualAreas = JsonConvert.DeserializeObject<IList<AreaDto>>(listOfAreasAsString).ToList();
+
+                return Json(listOfActualAreas, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
     }
 }

@@ -104,13 +104,9 @@
     <div id="name-group" class="form-group">
         <div id="existing-area-specific">
             <div id="name-group" class="form-group">
-                <span>Area Ids:</span><br>
+                <span>Area Ids:</span><input id="fetch-areas" type="button" value="Fetch all areas"/><br>
 
-                <select multiple name="AreaIds" size="4">
-                    <option value="1111">1111</option>
-                    <option value="2222">2222</option>
-                    <option value="3333">3333</option>
-                    <option value="4444">4444</option>
+                <select id="area-ids" multiple name="AreaIds" size="4">
                 </select>
             </div>
             <br>
@@ -122,10 +118,36 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#fetch-areas").on('click', function() {
+            var lat = $("#name-group input[name='Latitutude']").val();
+            var lon = $("#name-group input[name='Longtitude']").val();
+
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: 'https://localhost:44318/Home/GetAllAreaIds?lat=' + lat + '&lon=' + lon,
+                success: function (data, status, xhr) {
+                    if (data.length < 1) {
+                        $('#area-ids').find('option').remove().end();
+                        return;
+                    }
+
+                    $.each(data, function (i, item) {
+                        var areaId = JSON.stringify(data[i]['Id']);
+                        $('#area-ids').append($("<option></option>")
+                            .attr("value", areaId)
+                            .text(areaId));
+                    });
+                },
+                error: function (jqXHR, exception) {
+                    alert("Error: " + JSON.stringify(jqXHR) + " : " + JSON.stringify(exception));
+                }
+            });
+        });
+
         $('#getGroupsAroundCoords').submit(function (event) {
             var lat = $("#getGroupsAroundCoords input[name='lat']").val();
             var lon = $("#getGroupsAroundCoords input[name='lon']").val();
-
             jQuery.support.cors = true;
 
             $.ajax({

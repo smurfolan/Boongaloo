@@ -53,7 +53,14 @@ namespace Boongaloo.Repository.Repositories
             if (userToBeUpdated == null)
                 return;
 
-            // TODO: Do the update
+            userToBeUpdated.About = user.About;
+            userToBeUpdated.BirthDate = user.BirthDate;
+            userToBeUpdated.Email = user.Email;
+            userToBeUpdated.FirstName = user.FirstName;
+            userToBeUpdated.Langugages = user.Langugages;
+            userToBeUpdated.LastName = user.LastName;
+            userToBeUpdated.Gender = user.Gender;
+            userToBeUpdated.PhoneNumber = user.PhoneNumber;
         }
 
         public void UpdateUserSubscriptionsToGroups(int userId, IEnumerable<GroupSubscriptionDto> groupSubscriptions)

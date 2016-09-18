@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoongalooWebApiDto\AreaDto.cs" />
     <Compile Include="BoongalooWebApiDto\EditUserDto.cs" />
     <Compile Include="BoongalooWebApiDto\GroupDto.cs" />
     <Compile Include="BoongalooWebApiDto\GroupSubscriptionDto.cs" />
