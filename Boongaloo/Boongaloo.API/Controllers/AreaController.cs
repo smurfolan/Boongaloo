@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
 using System.Web.Http;
 using Boongaloo.API.Helpers;
-using Boongaloo.DTO.BoongalooWebApiDto;
 using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers

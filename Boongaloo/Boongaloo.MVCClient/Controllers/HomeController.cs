@@ -5,7 +5,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Mvc;
-using Boongaloo.DTO;
 using Boongaloo.DTO.BoongalooWebApiDto;
 using Boongaloo.MVCClient.Helpers;
 using Newtonsoft.Json;
