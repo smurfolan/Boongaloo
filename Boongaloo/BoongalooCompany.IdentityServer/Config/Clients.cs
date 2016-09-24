@@ -19,7 +19,7 @@ namespace BoongalooCompany.IdentityServer.Config
                     // redirect = URI of our callback controller in the MVC application
                     RedirectUris = new List<string>
                     {
-                        Boongaloo.Constants.BoongalooMVCSTSCallback
+                        Boongaloo.Constants.BoongalooIOSCallback
                     },           
 
                      ClientSecrets = new List<Secret>()
