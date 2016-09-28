@@ -6,7 +6,7 @@ using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/v1/areas")]
     public class AreaController : ApiController
     {

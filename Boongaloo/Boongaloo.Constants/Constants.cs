@@ -5,7 +5,7 @@ namespace Boongaloo
     {
         public const string BoongalooIOSCallback = "com.boongaloo.ios";
 
-        public const string BoongalooAPI = "https://localhost:44315/";
+        public const string BoongalooAPI = "https://boongalooapi.azurewebsites.net/";
         public const string BoongalooMVC = "https://localhost:44318/";
         public const string BoongalooMVCSTSCallback = "https://localhost:44318/stscallback";
         public const string BoongalooAngular = "https://localhost:44316/";

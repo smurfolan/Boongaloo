@@ -8,7 +8,7 @@ using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/v1/users")]
     public class UsersController : ApiController
     {
