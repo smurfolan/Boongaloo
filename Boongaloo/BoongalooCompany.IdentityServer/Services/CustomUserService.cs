@@ -9,6 +9,7 @@ using BoongalooCompany.Repository;
 using BoongalooCompany.Repository.Entities;
 using IdentityServer3.Core.Extensions;
 using System.Security.Claims;
+using Serilog;
 
 namespace BoongalooCompany.IdentityServer.Services
 {

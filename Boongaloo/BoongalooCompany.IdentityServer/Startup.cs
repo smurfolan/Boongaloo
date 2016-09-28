@@ -8,6 +8,7 @@ using IdentityServer3.Core.Services;
 using BoongalooCompany.IdentityServer.Config;
 using BoongalooCompany.IdentityServer.Helpers;
 using BoongalooCompany.IdentityServer.Services;
+using Serilog;
 
 namespace BoongalooCompany.IdentityServer
 {
@@ -15,6 +16,10 @@ namespace BoongalooCompany.IdentityServer
     {
         public void Configuration(IAppBuilder app)
         {
+            Log.Logger = new LoggerConfiguration()
+            .WriteTo.Trace()
+            .CreateLogger();
+
             app.Map("/identity", idsrvApp =>
             {
                 var corsPolicyService = new DefaultCorsPolicyService()
@@ -71,6 +76,11 @@ namespace BoongalooCompany.IdentityServer
                         // FrameSrc = "https://localhost:44318 https://localhost:44316"
                         // or
                         // FrameSrc = "*" for all URIs
+                    },
+                    LoggingOptions = new LoggingOptions()
+                    {
+                        EnableHttpLogging = true,
+                        EnableWebApiDiagnostics = true
                     }
 
                 };
