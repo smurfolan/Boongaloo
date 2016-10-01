@@ -3,7 +3,7 @@ namespace Boongaloo
 {
     public class Constants
     {
-        public const string BoongalooIOSCallback = "com.boongaloo.ios";
+        public const string BoongalooIOSCallback = "app:/com.boongaloo.ios";
 
         public const string BoongalooAPI = "https://boongalooapi.azurewebsites.net/";
         public const string BoongalooMVC = "https://localhost:44318/";
