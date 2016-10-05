@@ -38,8 +38,8 @@ namespace Boongaloo.API
         private void InitAutoMapper()
         {
             // Here we have to make the mapping between entities and DTOs
-
-            Mapper.AssertConfigurationIsValid();
+            Mapper.Initialize(cfg => {
+            });
         }
     }
 }

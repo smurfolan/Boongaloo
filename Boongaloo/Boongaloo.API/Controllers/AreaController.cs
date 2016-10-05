@@ -3,18 +3,22 @@ using System.Linq;
 using System.Web.Http;
 using Boongaloo.API.Helpers;
 using Boongaloo.Repository.UnitOfWork;
+using BusinessServices;
 
 namespace Boongaloo.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/v1/areas")]
     public class AreaController : ApiController
     {
         private BoongalooDbUnitOfWork _unitOfWork;
 
+        private readonly IBoongalooService _productServices;
+
         public AreaController()
         {
             _unitOfWork = new BoongalooDbUnitOfWork();
+            _productServices = new BoongalooService();
         }
         
         /// <summary>
@@ -28,6 +32,8 @@ namespace Boongaloo.API.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+
+            var area = this._productServices.GetAreaById(id);
 
             var result = this._unitOfWork.AreaRepository.GetAreas().FirstOrDefault(x => x.Id == id);
 
