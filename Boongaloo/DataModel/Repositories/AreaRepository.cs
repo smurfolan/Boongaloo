@@ -32,7 +32,7 @@ namespace DataModel.Repositories
 
         public void InsertArea(Area area)
         {
-            throw new NotImplementedException();
+            this._dbContext.Areas.Add(area);
         }
 
         public void DeleteArea(int areaId)

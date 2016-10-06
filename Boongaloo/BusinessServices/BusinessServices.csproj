@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapperConfig.cs" />
+    <Compile Include="BoongalooProfile.cs" />
     <Compile Include="BoongalooService.cs" />
     <Compile Include="IBoongalooService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

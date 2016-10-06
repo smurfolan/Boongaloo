@@ -31,6 +31,13 @@
             <param name="id">Id of the area.</param>
             <returns>All the users falling into specific area</returns>
         </member>
+        <member name="M:Boongaloo.API.Controllers.AreaController.Post(BusinessEntities.AreaDto)">
+            <summary>
+            Example: POST api/v1/areas
+            </summary>
+            <param name="area"></param>
+            <returns></returns>
+        </member>
         <member name="M:Boongaloo.API.Controllers.GroupsController.Get(System.Double,System.Double)">
             <summary>
             Example: GET /api/v1/groups/{lat:double}/{lon:double}/

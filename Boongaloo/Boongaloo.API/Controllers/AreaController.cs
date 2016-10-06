@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Http;
 using Boongaloo.API.Helpers;
 using Boongaloo.Repository.UnitOfWork;
+using BusinessEntities;
 using BusinessServices;
 
 namespace Boongaloo.API.Controllers
@@ -33,11 +34,18 @@ namespace Boongaloo.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var area = this._productServices.GetAreaById(id);
+            try
+            {
+                var result = this._productServices.GetAreaById(id);
 
-            var result = this._unitOfWork.AreaRepository.GetAreas().FirstOrDefault(x => x.Id == id);
-
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                BoongalooApiLogger.LogError("Error while getting area by its id.", ex);
+                return InternalServerError();
+            }
+            
         }
 
         /// <summary>
@@ -85,6 +93,27 @@ namespace Boongaloo.API.Controllers
                 BoongalooApiLogger.LogError("Error while getting users for area.", ex);
                 return InternalServerError();
             }
+        }
+
+        /// <summary>
+        /// Example: POST api/v1/areas
+        /// </summary>
+        /// <param name="area"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("")]
+        public IHttpActionResult Post([FromBody]AreaDto area)
+        {
+            try
+            {
+                this._productServices.CreateNewArea(area);
+            }
+            catch (Exception ex)
+            {
+                BoongalooApiLogger.LogError("Error while creating new area.", ex);
+                return InternalServerError();
+            }
+            return null;
         }
     }
 }
