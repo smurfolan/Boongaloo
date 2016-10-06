@@ -7,6 +7,7 @@ using Boongaloo.DTO.BoongalooWebApiDto;
 using Boongaloo.DTO.Enums;
 using Boongaloo.Repository.Entities;
 using Boongaloo.Repository.UnitOfWork;
+using BusinessServices;
 
 namespace Boongaloo.API.Controllers
 {
@@ -15,10 +16,12 @@ namespace Boongaloo.API.Controllers
     public class GroupsController : ApiController
     {
         private BoongalooDbUnitOfWork _unitOfWork;
+        private readonly IBoongalooService _boongalooServices;
 
         public GroupsController( /*Comma separated arguments of type interface*/)
         {
             _unitOfWork = new BoongalooDbUnitOfWork();
+            _boongalooServices = new BoongalooService();
             // Handle assignment by DI
         }
 
@@ -37,7 +40,7 @@ namespace Boongaloo.API.Controllers
 
             try
             {
-                var result = this._unitOfWork.GroupRepository.GetGroups(lat, lon);
+                var result = this._boongalooServices.GetGroupsAroundCoordinates(lat, lon);
 
                 return Ok(result);
             }
@@ -60,7 +63,7 @@ namespace Boongaloo.API.Controllers
         [HttpPost]
         [Route("")]
         public IHttpActionResult Post([FromBody] GroupDto newGroup)
-        {
+        {   //TODO: Remove usage of repositories and use service instead.
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -113,7 +116,7 @@ namespace Boongaloo.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = _unitOfWork.GroupRepository.GetGroupById(id);
+            var result = this._boongalooServices.GetGroupById(id);
 
             return Ok(result);
         }
@@ -129,7 +132,7 @@ namespace Boongaloo.API.Controllers
         {
             try
             {
-                var result = this._unitOfWork.UserRepository.GetUsersFromGroup(id);
+                var result = this._boongalooServices.GetUsersForGroup(id);
                 return Ok(result);
             }
             catch (Exception ex)

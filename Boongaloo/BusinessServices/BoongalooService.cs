@@ -24,6 +24,7 @@ namespace BusinessServices
             _mapper = mapperConfiguration.CreateMapper();
         }
 
+        #region Area specific
         public AreaDto GetAreaById(int areaId)
         {
             var area = _unitOfWork.AreaRepository.GetAreaById(areaId);
@@ -84,5 +85,29 @@ namespace BusinessServices
 
             return usersResult;
         }
+
+        #endregion
+
+        #region Group specific
+        public IEnumerable<GroupDto> GetGroupsAroundCoordinates(double lat, double lon)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateNewGroup(GroupDto @group)
+        {
+            throw new NotImplementedException();
+        }
+
+        public GroupDto GetGroupById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<UserDto> GetUsersForGroup(int groupId)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }
