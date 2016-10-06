@@ -17,7 +17,7 @@ namespace DataModel.Repositories
 
         public IEnumerable<Area> GetAreas()
         {
-            throw new NotImplementedException();
+            return _dbContext.Areas;
         }
 
         public Area GetAreaById(int areaId)

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Device.Location;
+using System.Linq;
 using AutoMapper;
 using BusinessEntities;
 using DataModel;
@@ -49,6 +51,18 @@ namespace BusinessServices
             this._unitOfWork.AreaRepository.InsertArea(areaAsEntity);
 
             this._unitOfWork.Save();
+        }
+
+        public IEnumerable<AreaDto> GetAreasForCoordinates(double lat, double lon)
+        {
+            var currentUserLocation = new GeoCoordinate(lat, lon);
+
+            var areaEntities = this._unitOfWork.AreaRepository.GetAreas().ToList()
+                .Where(x => currentUserLocation.GetDistanceTo(new GeoCoordinate(x.Latitude, x.Longitude)) <= x.Radius.Range);
+
+            var result = this._mapper.Map<IEnumerable<Area>, IEnumerable<AreaDto>>(areaEntities);
+
+            return result;
         }
     }
 }

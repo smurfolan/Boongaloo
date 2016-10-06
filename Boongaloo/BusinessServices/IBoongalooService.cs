@@ -11,5 +11,7 @@ namespace BusinessServices
         IEnumerable<AreaDto> GetAllAreas();
 
         void CreateNewArea(AreaDto area);
+
+        IEnumerable<AreaDto> GetAreasForCoordinates(double lat, double lon);
     }
 }

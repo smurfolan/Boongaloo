@@ -63,7 +63,7 @@ namespace Boongaloo.API.Controllers
 
             try
             {
-                var result = this._unitOfWork.AreaRepository.GetAreas(lat, lon);
+                var result =  this._productServices.GetAreasForCoordinates(lat, lon);
 
                 return Ok(result);
             }
