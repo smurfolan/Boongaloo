@@ -64,5 +64,25 @@ namespace BusinessServices
 
             return result;
         }
+
+        public IEnumerable<UserDto> GetUsersFromArea(int areaId)
+        {
+            var ourArea = _unitOfWork.AreaRepository
+                .GetAreas()
+                .FirstOrDefault(x => x.Id == areaId);
+
+            if (ourArea == null)
+                return null;
+
+            var usersResult = new List<UserDto>();
+
+            foreach (var areaGroup in ourArea.Groups)
+            {
+                var usersAsDtos = this._mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(areaGroup.Users.ToList());
+                usersResult.AddRange(usersAsDtos);
+            }
+
+            return usersResult;
+        }
     }
 }

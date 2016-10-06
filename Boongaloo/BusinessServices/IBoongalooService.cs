@@ -6,6 +6,7 @@ namespace BusinessServices
 {
     public interface IBoongalooService
     {
+        #region Area specific
         AreaDto GetAreaById(int areaId);
 
         IEnumerable<AreaDto> GetAllAreas();
@@ -13,5 +14,9 @@ namespace BusinessServices
         void CreateNewArea(AreaDto area);
 
         IEnumerable<AreaDto> GetAreasForCoordinates(double lat, double lon);
+
+        IEnumerable<UserDto> GetUsersFromArea(int areaId);
+
+        #endregion
     }
 }

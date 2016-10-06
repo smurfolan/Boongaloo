@@ -85,7 +85,7 @@ namespace Boongaloo.API.Controllers
         {
             try
             {
-                var result = this._unitOfWork.UserRepository.GetUsersFromArea(id);
+                var result = this._productServices.GetUsersFromArea(id);
                 return Ok(result);
             }
             catch (Exception ex)

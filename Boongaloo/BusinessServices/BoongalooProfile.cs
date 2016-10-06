@@ -11,7 +11,11 @@ namespace BusinessServices
             CreateMap<RadiusDto, Radius>();
             CreateMap<Radius, RadiusDto>();
             CreateMap<AreaDto, Area>();
-            CreateMap<Area, AreaDto>();          
+            CreateMap<Area, AreaDto>();
+            CreateMap<User, UserDto>();
+            CreateMap<Language, LanguageDto>();
+            CreateMap<Group, GroupDto>();
+            CreateMap<Tag, TagDto>();
         }
     }
 }
