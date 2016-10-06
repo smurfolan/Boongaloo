@@ -33,9 +33,9 @@
         </member>
         <member name="M:Boongaloo.API.Controllers.AreaController.Post(BusinessEntities.AreaDto)">
             <summary>
-            Example: POST api/v1/areas
+            Example: POST api/v1/areas Content: {'groups':[], 'latitude':32.323232, 'longitude':45.454545, 'radiusId':2}
             </summary>
-            <param name="area"></param>
+            <param name="area">The are we are currently creating</param>
             <returns></returns>
         </member>
         <member name="M:Boongaloo.API.Controllers.GroupsController.Get(System.Double,System.Double)">

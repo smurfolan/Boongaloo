@@ -11,7 +11,7 @@ namespace DataModel
             Groups = new HashSet<Group>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
         public long RadiusId { get; set; }

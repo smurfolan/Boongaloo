@@ -96,9 +96,9 @@ namespace Boongaloo.API.Controllers
         }
 
         /// <summary>
-        /// Example: POST api/v1/areas
+        /// Example: POST api/v1/areas Content: {'groups':[], 'latitude':32.323232, 'longitude':45.454545, 'radiusId':2}
         /// </summary>
-        /// <param name="area"></param>
+        /// <param name="area">The are we are currently creating</param>
         /// <returns></returns>
         [HttpPost]
         [Route("")]
@@ -107,13 +107,13 @@ namespace Boongaloo.API.Controllers
             try
             {
                 this._productServices.CreateNewArea(area);
+                return Created("api/v1/areas/" + area.Id, area.Id);
             }
             catch (Exception ex)
             {
                 BoongalooApiLogger.LogError("Error while creating new area.", ex);
                 return InternalServerError();
             }
-            return null;
         }
     }
 }
