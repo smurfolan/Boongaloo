@@ -91,23 +91,54 @@ namespace BusinessServices
         #region Group specific
         public IEnumerable<GroupDto> GetGroupsAroundCoordinates(double lat, double lon)
         {
-            throw new NotImplementedException();
+            var areasAroundCoordinates = this.GetAreasForCoordinates(lat, lon);
+
+            var result = new List<GroupDto>();
+
+            foreach (var area in areasAroundCoordinates)
+            {
+                result.AddRange(area.Groups);
+            }
+
+            return result;
         }
 
-        public void CreateNewGroup(GroupDto @group)
+        public void CreateNewGroup(GroupDto group)
         {
-            throw new NotImplementedException();
+            if (group == null)
+                throw new ArgumentException("The argument passed to CreateNewGroup is null");
+
+            var groupAsEntity = this._mapper.Map<GroupDto, Group>(group);
+
+            this._unitOfWork.GroupRepository.InsertGroup(groupAsEntity);
+
+            this._unitOfWork.Save();
         }
 
         public GroupDto GetGroupById(int id)
         {
-            throw new NotImplementedException();
+            var groupEntity = this._unitOfWork.GroupRepository.GetGroups().FirstOrDefault(g => g.Id == id);
+
+            if (groupEntity == null)
+                return null;
+
+            var groupAsDto = this._mapper.Map<Group, GroupDto>(groupEntity);
+
+            return groupAsDto;
         }
 
         public IEnumerable<UserDto> GetUsersForGroup(int groupId)
         {
-            throw new NotImplementedException();
+            var selectedGroup = this._unitOfWork.GroupRepository.GetGroups().FirstOrDefault(g => g.Id == groupId);
+
+            if (selectedGroup == null)
+                return null;
+
+            var groupUsers = this._mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(selectedGroup.Users);
+
+            return groupUsers;
         }
+
         #endregion
     }
 }

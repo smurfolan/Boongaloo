@@ -15,6 +15,7 @@ namespace BusinessServices
             CreateMap<User, UserDto>();
             CreateMap<Language, LanguageDto>();
             CreateMap<Group, GroupDto>();
+            CreateMap<GroupDto, Group>();
             CreateMap<Tag, TagDto>();
         }
     }
