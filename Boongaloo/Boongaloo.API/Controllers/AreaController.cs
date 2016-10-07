@@ -12,13 +12,10 @@ namespace Boongaloo.API.Controllers
     [RoutePrefix("api/v1/areas")]
     public class AreaController : ApiController
     {
-        private BoongalooDbUnitOfWork _unitOfWork;
-
         private readonly IBoongalooService _productServices;
 
         public AreaController()
         {
-            _unitOfWork = new BoongalooDbUnitOfWork();
             _productServices = new BoongalooService();
         }
         
