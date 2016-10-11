@@ -30,9 +30,9 @@ namespace DataModel.Repositories
             throw new NotImplementedException();
         }
 
-        public void InsertUser(User area)
+        public void InsertUser(User user)
         {
-            throw new NotImplementedException();
+            this._dbContext.Users.Add(user);
         }
 
         public void DeleteUser(int areaId)
