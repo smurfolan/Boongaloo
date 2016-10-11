@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Http;
 using Boongaloo.API.Helpers;
-using Boongaloo.Repository.UnitOfWork;
 using BusinessEntities;
 using BusinessServices;
+using System.Collections.Generic;
 
 namespace Boongaloo.API.Controllers
 {
@@ -33,6 +32,8 @@ namespace Boongaloo.API.Controllers
 
             try
             {
+                var somerEntity = this._productServices.GetAreaById(id);
+
                 var result = this._productServices.GetAreaById(id);
 
                 return Ok(result);
@@ -93,7 +94,7 @@ namespace Boongaloo.API.Controllers
         }
 
         /// <summary>
-        /// Example: POST api/v1/areas Content: {'groups':[], 'latitude':32.323232, 'longitude':45.454545, 'radiusId':2}
+        /// Example: POST api/v1/areas
         /// </summary>
         /// <param name="area">The are we are currently creating</param>
         /// <returns></returns>
@@ -103,6 +104,28 @@ namespace Boongaloo.API.Controllers
         {
             try
             {
+
+                var result = this._productServices.GetGroupById(0);
+
+                // The way we add a group to existing areas with tags and name
+                var toPostIt = new GroupDto()
+                {
+                    Name = "New group name",
+                    Areas = new List<AreaDto>()
+                    {
+                        new AreaDto()
+                        {
+                            Latitude = 33,
+                            Longitude = 43,
+                            RadiusId = 3
+                        }
+                    },
+                    TagIds = new List<long> { 4, 3 }
+                };
+
+                this._productServices.CreateNewGroup(toPostIt);
+
+
                 this._productServices.CreateNewArea(area);
                 return Created("api/v1/areas/" + area.Id, area.Id);
             }

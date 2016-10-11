@@ -16,7 +16,7 @@ namespace DataModel.Repositories
 
         public IEnumerable<Group> GetGroups()
         {
-            throw new NotImplementedException();
+            return this._dbContext.Groups;
         }
 
         public Group GetGroupById(int groupId)
@@ -36,7 +36,7 @@ namespace DataModel.Repositories
 
         public void InsertGroup(Group groupToInsert)
         {
-            throw new NotImplementedException();
+            this._dbContext.Groups.Add(groupToInsert);
         }
 
         public void DeleteGroup(int groupId)

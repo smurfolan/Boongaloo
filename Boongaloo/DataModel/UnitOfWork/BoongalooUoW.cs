@@ -10,6 +10,7 @@ namespace DataModel.UnitOfWork
         private AreaRepository areaRepository;
         private GroupRepository groupRepository;
         private UserRepository userRepository;
+        private TagRepository tagRepository;
 
         public AreaRepository AreaRepository
         {
@@ -39,6 +40,16 @@ namespace DataModel.UnitOfWork
                     return new UserRepository(_dbContext);
 
                 return userRepository;
+            }
+        }
+        public TagRepository TagRepository
+        {
+            get
+            {
+                if (tagRepository == null)
+                    return new TagRepository(_dbContext);
+
+                return tagRepository;
             }
         }
 

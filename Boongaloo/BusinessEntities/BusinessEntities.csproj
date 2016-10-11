@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AreaDto.cs" />
+    <Compile Include="BaseGroupDto.cs" />
+    <Compile Include="GroupAsNewAreaDto.cs" />
     <Compile Include="GroupDto.cs" />
     <Compile Include="LanguageDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

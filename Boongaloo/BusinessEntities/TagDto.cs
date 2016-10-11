@@ -10,6 +10,5 @@ namespace BusinessEntities
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public ICollection<GroupDto> Groups { get; set; }
     }
 }

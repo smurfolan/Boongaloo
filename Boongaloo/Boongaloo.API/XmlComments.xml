@@ -33,7 +33,7 @@
         </member>
         <member name="M:Boongaloo.API.Controllers.AreaController.Post(BusinessEntities.AreaDto)">
             <summary>
-            Example: POST api/v1/areas Content: {'groups':[], 'latitude':32.323232, 'longitude':45.454545, 'radiusId':2}
+            Example: POST api/v1/areas
             </summary>
             <param name="area">The are we are currently creating</param>
             <returns></returns>
@@ -46,7 +46,7 @@
             <param name="lon">Longitude</param>
             <returns>All the groups that contain this point(lat/lon) as part of their diameter</returns>
         </member>
-        <member name="M:Boongaloo.API.Controllers.GroupsController.Post(Boongaloo.DTO.BoongalooWebApiDto.GroupDto)">
+        <member name="M:Boongaloo.API.Controllers.GroupsController.Post(BusinessEntities.GroupDto)">
             <summary>
             Example: POST /api/v1/groups/
             </summary>
@@ -56,6 +56,13 @@
             NOTE: 'Latitutude', 'Longtitude', 'Radius' MUST be NULL if you are just joining to existing areas(NewAreaGroup=false)
             NOTE: AreaIds MUST be empty/null if you are creating a new area(NewAreaGroup=true)</param>
             <returns>HTTP Code 201 if successfuly created and 500 if not.</returns>
+        </member>
+        <member name="M:Boongaloo.API.Controllers.GroupsController.Post(BusinessEntities.GroupAsNewAreaDto)">
+            <summary>
+            Example: POST /api/v1/groups/AsNewArea
+            </summary>
+            <param name="newGroup"></param>
+            <returns></returns>
         </member>
         <member name="M:Boongaloo.API.Controllers.GroupsController.Get(System.Int32)">
             <summary>

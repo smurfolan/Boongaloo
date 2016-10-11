@@ -16,7 +16,8 @@ namespace BusinessServices
 
         #region Group specific
         IEnumerable<GroupDto> GetGroupsAroundCoordinates(double lat, double lon);
-        void CreateNewGroup(GroupDto group);
+        long CreateNewGroup(GroupDto group);
+        long CreateNewGroupAsNewArea(GroupAsNewAreaDto group);
         GroupDto GetGroupById(int id);
         IEnumerable<UserDto> GetUsersForGroup(int groupId);
         #endregion

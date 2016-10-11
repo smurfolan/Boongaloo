@@ -103,16 +103,53 @@ namespace BusinessServices
             return result;
         }
 
-        public void CreateNewGroup(GroupDto group)
+        public long CreateNewGroup(GroupDto group)/*Name, TagIds, AreaIds*/
         {
             if (group == null)
                 throw new ArgumentException("The argument passed to CreateNewGroup is null");
 
             var groupAsEntity = this._mapper.Map<GroupDto, Group>(group);
 
+            // Extracting existing areas
+            if(group.AreaIds != null)
+            {
+                var areaIdsFromDto = group.AreaIds;
+                var areaEntities = this._unitOfWork.AreaRepository.GetAreas().Where(a => areaIdsFromDto.Contains(a.Id));
+                foreach (var areaAsEntity in areaEntities)
+                {
+                    groupAsEntity.Areas.Add(areaAsEntity);
+                }
+            }
+
+            // Extracting existing tags
+            var tagsFromDto = group.TagIds;
+            var tagAsEntities = this._unitOfWork.TagRepository.GetTags().Where(t => tagsFromDto.Contains(t.Id));
+            foreach(var tagEntity in tagAsEntities)
+            {
+                groupAsEntity.Tags.Add(tagEntity);
+            }
+
+            // Extracting existing users
+            if(group.UserIds != null)
+            {
+                var usersFromDto = group.UserIds;
+                var usersAsEntities = this._unitOfWork.UserRepository.GetUsers().Where(u => usersFromDto.Contains(u.Id));
+                foreach (var userEntity in usersAsEntities)
+                {
+                    groupAsEntity.Users.Add(userEntity);
+                }
+            }
+
             this._unitOfWork.GroupRepository.InsertGroup(groupAsEntity);
 
             this._unitOfWork.Save();
+
+            return groupAsEntity.Id;
+        }
+
+        public long CreateNewGroupAsNewArea(GroupAsNewAreaDto group)/*latitude, longitude, radiusId*/
+        {
+            throw new NotImplementedException();
         }
 
         public GroupDto GetGroupById(int id)
@@ -122,7 +159,18 @@ namespace BusinessServices
             if (groupEntity == null)
                 return null;
 
+            // Assing tags
             var groupAsDto = this._mapper.Map<Group, GroupDto>(groupEntity);
+            var tagsForGroup = this._mapper.Map<ICollection<Tag>, ICollection<TagDto>>(groupEntity.Tags);
+            groupAsDto.Tags = tagsForGroup;
+
+            // Assign areas
+            var areasForGroup = this._mapper.Map<ICollection<Area>, ICollection<AreaDto>>(groupEntity.Areas);
+            groupAsDto.Areas = areasForGroup;
+
+            // Assign users
+            var usersForGroup = this._mapper.Map<ICollection<User>, ICollection<UserDto>>(groupEntity.Users);
+            groupAsDto.Users = usersForGroup;
 
             return groupAsDto;
         }
