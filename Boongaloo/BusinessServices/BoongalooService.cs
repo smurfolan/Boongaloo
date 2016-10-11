@@ -149,7 +149,45 @@ namespace BusinessServices
 
         public long CreateNewGroupAsNewArea(GroupAsNewAreaDto group)/*latitude, longitude, radiusId*/
         {
-            throw new NotImplementedException();
+            var radiusEntity = 
+                this._unitOfWork.RadiusRepository.GetRadiuses().FirstOrDefault(r => r.Id == group.RadiusId);
+            var newAreaEntity = new Area()
+            {
+                Latitude = group.Latitude,
+                Longitude = group.Longitude,
+                Radius = radiusEntity
+            };
+            this._unitOfWork.AreaRepository.InsertArea(newAreaEntity);
+            this._unitOfWork.Save();
+
+            var areasAroundCoordinates = this.GetAreasForCoordinates(group.Latitude, group.Longitude)
+                .Select(x => x.Id).ToList();
+
+            var areaEntites =
+                this._unitOfWork.AreaRepository.GetAreas()
+                .Where(a => areasAroundCoordinates.Contains(a.Id))
+                .ToList();
+
+            var tagEntities = this._unitOfWork.TagRepository.GetTags()
+                .Where(t => group.TagIds.Contains(t.Id))
+                .ToList();
+
+            var userEntities = this._unitOfWork.UserRepository.GetUsers()
+                .Where(u => group.UserIds.Contains(u.Id))
+                .ToList();
+
+            var groupEntityToBeInserted = new Group()
+            {
+                Areas = areaEntites,
+                Name = group.Name,
+                Tags = tagEntities,
+                Users = userEntities
+            };
+
+            this._unitOfWork.GroupRepository.InsertGroup(groupEntityToBeInserted);
+            this._unitOfWork.Save();
+
+            return groupEntityToBeInserted.Id;
         }
 
         public GroupDto GetGroupById(int id)

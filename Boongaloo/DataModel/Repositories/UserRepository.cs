@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DataModel.Repositories
 {
@@ -16,7 +17,7 @@ namespace DataModel.Repositories
 
         public IEnumerable<User> GetUsers()
         {
-            throw new NotImplementedException();
+            return this._dbContext.Users;
         }
 
         public User GetUserById(int areaId)

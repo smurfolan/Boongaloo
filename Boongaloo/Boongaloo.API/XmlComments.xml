@@ -61,8 +61,9 @@
             <summary>
             Example: POST /api/v1/groups/AsNewArea
             </summary>
-            <param name="newGroup"></param>
-            <returns></returns>
+            <param name="newGroup">Could be called with post body like this one: 
+            {'Name':'Second floor cooks', 'TagIds':[4,1], 'UserIds':[1],'Latitude':42.657064, 'Longitude':23.28539, 'RadiusId':4}</param>
+            <returns>Uniqe identifier of the newly created group entity</returns>
         </member>
         <member name="M:Boongaloo.API.Controllers.GroupsController.Get(System.Int32)">
             <summary>

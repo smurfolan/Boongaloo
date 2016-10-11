@@ -6,5 +6,6 @@ namespace BusinessEntities
     {
         public string Name { get; set; }
         public ICollection<long> TagIds { get; set; }
+        public ICollection<long> UserIds { get; set; } 
     }
 }

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Web.Http;
 using Boongaloo.API.Helpers;
-using Boongaloo.Repository.UnitOfWork;
 using BusinessEntities;
 using BusinessServices;
-using System.Collections.Generic;
 
 namespace Boongaloo.API.Controllers
 {
@@ -12,12 +10,10 @@ namespace Boongaloo.API.Controllers
     [RoutePrefix("api/v1/groups")]
     public class GroupsController : ApiController
     {
-        private BoongalooDbUnitOfWork _unitOfWork;
         private readonly IBoongalooService _boongalooServices;
 
         public GroupsController( /*Comma separated arguments of type interface*/)
         {
-            _unitOfWork = new BoongalooDbUnitOfWork();
             _boongalooServices = new BoongalooService();
             // Handle assignment by DI
         }
@@ -59,12 +55,12 @@ namespace Boongaloo.API.Controllers
         /// <returns>HTTP Code 201 if successfuly created and 500 if not.</returns>
         [HttpPost]
         [Route("")]
-        public IHttpActionResult Post([FromBody] GroupDto newGroup)/*Name, TagIds, AreaIds*/
+        public IHttpActionResult Post([FromBody] GroupDto newGroup)
         {
             try
             {
                 var newlyCreatedGroupId = this._boongalooServices.CreateNewGroup(newGroup);
-                return Created("api/v1/groups/" + newlyCreatedGroupId, newlyCreatedGroupId);
+                return Created("Success", "api/v1/groups/" + newlyCreatedGroupId);
             }
             catch(Exception ex)
             {
@@ -76,16 +72,17 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Example: POST /api/v1/groups/AsNewArea
         /// </summary>
-        /// <param name="newGroup"></param>
-        /// <returns></returns>
+        /// <param name="newGroup">Could be called with post body like this one: 
+        /// {'Name':'Second floor cooks', 'TagIds':[4,1], 'UserIds':[1],'Latitude':42.657064, 'Longitude':23.28539, 'RadiusId':4}</param>
+        /// <returns>Uniqe identifier of the newly created group entity</returns>
         [HttpPost]
         [Route("AsNewArea")]
-        public IHttpActionResult Post([FromBody] GroupAsNewAreaDto newGroup)/*latitude, longitude, radiusId*/
+        public IHttpActionResult Post([FromBody] GroupAsNewAreaDto newGroup)
         {
             try
             {
                 var newlyCreatedGroupId = this._boongalooServices.CreateNewGroupAsNewArea(newGroup);
-                return Created("api/v1/groups/" + newlyCreatedGroupId, newlyCreatedGroupId);
+                return Created("Success", "api/v1/groups/" + newlyCreatedGroupId);
             }
             catch(Exception ex)
             {

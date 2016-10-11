@@ -4,7 +4,6 @@ namespace DataModel
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     public partial class User
     {
@@ -15,7 +14,7 @@ namespace DataModel
             Languages = new HashSet<Language>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
         public long IdSrvId { get; set; }

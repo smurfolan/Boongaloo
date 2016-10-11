@@ -12,6 +12,5 @@ namespace BusinessEntities
         public ICollection<TagDto> Tags { get; set; }
 
         public ICollection<UserDto> Users { get; set; }
-        public ICollection<long> UserIds { get; set; }
     }
 }
