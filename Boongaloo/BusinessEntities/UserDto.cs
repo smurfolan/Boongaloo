@@ -7,7 +7,7 @@ namespace BusinessEntities
     {
         public long Id { get; set; }
 
-        public long IdSrvId { get; set; }
+        public string IdSrvId { get; set; }
         
         public string FirstName { get; set; }
         
@@ -24,7 +24,9 @@ namespace BusinessEntities
         public string PhoneNumber { get; set; }
         
         public ICollection<GroupDto> Groups { get; set; }
-        
+        public ICollection<long> GroupIds { get; set; }
+
         public ICollection<LanguageDto> Languages { get; set; }
+        public ICollection<long> LanguageIds { get; set; }
     }
 }

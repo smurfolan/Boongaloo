@@ -17,7 +17,8 @@ namespace DataModel
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
-        public long IdSrvId { get; set; }
+        [Required]
+        public string IdSrvId { get; set; }
 
         [Required]
         [StringLength(2147483647)]
@@ -31,7 +32,6 @@ namespace DataModel
         [StringLength(2147483647)]
         public string Email { get; set; }
 
-        [Required]
         [StringLength(2147483647)]
         public string About { get; set; }
 

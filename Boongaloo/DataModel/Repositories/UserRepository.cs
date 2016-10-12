@@ -42,7 +42,7 @@ namespace DataModel.Repositories
 
         public void UpdateUser(User area)
         {
-            throw new NotImplementedException();
+            this._dbContext.Entry(area).State = System.Data.Entity.EntityState.Modified;
         }
 
         public IEnumerable<User> GetUsersFromGroup(int id)

@@ -15,7 +15,10 @@ namespace BusinessServices
             CreateMap<Area, AreaDto>()
                 .ForMember(m => m.Groups, opt => opt.Ignore());
 
-            CreateMap<User, UserDto>();
+            CreateMap<User, UserDto>()
+                .ForMember(m => m.Groups, opt => opt.Ignore())
+                .ForMember(m => m.Languages, opt => opt.Ignore());
+
             CreateMap<UserDto, User>();
 
             CreateMap<Language, LanguageDto>();

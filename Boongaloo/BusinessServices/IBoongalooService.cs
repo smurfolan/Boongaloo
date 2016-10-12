@@ -21,5 +21,11 @@ namespace BusinessServices
         GroupDto GetGroupById(int id);
         IEnumerable<UserDto> GetUsersForGroup(int groupId);
         #endregion
+
+        #region Group specific
+        UserDto GetUserById(int id);
+        long CreateNewUser(UserDto newUser);
+        void UpdateUser(long userId, UserDto updatedEntity);
+        #endregion
     }
 }

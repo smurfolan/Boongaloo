@@ -81,26 +81,19 @@
             <param name="id">Unique identifier of the user. Not the one that comes from identity server.</param>
             <returns>User by his id</returns>
         </member>
-        <member name="M:Boongaloo.API.Controllers.UsersController.Post(Boongaloo.DTO.BoongalooWebApiDto.RelateUserToGroupsDto)">
-            <summary>
-            Example: POST api/v1/users/ChangeGroupsSubscribtion
-            </summary>
-            <param name="userToGroupsModel">{'UserId':int, 'GroupsSubscriptions':[{'GroupId':int, 'IsSubscribtionRequest':bool}]}</param>
-            <returns>Http.OK if the operation was successful or Http.500 if there was an error.</returns>
-        </member>
-        <member name="M:Boongaloo.API.Controllers.UsersController.Post(Boongaloo.Repository.Entities.User)">
+        <member name="M:Boongaloo.API.Controllers.UsersController.Post(BusinessEntities.UserDto)">
             <summary>
             Example: POST api/v1/users
             </summary>
-            <param name="newUser">{'Id':int, 'IdsrvUniqueId':string, 'FirstName':string, 'LastName':string, 'Email':string,}</param>
+            <param name="newUser">Body sample: {'IdSrvId':'asd79879s87d', 'FirstName': 'Mitko', 'LastName': 'Stefchev', 'Email':'mit@ko.com'}</param>
             <returns>Http status code 201 if user was succesfuly created or 500 if error has occured.</returns>
         </member>
-        <member name="M:Boongaloo.API.Controllers.UsersController.Put(System.Int32,Boongaloo.Repository.Entities.User)">
+        <member name="M:Boongaloo.API.Controllers.UsersController.Put(System.Int32,BusinessEntities.UserDto)">
             <summary>
             Example: PUT api/v1/users/{id:int}
             </summary>
             <param name="id">Unique identifier of the user that will be updated</param>
-            <param name="updateUserData">Updated user data</param>
+            <param name="updatedUserData">Body sample: {'IdSrvId':'asd79879s87d', 'FirstName': 'Mitko', 'LastName': 'Stefchev', 'Email':'mit@ko.com', 'About': 'If i was about to', 'GenderId': 2, 'BirthDate': '2/13/2009 12:00:00', 'LanguageIds':[2,4]}</param>
             <returns></returns>
         </member>
     </members>

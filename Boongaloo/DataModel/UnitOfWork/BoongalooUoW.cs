@@ -12,6 +12,7 @@ namespace DataModel.UnitOfWork
         private UserRepository userRepository;
         private TagRepository tagRepository;
         private RadiusRepository radiusRepository;
+        private LanguageRepository languageRepository;
 
         public AreaRepository AreaRepository
         {
@@ -61,6 +62,16 @@ namespace DataModel.UnitOfWork
                     return new RadiusRepository(_dbContext);
 
                 return radiusRepository;
+            }
+        }
+        public LanguageRepository LanguageRepository
+        {
+            get
+            {
+                if (radiusRepository == null)
+                    return new LanguageRepository(_dbContext);
+
+                return languageRepository;
             }
         }
 

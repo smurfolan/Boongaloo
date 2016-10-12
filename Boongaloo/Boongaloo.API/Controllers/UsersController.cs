@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Http;
 using Boongaloo.API.Helpers;
-using Boongaloo.DTO.BoongalooWebApiDto;
-using Boongaloo.Repository.Entities;
-using Boongaloo.Repository.UnitOfWork;
+using BusinessServices;
+using BusinessEntities;
 
 namespace Boongaloo.API.Controllers
 {
@@ -12,11 +10,11 @@ namespace Boongaloo.API.Controllers
     [RoutePrefix("api/v1/users")]
     public class UsersController : ApiController
     {
-        private BoongalooDbUnitOfWork _unitOfWork;
+        private readonly IBoongalooService _boongalooServices;
 
         public UsersController(/*Comma separated arguments of type interface*/)
         {
-            _unitOfWork = new BoongalooDbUnitOfWork();
+            _boongalooServices = new BoongalooService();
             // Handle assignment by DI
         }
 
@@ -32,62 +30,28 @@ namespace Boongaloo.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = this._unitOfWork.UserRepository.GetUsers().FirstOrDefault(x => x.Id == id);
+            var result = this._boongalooServices.GetUserById(id);
 
             return Ok(result);
         }
 
         /// <summary>
-        /// Example: POST api/v1/users/ChangeGroupsSubscribtion
-        /// </summary>
-        /// <param name="userToGroupsModel">{'UserId':int, 'GroupsSubscriptions':[{'GroupId':int, 'IsSubscribtionRequest':bool}]}</param>
-        /// <returns>Http.OK if the operation was successful or Http.500 if there was an error.</returns>
-        [HttpPost]
-        [Route("ChangeGroupsSubscribtion")]
-        public IHttpActionResult Post([FromBody]RelateUserToGroupsDto userToGroupsModel)
-        {
-            if(!ModelState.IsValid)
-                return BadRequest();
-
-            try
-            {
-                this._unitOfWork.UserRepository
-                    .UpdateUserSubscriptionsToGroups(userToGroupsModel.UserId, userToGroupsModel.GroupsSubscriptions);
-
-                this._unitOfWork.Save();
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                BoongalooApiLogger.LogError("Error while subscribing user to groups.", ex);
-                return InternalServerError();
-            }
-        }
-
-        /// <summary>
         /// Example: POST api/v1/users
         /// </summary>
-        /// <param name="newUser">{'Id':int, 'IdsrvUniqueId':string, 'FirstName':string, 'LastName':string, 'Email':string,}</param>
+        /// <param name="newUser">Body sample: {'IdSrvId':'asd79879s87d', 'FirstName': 'Mitko', 'LastName': 'Stefchev', 'Email':'mit@ko.com'}</param>
         /// <returns>Http status code 201 if user was succesfuly created or 500 if error has occured.</returns>
         [HttpPost]
         [Route("")]
-        public IHttpActionResult Post([FromBody]User newUser)
+        public IHttpActionResult Post([FromBody]UserDto newUser)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             try
             {
-                if (this._unitOfWork.UserRepository
-                    .GetUsers()
-                    .Any(x => x.IdsrvUniqueId == newUser.IdsrvUniqueId || x.Email == newUser.Email))
-                    return BadRequest();
+                var newlyCreatedUserId = this._boongalooServices.CreateNewUser(newUser);
 
-                this._unitOfWork.UserRepository.InsertUser(newUser);
-                this._unitOfWork.Save();
-
-                return Created("users", newUser);/*TODO: Investigate what should be returned here in the args.*/
+                return Created("Success", "api/v1/users/" + newlyCreatedUserId);
             }
             catch (Exception ex)
             {
@@ -100,21 +64,20 @@ namespace Boongaloo.API.Controllers
         /// Example: PUT api/v1/users/{id:int}
         /// </summary>
         /// <param name="id">Unique identifier of the user that will be updated</param>
-        /// <param name="updateUserData">Updated user data</param>
+        /// <param name="updatedUserData">Body sample: {'IdSrvId':'asd79879s87d', 'FirstName': 'Mitko', 'LastName': 'Stefchev', 'Email':'mit@ko.com', 'About': 'If i was about to', 'GenderId': 2, 'BirthDate': '2/13/2009 12:00:00', 'LanguageIds':[2,4]}</param>
         /// <returns></returns>
         [HttpPut]
         [Route("{id:int}")]
-        public IHttpActionResult Put(int id, [FromBody]User updateUserData)
+        public IHttpActionResult Put(int id, [FromBody]UserDto updatedUserData)
         {
-            if(!ModelState.IsValid)
+            var requiredUser = this._boongalooServices.GetUserById(id);
+
+            if (!ModelState.IsValid || requiredUser == null)
                 return BadRequest();
 
             try
             {
-                updateUserData.Id = id;
-                this._unitOfWork.UserRepository.UpdateUser(updateUserData);
-
-                this._unitOfWork.Save();
+                this._boongalooServices.UpdateUser(id, updatedUserData);
 
                 return Ok();
             }

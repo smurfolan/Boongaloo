@@ -228,7 +228,107 @@ namespace BusinessServices
 
             return groupUsers;
         }
+        #endregion
 
+        #region User specific
+        public UserDto GetUserById(int id)
+        {
+            var userEntity = this._unitOfWork.UserRepository.GetUsers().FirstOrDefault(u => u.Id == id);
+
+            if (userEntity == null)
+                return null;
+
+            var userAsDto = this._mapper.Map<User, UserDto>(userEntity);
+
+            // Assign groups
+            var groupsForUser = this._mapper.Map<ICollection<Group>, ICollection<GroupDto>>(userEntity.Groups);
+            userAsDto.Groups = groupsForUser;
+
+            // Assign langauges
+            var languagesForUser = this._mapper.Map<ICollection<Language>, ICollection<LanguageDto>>(userEntity.Languages);
+            userAsDto.Languages = languagesForUser;
+
+            return userAsDto;
+        }
+
+        public long CreateNewUser(UserDto newUser)
+        {
+            if (newUser == null)
+                throw new ArgumentException("The argument passed to CreateNewUser is null");
+
+            var userAsEntity = this._mapper.Map<UserDto, User>(newUser);
+
+            // Extract existing langugages
+            if(newUser.LanguageIds != null)
+            {
+                var languageIdsFromDto = newUser.LanguageIds;
+                var languageAsEntities = this._unitOfWork.LanguageRepository.GetLanguages().Where(l => languageIdsFromDto.Contains(l.Id));
+                foreach(var language in languageAsEntities)
+                {
+                    userAsEntity.Languages.Add(language);
+                } 
+            }
+
+            // Extract existing groups
+            if(newUser.GroupIds != null)
+            {
+                var groupIdsFromDto = newUser.GroupIds;
+                var groupsAsEntities = this._unitOfWork.GroupRepository.GetGroups().Where(g => groupIdsFromDto.Contains(g.Id));
+                foreach(var group in groupsAsEntities)
+                {
+                    userAsEntity.Groups.Add(group);
+                }
+            }
+
+            this._unitOfWork.UserRepository.InsertUser(userAsEntity);
+            this._unitOfWork.Save();
+
+            return userAsEntity.Id;
+        }
+
+        public void UpdateUser(long userId, UserDto updatedEntity)
+        {
+            var userToUpdate = this._unitOfWork.UserRepository.GetUsers().FirstOrDefault(u => u.Id == userId);
+
+            this._unitOfWork.UserRepository.UpdateUser(userToUpdate);
+            
+            // Update languages selection TODO: Observe if old user-language realtions are removed and new ones added
+            if (updatedEntity.LanguageIds != null)
+            {
+                userToUpdate.Languages.Clear();
+
+                var languageIdsFromDto = updatedEntity.LanguageIds;
+                var languageAsEntities = this._unitOfWork.LanguageRepository.GetLanguages().Where(l => languageIdsFromDto.Contains(l.Id));
+                foreach (var language in languageAsEntities)
+                {
+                    userToUpdate.Languages.Add(language);
+                }
+            }
+
+            // Update groups selection TODO: Observe if old user-group realtions are removed and new ones added
+            if (updatedEntity.GroupIds != null)
+            {
+                userToUpdate.Groups.Clear();
+
+                var groupIdsFromDto = updatedEntity.GroupIds;
+                var groupsAsEntities = this._unitOfWork.GroupRepository.GetGroups().Where(g => groupIdsFromDto.Contains(g.Id));
+                foreach (var group in groupsAsEntities)
+                {
+                    userToUpdate.Groups.Add(group);
+                }
+            }
+            // TODO: Research if possible to use Automapper that doens't generate new entity instance
+            userToUpdate.IdSrvId = updatedEntity.IdSrvId != null ? updatedEntity.IdSrvId : userToUpdate.IdSrvId;
+            userToUpdate.FirstName = updatedEntity.FirstName != null ? updatedEntity.FirstName : userToUpdate.FirstName;
+            userToUpdate.LastName = updatedEntity.LastName != null ? updatedEntity.LastName : userToUpdate.LastName;
+            userToUpdate.Email = updatedEntity.Email != null ? updatedEntity.Email : userToUpdate.Email;
+            userToUpdate.About = updatedEntity.About != null ? updatedEntity.About : userToUpdate.About;
+            userToUpdate.GenderId = updatedEntity.GenderId != userToUpdate.GenderId ? updatedEntity.GenderId : userToUpdate.GenderId;
+            userToUpdate.PhoneNumber = updatedEntity.PhoneNumber != null ? updatedEntity.PhoneNumber : userToUpdate.PhoneNumber;
+            userToUpdate.BirthDate = updatedEntity.BirthDate != null ? updatedEntity.BirthDate : userToUpdate.BirthDate;
+
+            this._unitOfWork.Save();
+        }
         #endregion
     }
 }
