@@ -218,10 +218,6 @@
       <Project>{BB37F09A-7FD4-4480-A065-4511A7899191}</Project>
       <Name>Boongaloo.DTO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Boongaloo.Repository\Boongaloo.DAL.csproj">
-      <Project>{95C07FA1-F974-4E4A-A169-C4F4F881965E}</Project>
-      <Name>Boongaloo.DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BusinessEntities\BusinessEntities.csproj">
       <Project>{88a66fe2-6e4e-418e-a1b0-53ecf847130a}</Project>
       <Name>BusinessEntities</Name>
