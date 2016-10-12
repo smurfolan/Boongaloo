@@ -6,7 +6,7 @@ using BusinessServices;
 
 namespace Boongaloo.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/v1/groups")]
     public class GroupsController : ApiController
     {
@@ -47,11 +47,7 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Example: POST /api/v1/groups/
         /// </summary>
-        /// <param name="newGroup">{'NewAreaGroup':bool, 'Name':string, 'Tags':[{TagEnum}], 'Latitutude':double?, 'Longtitude':double?, 'Radius': RadiusEnum?, 'AreaIds': IEnumerable(int)}
-        /// NOTE: TagEnum?->Nullable, enumerable type. Possible values: Help(0), Sport(1), Fun(2), Dating(3)
-        /// NOTE: RadiusEnum->Nullable, enumerable type. Possible values: FiftyMeters(50), HunderdAndFiftyMeters(150), ThreeHundredMeters(300), FiveHundredMeters(500)
-        /// NOTE: 'Latitutude', 'Longtitude', 'Radius' MUST be NULL if you are just joining to existing areas(NewAreaGroup=false)
-        /// NOTE: AreaIds MUST be empty/null if you are creating a new area(NewAreaGroup=true)</param>
+        /// <param name="newGroup">Body sample:{'Name':'Second floor cooks', 'TagIds':[4,1], 'UserIds':[1], 'AreaIds': [1,2]}</param>
         /// <returns>HTTP Code 201 if successfuly created and 500 if not.</returns>
         [HttpPost]
         [Route("")]
@@ -72,8 +68,7 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Example: POST /api/v1/groups/AsNewArea
         /// </summary>
-        /// <param name="newGroup">Could be called with post body like this one: 
-        /// {'Name':'Second floor cooks', 'TagIds':[4,1], 'UserIds':[1],'Latitude':42.657064, 'Longitude':23.28539, 'RadiusId':4}</param>
+        /// <param name="newGroup">Body sample:{'Name':'Second floor cooks', 'TagIds':[4,1], 'UserIds':[1],'Latitude':42.657064, 'Longitude':23.28539, 'RadiusId':4}</param>
         /// <returns>Uniqe identifier of the newly created group entity</returns>
         [HttpPost]
         [Route("AsNewArea")]

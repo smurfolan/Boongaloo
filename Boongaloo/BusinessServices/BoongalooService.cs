@@ -151,6 +151,7 @@ namespace BusinessServices
         {
             var radiusEntity = 
                 this._unitOfWork.RadiusRepository.GetRadiuses().FirstOrDefault(r => r.Id == group.RadiusId);
+            // Create the new area
             var newAreaEntity = new Area()
             {
                 Latitude = group.Latitude,
@@ -163,15 +164,18 @@ namespace BusinessServices
             var areasAroundCoordinates = this.GetAreasForCoordinates(group.Latitude, group.Longitude)
                 .Select(x => x.Id).ToList();
 
+            // Fetch all the areas inside of which our coordinates fall under
             var areaEntites =
                 this._unitOfWork.AreaRepository.GetAreas()
                 .Where(a => areasAroundCoordinates.Contains(a.Id))
                 .ToList();
 
+            // Fetch all tag entities for this new group
             var tagEntities = this._unitOfWork.TagRepository.GetTags()
                 .Where(t => group.TagIds.Contains(t.Id))
                 .ToList();
 
+            // Fetch all user entities for the newly created group. TODO: Determine if array is needed or single id
             var userEntities = this._unitOfWork.UserRepository.GetUsers()
                 .Where(u => group.UserIds.Contains(u.Id))
                 .ToList();
