@@ -12,6 +12,8 @@ namespace Boongaloo.Repository.UnitOfWork
         private AreaRepository areaRepository;
         private GroupRepository groupRepository;
         private UserRepository userRepository;
+        private TagRepository tagRepository;
+        private LanguageRepository languageRepository;
 
         public AreaRepository AreaRepository
         {
@@ -41,6 +43,26 @@ namespace Boongaloo.Repository.UnitOfWork
                     return new UserRepository(_dbContext);
 
                 return userRepository;
+            }
+        }
+        public TagRepository TagRepository
+        {
+            get
+            {
+                if (tagRepository == null)
+                    return new TagRepository(_dbContext);
+
+                return tagRepository;
+            }
+        }
+        public LanguageRepository LanguageRepository
+        {
+            get
+            {
+                if (languageRepository == null)
+                    return new LanguageRepository(_dbContext);
+
+                return languageRepository;
             }
         }
 

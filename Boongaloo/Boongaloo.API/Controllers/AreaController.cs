@@ -3,18 +3,26 @@ using System.Linq;
 using System.Web.Http;
 using Boongaloo.API.Helpers;
 using Boongaloo.Repository.UnitOfWork;
+using Boongaloo.Repository.BoongalooDtos;
+using AutoMapper;
+using Boongaloo.API.Automapper;
 
 namespace Boongaloo.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/v1/areas")]
     public class AreaController : ApiController
     {
         private BoongalooDbUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
         public AreaController()
         {
             _unitOfWork = new BoongalooDbUnitOfWork();
+            var mapperConfiguration = new MapperConfiguration(cfg => {
+                cfg.AddProfile<BoongalooProfile>();
+            });
+            _mapper = mapperConfiguration.CreateMapper();
         }
         
         /// <summary>
@@ -77,6 +85,30 @@ namespace Boongaloo.API.Controllers
             catch (Exception ex)
             {
                 BoongalooApiLogger.LogError("Error while getting users for area.", ex);
+                return InternalServerError();
+            }
+        }
+
+        /// <summary>
+        /// Example: POST api/v1/areas
+        /// </summary>
+        /// <param name="area">Sample post: {'Radius':{'Id':1, 'Range':50}, 'Latitude': 23.1233123,'Longitude': 43.1231232}</param>
+        /// <returns>HTTP Status of 201 code if area was successfuly created.</returns>
+        [HttpPost]
+        [Route("")]
+        public IHttpActionResult Post([FromBody]AreaDto area)
+        {
+            try
+            {
+                var areaAsEntity = this._mapper.Map<AreaDto, Repository.Entities.Area>(area);
+                this._unitOfWork.AreaRepository.InsertArea(areaAsEntity);
+                this._unitOfWork.Save();
+
+                return Created("Success", "api/v1/areas/" + areaAsEntity.Id);
+            }
+            catch (Exception ex)
+            {
+                BoongalooApiLogger.LogError("Error while creating new area.", ex);
                 return InternalServerError();
             }
         }

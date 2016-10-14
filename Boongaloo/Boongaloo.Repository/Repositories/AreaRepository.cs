@@ -5,6 +5,7 @@ using System.Linq;
 using Boongaloo.Repository.Contexts;
 using Boongaloo.Repository.Entities;
 using Boongaloo.Repository.Interfaces;
+using Boongaloo.DTO.Enums;
 
 namespace Boongaloo.Repository.Repositories
 {
@@ -38,7 +39,8 @@ namespace Boongaloo.Repository.Repositories
 
         public void InsertArea(Area area)
         {
-            area.Id = this.GetAreas().Count() + 1;
+            var areas = this.GetAreas();
+            area.Id = areas.Count() > 0 ? areas.OrderByDescending(x => x.Id).FirstOrDefault().Id + 1 : 1;
             _dbContext.Areas.Add(area);
         }
         public void DeleteArea(int areaId)
@@ -63,7 +65,7 @@ namespace Boongaloo.Repository.Repositories
             var currentUserLocation = new GeoCoordinate(latitude, longitude);
 
             return this._dbContext.Areas
-                .Where(x => currentUserLocation.GetDistanceTo(new GeoCoordinate(x.Latitude, x.Longitude)) <= (double)x.Radius);
+                .Where(x => currentUserLocation.GetDistanceTo(new GeoCoordinate(x.Latitude, x.Longitude)) <= (int)x.Radius);
         }
 
         public void Save()

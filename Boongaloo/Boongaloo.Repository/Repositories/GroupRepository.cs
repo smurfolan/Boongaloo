@@ -100,7 +100,7 @@ namespace Boongaloo.Repository.Repositories
             var currentUserLocation = new GeoCoordinate(latitude, longitude);
 
             var areasInsideOfWhichUserIsCurrentlyIn = this._dbContext.Areas
-                .Where(x => currentUserLocation.GetDistanceTo(new GeoCoordinate(x.Latitude, x.Longitude)) <= (double)x.Radius)
+                .Where(x => currentUserLocation.GetDistanceTo(new GeoCoordinate(x.Latitude, x.Longitude)) <= (int)x.Radius)
                 .Select(y => y.Id);
 
             var groupIds =

@@ -42,11 +42,9 @@
     <DocumentationFile>XmlComments.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Net4">
-      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="IdentityServer3.AccessTokenValidation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -152,10 +150,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Automapper\BoongalooProfile.cs" />
     <Compile Include="Controllers\ApiDocumentationController.cs" />
     <Compile Include="Controllers\AreaController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
@@ -182,6 +183,8 @@
     <Content Include="DataStorage\areaGroupBridgeStore.json" />
     <Content Include="DataStorage\groupUserBridgeStore.json" />
     <Content Include="DataStorage\userStore.json" />
+    <Content Include="DataStorage\groupTagBridgeStore.json" />
+    <Content Include="DataStorage\userLanguageBridgeStore.json" />
     <None Include="Properties\PublishProfiles\boongalooapi.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -232,7 +235,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

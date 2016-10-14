@@ -60,6 +60,7 @@
     <Compile Include="Enums\GenderEnum.cs" />
     <Compile Include="Enums\LanguagesEnum.cs" />
     <Compile Include="Enums\RadiusEnum.cs" />
+    <Compile Include="Enums\RadiusRangeEnum.cs" />
     <Compile Include="Enums\TagEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesEnum.cs" />

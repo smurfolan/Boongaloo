@@ -74,7 +74,7 @@ namespace Boongaloo.API.Controllers
                     {
                         Latitude = newGroup.Latitutude.Value,
                         Longitude = newGroup.Longtitude.Value,
-                        Radius = (RadiusEnum) newGroup.Radius
+                        //RadiusId = newGroup.RadiusId
                     });
 
                     this._unitOfWork.GroupRepository.InsertGroup(
