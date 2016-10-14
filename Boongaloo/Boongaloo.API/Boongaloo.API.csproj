@@ -202,9 +202,9 @@
     <Content Include="DataStorage\areaGroupBridgeStore.json" />
     <Content Include="DataStorage\groupUserBridgeStore.json" />
     <Content Include="DataStorage\userStore.json" />
-    <Resource Include="App_Data\BoongalooDb.sqlite">
+    <EmbeddedResource Include="App_Data\BoongalooDb.sqlite">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </EmbeddedResource>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
