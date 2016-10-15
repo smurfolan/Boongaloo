@@ -2,24 +2,31 @@
 using System.Collections.Generic;
 using System.Linq.Dynamic;
 using System.Web.Http;
+using AutoMapper;
+using Boongaloo.API.Automapper;
 using Boongaloo.API.Helpers;
-using Boongaloo.DTO.BoongalooWebApiDto;
-using Boongaloo.DTO.Enums;
+using Boongaloo.Repository.BoongalooDtos;
 using Boongaloo.Repository.Entities;
 using Boongaloo.Repository.UnitOfWork;
+using GroupDto = Boongaloo.DTO.BoongalooWebApiDto.GroupDto;
 
 namespace Boongaloo.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/v1/groups")]
     public class GroupsController : ApiController
     {
         private BoongalooDbUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
         public GroupsController( /*Comma separated arguments of type interface*/)
         {
             _unitOfWork = new BoongalooDbUnitOfWork();
             // Handle assignment by DI
+            var mapperConfiguration = new MapperConfiguration(cfg => {
+                cfg.AddProfile<BoongalooProfile>();
+            });
+            _mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <summary>
@@ -49,54 +56,68 @@ namespace Boongaloo.API.Controllers
         }
 
         /// <summary>
-        /// Example: POST /api/v1/groups/
+        /// Example: POST /api/v1/groups
         /// </summary>
-        /// <param name="newGroup">{'NewAreaGroup':bool, 'Name':string, 'Tags':[{TagEnum}], 'Latitutude':double?, 'Longtitude':double?, 'Radius': RadiusEnum?, 'AreaIds': IEnumerable(int)}
-        /// NOTE: TagEnum?->Nullable, enumerable type. Possible values: Help(0), Sport(1), Fun(2), Dating(3)
-        /// NOTE: RadiusEnum->Nullable, enumerable type. Possible values: FiftyMeters(50), HunderdAndFiftyMeters(150), ThreeHundredMeters(300), FiveHundredMeters(500)
-        /// NOTE: 'Latitutude', 'Longtitude', 'Radius' MUST be NULL if you are just joining to existing areas(NewAreaGroup=false)
-        /// NOTE: AreaIds MUST be empty/null if you are creating a new area(NewAreaGroup=true)</param>
+        /// <param name="newGroup">Body sample:{'Name':'Second floor cooks', 'TagIds':[4,1], 'AreaIds':[1],'UserIds':[1]}</param>
         /// <returns>HTTP Code 201 if successfuly created and 500 if not.</returns>
         [HttpPost]
         [Route("")]
-        public IHttpActionResult Post([FromBody] GroupDto newGroup)
+        public IHttpActionResult Post([FromBody] StandaloneGroupRequestDto newGroup)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             try
             {
-                var newGroupEntity = new Group() {Name = newGroup.Name, Tags = newGroup.Tags};
-
-                if (newGroup.NewAreaGroup && newGroup.AreaIds == null)
-                {
-                    this._unitOfWork.AreaRepository.InsertArea(new Area()
-                    {
-                        Latitude = newGroup.Latitutude.Value,
-                        Longitude = newGroup.Longtitude.Value,
-                        //RadiusId = newGroup.RadiusId
-                    });
-
-                    this._unitOfWork.GroupRepository.InsertGroup(
-                        newGroupEntity,
-                        new List<int>()
-                        {
-                            this._unitOfWork.AreaRepository.GetAreas().Count()
-                        });
-                }
-                else
-                {
-                    this._unitOfWork.GroupRepository.InsertGroup(newGroupEntity, newGroup.AreaIds);
-                }
+                var groupAsEntity = this._mapper.Map<StandaloneGroupRequestDto, Group>(newGroup);
+                var newlyCreatedGroupId = this._unitOfWork
+                    .GroupRepository
+                    .InsertGroup(
+                        groupAsEntity,
+                        newGroup.AreaIds,
+                        newGroup.TagIds,
+                        newGroup.UserIds);
 
                 this._unitOfWork.Save();
-
-                return Created("groups", newGroupEntity);
-                /*TODO: Investigate what should be returned here in the args.*/
+                return Created("Success", "api/v1/groups/" + newlyCreatedGroupId);
             }
             catch (Exception ex)
             {
                 BoongalooApiLogger.LogError("Error while inserting a new group.", ex);
+                return InternalServerError();
+            }
+        }
+
+        /// <summary>
+        /// Example: POST /api/v1/groups/AsNewArea
+        /// </summary>
+        /// <param name="newGroup">Body sample:{'Name':'Second floor cooks', 'TagIds':[4,1], 'AreaIds':[1],'UserIds':[1],'Latitude':42.657064, 'Longitude':23.28539, 'Radius':50}</param>
+        /// <returns>Uniqe identifier of the newly created group entity</returns>
+        [HttpPost]
+        [Route("AsNewArea")]
+        public IHttpActionResult Post([FromBody] GroupAsNewAreaRequestDto newGroup)
+        {
+            try
+            {
+                // New Area was saved
+                var areaAsEntity = this._mapper.Map<GroupAsNewAreaRequestDto, Area>(newGroup);
+                this._unitOfWork.AreaRepository.InsertArea(areaAsEntity);
+
+                var groupAsEntity = this._mapper.Map<GroupAsNewAreaRequestDto, Group>(newGroup);
+                var newlyCreatedGroupId = this._unitOfWork
+                    .GroupRepository
+                    .InsertGroup(
+                        groupAsEntity, 
+                        newGroup.AreaIds, 
+                        newGroup.TagIds, 
+                        newGroup.UserIds);
+
+                this._unitOfWork.Save();
+                return Created("Success", "api/v1/groups/" + newlyCreatedGroupId);
+            }
+            catch (Exception ex)
+            {
+                BoongalooApiLogger.LogError("Error while creating new group.", ex);
                 return InternalServerError();
             }
         }

@@ -9,7 +9,5 @@ namespace Boongaloo.Repository.Entities
         public int Id { get; set; }
 
         public string Name { get; set; }
-
-        public IEnumerable<TagEnum> Tags { get; set; }
     }
 }

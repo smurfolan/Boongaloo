@@ -101,6 +101,7 @@ namespace Boongaloo.API.Controllers
             try
             {
                 var areaAsEntity = this._mapper.Map<AreaDto, Repository.Entities.Area>(area);
+
                 this._unitOfWork.AreaRepository.InsertArea(areaAsEntity);
                 this._unitOfWork.Save();
 

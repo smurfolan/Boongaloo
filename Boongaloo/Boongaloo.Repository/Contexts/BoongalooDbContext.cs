@@ -78,12 +78,16 @@ namespace Boongaloo.Repository.Contexts
 
             var areaToGroupSaved = this.SaveEntities(_areaToGroupStoreFileName);
             var groupToUserSaved = this.SaveEntities(_groupToUserStoreFileName);
+            var groupToTagSaved = this.SaveEntities(_groupToTagStoreFileName);
+            var userToLanguagesSaved = this.SaveEntities(_userToLanguagesStoreFileName);
             
             return groupsSaved 
                 && areasSaved 
                 && usersSaved
                 && areaToGroupSaved
-                && groupToUserSaved;
+                && groupToUserSaved
+                && groupToTagSaved
+                && userToLanguagesSaved;
         }
 
         public void Dispose()

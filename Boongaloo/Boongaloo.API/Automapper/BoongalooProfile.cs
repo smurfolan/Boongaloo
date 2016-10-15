@@ -14,6 +14,10 @@ namespace Boongaloo.API.Automapper
             CreateMap<AreaDto, Area>();
             CreateMap<Area, AreaDto>();
 
+            CreateMap<GroupAsNewAreaRequestDto, Area>();
+            CreateMap<GroupAsNewAreaRequestDto, Group>();
+            CreateMap<StandaloneGroupRequestDto, Group>();
+
             //CreateMap<User, UserDto>()
             //    .ForMember(m => m.Groups, opt => opt.Ignore())
             //    .ForMember(m => m.Languages, opt => opt.Ignore());
