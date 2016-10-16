@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq.Dynamic;
 using System.Web.Http;
 using AutoMapper;
 using Boongaloo.API.Automapper;
@@ -8,11 +6,10 @@ using Boongaloo.API.Helpers;
 using Boongaloo.Repository.BoongalooDtos;
 using Boongaloo.Repository.Entities;
 using Boongaloo.Repository.UnitOfWork;
-using GroupDto = Boongaloo.DTO.BoongalooWebApiDto.GroupDto;
 
 namespace Boongaloo.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/v1/groups")]
     public class GroupsController : ApiController
     {

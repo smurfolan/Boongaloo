@@ -57,6 +57,7 @@
     <Compile Include="BoongalooDtos\GroupDto.cs" />
     <Compile Include="BoongalooDtos\GroupResponseDto.cs" />
     <Compile Include="BoongalooDtos\LanguageDto.cs" />
+    <Compile Include="BoongalooDtos\NewUserRequestDto.cs" />
     <Compile Include="BoongalooDtos\RadiusDto.cs" />
     <Compile Include="BoongalooDtos\StandaloneGroupRequestDto.cs" />
     <Compile Include="BoongalooDtos\TagDto.cs" />

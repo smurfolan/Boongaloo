@@ -7,13 +7,13 @@ namespace Boongaloo.Repository.Interfaces
 {
     public interface IUserRepository
     {
-        IEnumerable<User> GetUsers();
+        IEnumerable<UserResponseDto> GetUsers();
         User GetUserById(int areaId);
         IEnumerable<User> GetUsersForGroupId(int groupId); 
 
-        void InsertUser(User area);
+        int InsertUser(NewUserRequestDto area);
         void DeleteUser(int areaId);
-        void UpdateUser(User area);
+        void UpdateUser(NewUserRequestDto area);
 
         void UpdateUserSubscriptionsToGroups(int userId, IEnumerable<GroupSubscriptionDto> groupSubscriptions);
 

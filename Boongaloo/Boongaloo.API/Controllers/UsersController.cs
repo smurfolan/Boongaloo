@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
+using AutoMapper;
+using Boongaloo.API.Automapper;
 using Boongaloo.API.Helpers;
 using Boongaloo.DTO.BoongalooWebApiDto;
-using Boongaloo.Repository.Entities;
+using Boongaloo.Repository.BoongalooDtos;
 using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers
@@ -13,11 +15,16 @@ namespace Boongaloo.API.Controllers
     public class UsersController : ApiController
     {
         private BoongalooDbUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
         public UsersController(/*Comma separated arguments of type interface*/)
         {
             _unitOfWork = new BoongalooDbUnitOfWork();
             // Handle assignment by DI
+            var mapperConfiguration = new MapperConfiguration(cfg => {
+                cfg.AddProfile<BoongalooProfile>();
+            });
+            _mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <summary>
@@ -36,7 +43,7 @@ namespace Boongaloo.API.Controllers
 
             return Ok(result);
         }
-
+        // TODO: Make investigation how to user will be subscribing to groups
         /// <summary>
         /// Example: POST api/v1/users/ChangeGroupsSubscribtion
         /// </summary>
@@ -68,11 +75,11 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Example: POST api/v1/users
         /// </summary>
-        /// <param name="newUser">{'Id':int, 'IdsrvUniqueId':string, 'FirstName':string, 'LastName':string, 'Email':string,}</param>
+        /// <param name="newUser">{'IdsrvUniqueId' : 'adss23d2s', 'FirstName': 'Stefcho', 'LastName': 'Stefchev', 'Email': 'used@to.know', 'About': 'Straightforward', 'Gender': '0', 'BirthDate': '0001-01-01T00:00:00', 'PhoneNumber': '+395887647288', 'LanguageIds' : [1,3], 'GroupIds': [1]}</param>
         /// <returns>Http status code 201 if user was succesfuly created or 500 if error has occured.</returns>
         [HttpPost]
         [Route("")]
-        public IHttpActionResult Post([FromBody]User newUser)
+        public IHttpActionResult Post([FromBody]NewUserRequestDto newUser)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -84,10 +91,10 @@ namespace Boongaloo.API.Controllers
                     .Any(x => x.IdsrvUniqueId == newUser.IdsrvUniqueId || x.Email == newUser.Email))
                     return BadRequest();
 
-                this._unitOfWork.UserRepository.InsertUser(newUser);
-                this._unitOfWork.Save();
+                var newlyCreatedUserId = this._unitOfWork.UserRepository.InsertUser(newUser);
+                //this._unitOfWork.Save();
 
-                return Created("users", newUser);/*TODO: Investigate what should be returned here in the args.*/
+                return Created("Success", "api/v1/users/" + newlyCreatedUserId);
             }
             catch (Exception ex)
             {
@@ -104,7 +111,7 @@ namespace Boongaloo.API.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("{id:int}")]
-        public IHttpActionResult Put(int id, [FromBody]User updateUserData)
+        public IHttpActionResult Put(int id, [FromBody]NewUserRequestDto updateUserData)
         {
             if(!ModelState.IsValid)
                 return BadRequest();

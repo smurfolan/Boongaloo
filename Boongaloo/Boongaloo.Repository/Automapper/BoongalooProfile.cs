@@ -19,6 +19,8 @@ namespace Boongaloo.Repository.Automapper
             CreateMap<Language, LanguageDto>();
 
             CreateMap<Group, GroupDto>();
+
+            CreateMap<NewUserRequestDto, User>();
         }
     }
 }

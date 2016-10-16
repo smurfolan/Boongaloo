@@ -28,10 +28,17 @@ namespace Boongaloo.Repository.Repositories
             _mapper = mapperConfiguration.CreateMapper();
         }
 
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<UserResponseDto> GetUsers()
         {
-            return _dbContext.Users.ToList();
+            var result = new List<UserResponseDto>();
+
+            var userEntities = _dbContext.Users.ToList();
+
+            this.MapUsersToUserDtos(userEntities, result);
+
+            return result;
         }
+
         public User GetUserById(int userId)
         {
             return _dbContext.Users.FirstOrDefault(x => x.Id == userId);
@@ -45,17 +52,52 @@ namespace Boongaloo.Repository.Repositories
                     select item2).ToList();
         }
 
-        public void InsertUser(User user)
+        public int InsertUser(NewUserRequestDto user)
         {
-            user.Id = this.GetUsers().Count() + 1;
-            _dbContext.Users.Add(user);
+            var latestUserRecord = this.GetUsers().OrderBy(x => x.Id).LastOrDefault();
+            var nextUserId = latestUserRecord?.Id + 1 ?? 1;
+
+            // Create user entity and add it to users
+            var userEntity = this._mapper.Map<NewUserRequestDto, User>(user);
+            userEntity.Id = nextUserId;
+            this._dbContext.Users.Add(userEntity);
+
+            // Foreach language add new pair in UserToLanguage store
+            foreach (var languageId in user.LanguageIds)
+            {
+                var nextRecordId = this._dbContext.UserToLangauge.OrderBy(x => x.Id).LastOrDefault();
+                var nextId = nextRecordId?.Id + 1 ?? 1;
+                this._dbContext.UserToLangauge.Add(new UserToLanguage()
+                {
+                    Id = nextId,
+                    LanguageId = languageId,
+                    UserId = nextUserId
+                });
+            }
+
+            // Foreach group add new pair in the UserToGroup store
+            foreach (var groupId in user.GroupIds)
+            {
+                var nextRecordId = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
+                var nextId = nextRecordId?.Id + 1 ?? 1;
+                this._dbContext.GroupToUser.Add(new GroupToUser()
+                {
+                    Id = nextId,
+                    GroupId = groupId,
+                    UserId = nextUserId
+                });
+            }
+
+            this._dbContext.SaveChanges();
+
+            return nextUserId;
         }
         public void DeleteUser(int userId)
         {
             var userToBeDeleted = _dbContext.Users.FirstOrDefault(x => x.Id == userId);
             _dbContext.Users.Remove(userToBeDeleted);
         }
-        public void UpdateUser(User user)
+        public void UpdateUser(NewUserRequestDto user)
         {
             var userToBeUpdated = _dbContext.Users.FirstOrDefault(x => x.Id == user.Id);
 
@@ -66,10 +108,53 @@ namespace Boongaloo.Repository.Repositories
             userToBeUpdated.BirthDate = user.BirthDate;
             userToBeUpdated.Email = user.Email;
             userToBeUpdated.FirstName = user.FirstName;
-            //userToBeUpdated.Langugages = user.Langugages;
             userToBeUpdated.LastName = user.LastName;
             userToBeUpdated.Gender = user.Gender;
             userToBeUpdated.PhoneNumber = user.PhoneNumber;
+
+            // Remove old language records
+            var languageRecordsToRemove = this._dbContext.UserToLangauge
+                .Where(utl => utl.UserId == user.Id)
+                .ToList();
+
+            for(int i = 0 ; i < languageRecordsToRemove.Count(); i++)
+                this._dbContext.UserToLangauge.Remove(languageRecordsToRemove[i]);
+
+            // Add new language records
+            foreach (var languageId in user.LanguageIds)
+            {
+                var nextRecordId = this._dbContext.UserToLangauge.OrderBy(x => x.Id).LastOrDefault();
+                var nextId = nextRecordId?.Id + 1 ?? 1;
+                this._dbContext.UserToLangauge.Add(new UserToLanguage()
+                {
+                    Id = nextId,
+                    LanguageId = languageId,
+                    UserId = user.Id
+                });
+            }
+
+            // Remove old group records
+            var groupRecordsToRemove = this._dbContext.GroupToUser
+                .Where(gtu => gtu.UserId == user.Id)
+                .ToList();
+
+            for (int i = 0; i < groupRecordsToRemove.Count(); i++)
+                this._dbContext.GroupToUser.Remove(groupRecordsToRemove[i]);
+
+            // Add new group records
+            foreach (var groupId in user.GroupIds)
+            {
+                var nextRecordId = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
+                var nextId = nextRecordId?.Id + 1 ?? 1;
+                this._dbContext.GroupToUser.Add(new GroupToUser()
+                {
+                    Id = nextId,
+                    GroupId = groupId,
+                    UserId = user.Id
+                });
+            }
+
+            this._dbContext.SaveChanges();
         }
 
         public void UpdateUserSubscriptionsToGroups(int userId, IEnumerable<GroupSubscriptionDto> groupSubscriptions)
@@ -103,30 +188,9 @@ namespace Boongaloo.Repository.Repositories
             var result = new List<UserResponseDto>();
 
             var userIds = this._dbContext.GroupToUser.Where(x => x.GroupId == groupId).Select(y => y.UserId);
-            var userEntities = this._dbContext.Users.Where(u => userIds.Contains(u.Id));
+            var userEntities = this._dbContext.Users.Where(u => userIds.Contains(u.Id)).ToList();
 
-            foreach (var userEntity in userEntities)
-            {
-                var userDto = this._mapper.Map<User, UserResponseDto>(userEntity);
-
-                // 1. Add languages
-                var langaugeIds = this._dbContext.UserToLangauge
-                    .Where(ul => ul.UserId == userEntity.Id)
-                    .Select(l => l.LanguageId);
-                var languageEntities = this._dbContext.Languages.Where(l => langaugeIds.Contains(l.Id));
-                var languageDtos = this._mapper.Map<IEnumerable<Language>, IEnumerable<LanguageDto>>(languageEntities);
-
-                userDto.Langugages = languageDtos;
-                // 2. Add groups
-                var groupIds = this._dbContext.GroupToUser
-                    .Where(ul => ul.UserId == userEntity.Id)
-                    .Select(l => l.GroupId);
-                var groupEntities = this._dbContext.Groups.Where(gr => groupIds.Contains(gr.Id));
-                var groupDtos = this._mapper.Map<IEnumerable<Group>, IEnumerable<GroupDto>>(groupEntities);
-
-                userDto.Groups = groupDtos;
-                result.Add(userDto);
-            }
+            this.MapUsersToUserDtos(userEntities, result);
 
             return result;
         }
@@ -162,6 +226,32 @@ namespace Boongaloo.Repository.Repositories
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        private void MapUsersToUserDtos(List<User> userEntities, List<UserResponseDto> result)
+        {
+            foreach (var userEntity in userEntities)
+            {
+                var userDto = this._mapper.Map<User, UserResponseDto>(userEntity);
+
+                // 1. Add languages
+                var langaugeIds = this._dbContext.UserToLangauge
+                    .Where(ul => ul.UserId == userEntity.Id)
+                    .Select(l => l.LanguageId);
+                var languageEntities = this._dbContext.Languages.Where(l => langaugeIds.Contains(l.Id));
+                var languageDtos = this._mapper.Map<IEnumerable<Language>, IEnumerable<LanguageDto>>(languageEntities);
+
+                userDto.Langugages = languageDtos;
+                // 2. Add groups
+                var groupIds = this._dbContext.GroupToUser
+                    .Where(ul => ul.UserId == userEntity.Id)
+                    .Select(l => l.GroupId);
+                var groupEntities = this._dbContext.Groups.Where(gr => groupIds.Contains(gr.Id));
+                var groupDtos = this._mapper.Map<IEnumerable<Group>, IEnumerable<GroupDto>>(groupEntities);
+
+                userDto.Groups = groupDtos;
+                result.Add(userDto);
+            }
         }
     }
 }
