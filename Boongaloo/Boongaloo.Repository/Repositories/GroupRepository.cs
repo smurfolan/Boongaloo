@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Device.Location;/*Consider moving this away and replacing it with own calculations class.*/
 using System.Linq;
+using AutoMapper;
+using Boongaloo.Repository.Automapper;
+using Boongaloo.Repository.BoongalooDtos;
 using Boongaloo.Repository.Contexts;
 using Boongaloo.Repository.Entities;
 using Boongaloo.Repository.Interfaces;
@@ -13,20 +16,69 @@ namespace Boongaloo.Repository.Repositories
         private readonly BoongalooDbContext _dbContext;
 
         private bool _disposed = false;
+        private readonly IMapper _mapper;
 
         public GroupRepository(BoongalooDbContext dbContext)
         {
             _dbContext = dbContext;
+            var mapperConfiguration = new MapperConfiguration(cfg => {
+                cfg.AddProfile<BoongalooProfile>();
+            });
+            _mapper = mapperConfiguration.CreateMapper();
         }
 
         public IEnumerable<Group> GetGroups()
         {
             return this._dbContext.Groups;
         }
-        public Group GetGroupById(int groupId)
+        public GroupResponseDto GetGroupById(int groupId)
         {
-            return this._dbContext.Groups.FirstOrDefault(x => x.Id == groupId);
+            var result = new GroupResponseDto();
+
+            var groupEntity = this._dbContext.Groups.FirstOrDefault(x => x.Id == groupId);
+            if (groupEntity == null)
+                return null;
+
+            result.Id = groupEntity.Id;
+            result.Name = groupEntity.Name;
+
+            this.MapToGroupResponseDto(groupEntity, result);
+
+            return result;
         }
+
+        private void MapToGroupResponseDto(Group groupEntity, GroupResponseDto result)
+        {
+            // Add all the tags to result
+            var tagsIdsForTheGroup = this._dbContext.GroupToTag
+                .Where(x => x.GroupId == groupEntity.Id)
+                .Select(y => y.TagId);
+
+            var tagEntities = this._dbContext.Tags.Where(t => tagsIdsForTheGroup.Contains(t.Id));
+            var tagDtos = this._mapper.Map<IEnumerable<Tag>, IEnumerable<TagDto>>(tagEntities);
+
+            result.Tags = tagDtos;
+            // Add all the areas to the result
+            var areaIdsForTheGroup = this._dbContext.AreaToGroup
+                .Where(x => x.GroupId == groupEntity.Id)
+                .Select(y => y.AreaId);
+
+            var areaEntities = this._dbContext.Areas.Where(t => areaIdsForTheGroup.Contains(t.Id));
+            var areaDtos = this._mapper.Map<IEnumerable<Area>, IEnumerable<AreaDto>>(areaEntities);
+
+            result.Areas = areaDtos;
+
+            // Add all the users to the result
+            var userIdsForTheGroup = this._dbContext.GroupToUser
+                .Where(x => x.GroupId == groupEntity.Id)
+                .Select(y => y.UserId);
+
+            var userEntities = this._dbContext.Users.Where(t => userIdsForTheGroup.Contains(t.Id));
+            var userDtos = this._mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(userEntities);
+
+            result.Users = userDtos;
+        }
+
         public IEnumerable<Group> GetGroupsForUserId(int userId)
         {
             return (from item1 in _dbContext.GroupToUser

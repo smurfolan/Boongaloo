@@ -1,9 +1,10 @@
 ﻿using System;
-using Boongaloo.DTO.Enums;
+using System.Collections.Generic;
+using Boongaloo.Repository.Enums;
 
-namespace Boongaloo.Repository.Entities
+namespace Boongaloo.Repository.BoongalooDtos
 {
-    public class User
+    public class UserResponseDto
     {
         public int Id { get; set; }
         public string IdsrvUniqueId { get; set; }
@@ -15,6 +16,9 @@ namespace Boongaloo.Repository.Entities
         public string About { get; set; }
         public GenderEnum Gender { get; set; }
 
+        public IEnumerable<LanguageDto> Langugages { get; set; }
+        public IEnumerable<GroupDto> Groups { get; set; }
+         
         public DateTime BirthDate { get; set; }
         public string PhoneNumber { get; set; }
     }

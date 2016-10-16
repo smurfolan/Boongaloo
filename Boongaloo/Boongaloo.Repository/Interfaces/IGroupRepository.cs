@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Boongaloo.Repository.BoongalooDtos;
 using Boongaloo.Repository.Entities;
 
 namespace Boongaloo.Repository.Interfaces
@@ -7,7 +8,7 @@ namespace Boongaloo.Repository.Interfaces
     interface IGroupRepository : IDisposable
     {
         IEnumerable<Group> GetGroups();
-        Group GetGroupById(int groupId);
+        GroupResponseDto GetGroupById(int groupId);
         IEnumerable<Group> GetGroupsForUserId(int userId);
         IEnumerable<Group> GetGroupsForAreaId(int areaId); 
 
