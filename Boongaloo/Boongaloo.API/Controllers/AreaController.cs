@@ -9,7 +9,7 @@ using Boongaloo.API.Automapper;
 
 namespace Boongaloo.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/v1/areas")]
     public class AreaController : ApiController
     {
