@@ -89,6 +89,7 @@ namespace Boongaloo.API.Controllers
         /// Example: POST /api/v1/groups/AsNewArea
         /// </summary>
         /// <param name="newGroup">Body sample:{'Name':'Second floor cooks', 'TagIds':[4,1], 'AreaIds':[1],'UserIds':[1],'Latitude':42.657064, 'Longitude':23.28539, 'Radius':50}</param>
+        /// NOTE: 'AreaIds':[1] -> This is not the Id of the newly created area. This is all the other area ids if we were in the range of other areas but no matter of that we decided to create new area. 
         /// <returns>Uniqe identifier of the newly created group entity</returns>
         [HttpPost]
         [Route("AsNewArea")]

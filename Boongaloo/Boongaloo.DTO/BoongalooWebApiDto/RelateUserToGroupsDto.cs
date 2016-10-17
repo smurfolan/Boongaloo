@@ -9,6 +9,6 @@ namespace Boongaloo.DTO.BoongalooWebApiDto
         public int UserId { get; set; }
 
         [Required]
-        public IEnumerable<GroupSubscriptionDto> GroupsSubscriptions { get; set; } 
+        public IEnumerable<int> GroupsUserSubscribes { get; set; } 
     }
 }

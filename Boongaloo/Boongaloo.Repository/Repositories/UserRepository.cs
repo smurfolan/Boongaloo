@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using Boongaloo.DTO.BoongalooWebApiDto;
 using Boongaloo.Repository.Automapper;
 using Boongaloo.Repository.BoongalooDtos;
 using Boongaloo.Repository.Contexts;
@@ -157,27 +156,35 @@ namespace Boongaloo.Repository.Repositories
             this._dbContext.SaveChanges();
         }
 
-        public void UpdateUserSubscriptionsToGroups(int userId, IEnumerable<GroupSubscriptionDto> groupSubscriptions)
+        public void UpdateUserSubscriptionsToGroups(int userId, IEnumerable<int> groupSubscriptions)
         {
-            foreach (var groupSubscriptionDto in groupSubscriptions)
-            {
-                if (groupSubscriptionDto.IsSubscribtionRequest)
-                {
-                    var lastRecord = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
-                    var nextRecordId = lastRecord?.Id + 1 ?? 1;
+            // 1. Remove all the records from GroupUser If groupSubscriptions doesn't contain <userId - groupId>
+            var relationsToBeRemoved = this._dbContext.GroupToUser
+                .Where(pair => pair.UserId == userId && !groupSubscriptions.Contains(pair.GroupId))
+                .ToList();
 
-                    this._dbContext.GroupToUser.Add(new GroupToUser()
-                    {
-                        GroupId = groupSubscriptionDto.GroupId,
-                        UserId = userId,
-                        Id = nextRecordId
-                    });
+            for(int i = 0; i < relationsToBeRemoved.Count() ; i++)
+            {
+                this._dbContext.GroupToUser.Remove(relationsToBeRemoved[i]);
+            }
+            
+            // 2. Foreach pair <userId - groupId> - if available in GroupUsers - continue, otherwise add new record.
+            foreach(var subscription in groupSubscriptions)
+            {
+                if(this._dbContext.GroupToUser.FirstOrDefault(pair => pair.UserId == userId && pair.GroupId == subscription) != null)
+                {
+                    continue;
                 }
                 else
                 {
-                    var recordToBeRemoved = _dbContext.GroupToUser
-                        .FirstOrDefault(x => x.GroupId == groupSubscriptionDto.GroupId && x.UserId == userId);
-                    this._dbContext.GroupToUser.Remove(recordToBeRemoved);
+                    var nextRecordId = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
+                    var nextId = nextRecordId?.Id + 1 ?? 1;
+                    this._dbContext.GroupToUser.Add(new GroupToUser()
+                    {
+                        Id = nextId,
+                        GroupId = subscription,
+                        UserId = userId
+                    });
                 }
             }
         }

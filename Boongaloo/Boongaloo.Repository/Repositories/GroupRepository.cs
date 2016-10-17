@@ -131,57 +131,67 @@ namespace Boongaloo.Repository.Repositories
             
             // Insert into the bridge table AreaGroup
             var allAreaIds = _dbContext.Areas.Select(a => a.Id).ToList();
-            foreach (var areaId in areaIds)
+            if(areaIds != null)
             {
-                if (!allAreaIds.Contains(areaId))
-                    continue;
-
-                var latestAreaToGroupRecord = this._dbContext.AreaToGroup.OrderBy(x => x.Id).LastOrDefault();
-                var nextAreaToGroupId = latestAreaToGroupRecord?.Id + 1 ?? 1;
-                
-                this._dbContext.AreaToGroup.Add(new AreaToGroup()
+                foreach (var areaId in areaIds)
                 {
-                    AreaId = areaId,
-                    GroupId = grouToInsert.Id,
-                    Id = nextAreaToGroupId
-                });
-            }
+                    if (!allAreaIds.Contains(areaId))
+                        continue;
+
+                    var latestAreaToGroupRecord = this._dbContext.AreaToGroup.OrderBy(x => x.Id).LastOrDefault();
+                    var nextAreaToGroupId = latestAreaToGroupRecord?.Id + 1 ?? 1;
+
+                    this._dbContext.AreaToGroup.Add(new AreaToGroup()
+                    {
+                        AreaId = areaId,
+                        GroupId = grouToInsert.Id,
+                        Id = nextAreaToGroupId
+                    });
+                }
+            }           
 
             // Insert into the bridge table UserGroup
             var allUserIds = _dbContext.Users.Select(u => u.Id).ToList();
-            foreach (var userId in userIds)
+            if(userIds != null)
             {
-                if (!allUserIds.Contains(userId))
-                    continue;
-
-                var latestAreaToGroupRecord = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
-                var nextUserToGroupId = latestAreaToGroupRecord?.Id + 1 ?? 1;
-
-                this._dbContext.GroupToUser.Add(new GroupToUser()
+                foreach (var userId in userIds)
                 {
-                    UserId = userId,
-                    GroupId = grouToInsert.Id,
-                    Id = nextUserToGroupId
-                });
+                    if (!allUserIds.Contains(userId))
+                        continue;
+
+                    var latestAreaToGroupRecord = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
+                    var nextUserToGroupId = latestAreaToGroupRecord?.Id + 1 ?? 1;
+
+                    this._dbContext.GroupToUser.Add(new GroupToUser()
+                    {
+                        UserId = userId,
+                        GroupId = grouToInsert.Id,
+                        Id = nextUserToGroupId
+                    });
+                }
             }
+            
 
             // Insert into the bridge table GroupTags
             var allTagIds = _dbContext.Tags.Select(t => t.Id).ToList();
-            foreach (var tagId in tagIds)
+            if(tagIds != null)
             {
-                if (!allTagIds.Contains(tagId))
-                    continue;
-
-                var latestTagToGroupRecord = this._dbContext.GroupToTag.OrderBy(x => x.Id).LastOrDefault();
-                var nextTagToGroupId = latestTagToGroupRecord?.Id + 1 ?? 1;
-
-                this._dbContext.GroupToTag.Add(new GroupToTag()
+                foreach (var tagId in tagIds)
                 {
-                    TagId = tagId,
-                    GroupId = grouToInsert.Id,
-                    Id = nextTagToGroupId
-                });
-            }
+                    if (!allTagIds.Contains(tagId))
+                        continue;
+
+                    var latestTagToGroupRecord = this._dbContext.GroupToTag.OrderBy(x => x.Id).LastOrDefault();
+                    var nextTagToGroupId = latestTagToGroupRecord?.Id + 1 ?? 1;
+
+                    this._dbContext.GroupToTag.Add(new GroupToTag()
+                    {
+                        TagId = tagId,
+                        GroupId = grouToInsert.Id,
+                        Id = nextTagToGroupId
+                    });
+                }
+            }     
 
             // Insert the new group
             this._dbContext.Groups.Add(new Group()
@@ -192,7 +202,8 @@ namespace Boongaloo.Repository.Repositories
 
             return grouToInsert.Id;
         }
-        public IEnumerable<Group> GetGroups(double latitude, double longitude)
+
+        public IEnumerable<GroupResponseDto> GetGroups(double latitude, double longitude)
         {
             var currentUserLocation = new GeoCoordinate(latitude, longitude);
 
@@ -204,7 +215,22 @@ namespace Boongaloo.Repository.Repositories
                 this._dbContext.AreaToGroup.Where(x => areasInsideOfWhichUserIsCurrentlyIn.Contains(x.AreaId))
                     .Select(m => m.GroupId);
 
-            return this._dbContext.Groups.Where(x => groupIds.Contains(x.Id));
+            var result = new List<GroupResponseDto>();
+
+            foreach(var groupId in groupIds)
+            {
+                var groupEntity = this._dbContext.Groups.FirstOrDefault(gr => gr.Id == groupId);
+                var newGroupDto = new GroupResponseDto();
+
+                newGroupDto.Id = groupEntity.Id;
+                newGroupDto.Name = groupEntity.Name;
+
+                this.MapToGroupResponseDto(groupEntity, newGroupDto);
+
+                result.Add(newGroupDto);
+            }         
+
+            return result;
         }
 
         public void Save()

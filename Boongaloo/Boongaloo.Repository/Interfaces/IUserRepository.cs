@@ -15,7 +15,7 @@ namespace Boongaloo.Repository.Interfaces
         void DeleteUser(int areaId);
         void UpdateUser(NewUserRequestDto area);
 
-        void UpdateUserSubscriptionsToGroups(int userId, IEnumerable<GroupSubscriptionDto> groupSubscriptions);
+        void UpdateUserSubscriptionsToGroups(int userId, IEnumerable<int> groupSubscriptions);
 
         IEnumerable<UserResponseDto> GetUsersFromGroup(int id);
         IEnumerable<User> GetUsersFromArea(int id);

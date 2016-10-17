@@ -43,11 +43,11 @@ namespace Boongaloo.API.Controllers
 
             return Ok(result);
         }
-        // TODO: Make investigation how to user will be subscribing to groups
+
         /// <summary>
         /// Example: POST api/v1/users/ChangeGroupsSubscribtion
         /// </summary>
-        /// <param name="userToGroupsModel">{'UserId':int, 'GroupsSubscriptions':[{'GroupId':int, 'IsSubscribtionRequest':bool}]}</param>
+        /// <param name="userToGroupsModel">{'UserId':int, 'GroupsSubscriptions':[3, 105]}</param>
         /// <returns>Http.OK if the operation was successful or Http.500 if there was an error.</returns>
         [HttpPost]
         [Route("ChangeGroupsSubscribtion")]
@@ -59,7 +59,7 @@ namespace Boongaloo.API.Controllers
             try
             {
                 this._unitOfWork.UserRepository
-                    .UpdateUserSubscriptionsToGroups(userToGroupsModel.UserId, userToGroupsModel.GroupsSubscriptions);
+                    .UpdateUserSubscriptionsToGroups(userToGroupsModel.UserId, userToGroupsModel.GroupsUserSubscribes);
 
                 this._unitOfWork.Save();
 
