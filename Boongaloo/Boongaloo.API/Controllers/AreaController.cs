@@ -9,7 +9,7 @@ using Boongaloo.API.Automapper;
 
 namespace Boongaloo.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/v1/areas")]
     public class AreaController : ApiController
     {
@@ -92,7 +92,7 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Example: POST api/v1/areas
         /// </summary>
-        /// <param name="area">Sample post: {'Radius':{'Id':1, 'Range':50}, 'Latitude': 23.1233123,'Longitude': 43.1231232}</param>
+        /// <param name="area">Sample post: {'Radius':50, 'Latitude': 23.1233123,'Longitude': 43.1231232}</param>
         /// <returns>HTTP Status of 201 code if area was successfuly created.</returns>
         [HttpPost]
         [Route("")]
