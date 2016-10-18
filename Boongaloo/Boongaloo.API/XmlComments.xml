@@ -104,5 +104,12 @@
             <param name="updateUserData">Updated user data</param>
             <returns></returns>
         </member>
+        <member name="M:Boongaloo.API.Controllers.UsersController.GetSubscribtions(System.Int32)">
+            <summary>
+            Example: GET api/v1/users/{id:int}/subscribtions
+            </summary>
+            <param name="uid">Updated user data</param>
+            <returns>List of integers which indicate the group ids to which the user is subscribed</returns>
+        </member>
     </members>
 </doc>

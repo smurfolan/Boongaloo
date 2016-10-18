@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Boongaloo.DTO.BoongalooWebApiDto;
 using Boongaloo.Repository.BoongalooDtos;
 using Boongaloo.Repository.Entities;
 
@@ -19,6 +18,8 @@ namespace Boongaloo.Repository.Interfaces
 
         IEnumerable<UserResponseDto> GetUsersFromGroup(int id);
         IEnumerable<User> GetUsersFromArea(int id);
+
+        IEnumerable<int> GetUserSubscriptions(int uid);
 
         void Save();
     }

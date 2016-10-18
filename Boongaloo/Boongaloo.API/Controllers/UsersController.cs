@@ -131,5 +131,26 @@ namespace Boongaloo.API.Controllers
                 return InternalServerError();
             }
         }
+
+        /// <summary>
+        /// Example: GET api/v1/users/{id:int}/subscribtions
+        /// </summary>
+        /// <param name="uid">Updated user data</param>
+        /// <returns>List of integers which indicate the group ids to which the user is subscribed</returns>
+        [HttpGet]
+        [Route("{id:int}/subscribtions")]
+        public IHttpActionResult GetSubscribtions(int uid)
+        {
+            try
+            {
+                var result = this._unitOfWork.UserRepository.GetUserSubscriptions(uid);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                BoongalooApiLogger.LogError("Error getting user subscribtions.", ex);
+                return InternalServerError();
+            }
+        }
     }
 }

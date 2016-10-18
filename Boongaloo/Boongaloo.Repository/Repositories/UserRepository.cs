@@ -211,6 +211,18 @@ namespace Boongaloo.Repository.Repositories
 
             return this._dbContext.Users.Where(x => userIds.Contains(x.Id));
         }
+        public IEnumerable<int> GetUserSubscriptions(int uid)
+        {
+            var result = new List<int>();
+
+            var groupIds = this._dbContext.GroupToUser
+                .Where(gtu => gtu.UserId == uid)
+                .Select(r => r.GroupId)
+                .Distinct()
+                .ToList();
+
+            return groupIds;
+        }
 
         public void Save()
         {
