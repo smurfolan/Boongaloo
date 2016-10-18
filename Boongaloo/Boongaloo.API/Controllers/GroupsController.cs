@@ -10,7 +10,7 @@ using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/v1/groups")]
     public class GroupsController : ApiController
     {
@@ -37,9 +37,9 @@ namespace Boongaloo.API.Controllers
 
             try
             {
-                var result = this._unitOfWork.GroupRepository.GetGroups(lat, lon);
+                //var result = this._unitOfWork.GroupRepository.GetGroups(lat, lon);
 
-                return Ok(result);
+                return Ok(/*result*/);
             }
             catch (Exception ex)
             {
@@ -66,32 +66,32 @@ namespace Boongaloo.API.Controllers
 
             try
             {
-                var newGroupEntity = new Group() {Name = newGroup.Name, Tags = newGroup.Tags};
+                //var newGroupEntity = new Group() {Name = newGroup.Name, Tags = newGroup.Tags};
 
-                if (newGroup.NewAreaGroup && newGroup.AreaIds == null)
-                {
-                    this._unitOfWork.AreaRepository.InsertArea(new Area()
-                    {
-                        Latitude = newGroup.Latitutude.Value,
-                        Longitude = newGroup.Longtitude.Value,
-                        Radius = (RadiusEnum) newGroup.Radius
-                    });
+                //if (newGroup.NewAreaGroup && newGroup.AreaIds == null)
+                //{
+                //    this._unitOfWork.AreaRepository.InsertArea(new Area()
+                //    {
+                //        Latitude = newGroup.Latitutude.Value,
+                //        Longitude = newGroup.Longtitude.Value,
+                //        Radius = (RadiusEnum) newGroup.Radius
+                //    });
 
-                    this._unitOfWork.GroupRepository.InsertGroup(
-                        newGroupEntity,
-                        new List<int>()
-                        {
-                            this._unitOfWork.AreaRepository.GetAreas().Count()
-                        });
-                }
-                else
-                {
-                    this._unitOfWork.GroupRepository.InsertGroup(newGroupEntity, newGroup.AreaIds);
-                }
+                //    this._unitOfWork.GroupRepository.InsertGroup(
+                //        newGroupEntity,
+                //        new List<int>()
+                //        {
+                //            this._unitOfWork.AreaRepository.GetAreas().Count()
+                //        });
+                //}
+                //else
+                //{
+                //    this._unitOfWork.GroupRepository.InsertGroup(newGroupEntity, newGroup.AreaIds);
+                //}
 
-                this._unitOfWork.Save();
+                //this._unitOfWork.Save();
 
-                return Created("groups", newGroupEntity);
+                return Created("groups", ""/*newGroupEntity*/);
                 /*TODO: Investigate what should be returned here in the args.*/
             }
             catch (Exception ex)
@@ -113,9 +113,9 @@ namespace Boongaloo.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = _unitOfWork.GroupRepository.GetGroupById(id);
+            //var result = _unitOfWork.GroupRepository.GetGroupById(id);
 
-            return Ok(result);
+            return Ok(/*result*/);
         }
 
         /// <summary>
@@ -129,8 +129,8 @@ namespace Boongaloo.API.Controllers
         {
             try
             {
-                var result = this._unitOfWork.UserRepository.GetUsersFromGroup(id);
-                return Ok(result);
+                //var result = this._unitOfWork.UserRepository.GetUsersFromGroup(id);
+                return Ok(/*result*/);
             }
             catch (Exception ex)
             {

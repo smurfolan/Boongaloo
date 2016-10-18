@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Http;
 using Boongaloo.API.Helpers;
 using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/v1/areas")]
     public class AreaController : ApiController
     {
@@ -26,12 +25,12 @@ namespace Boongaloo.API.Controllers
         [Route("{id:int}")]
         public IHttpActionResult Get(int id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            //if (!ModelState.IsValid)
+            //    return BadRequest(ModelState);
 
-            var result = this._unitOfWork.AreaRepository.GetAreas().FirstOrDefault(x => x.Id == id);
+            //var result = this._unitOfWork.AreaRepository.GetAreas().FirstOrDefault(x => x.Id == id);
 
-            return Ok(result);
+            return Ok("Success"/*result*/);
         }
 
         /// <summary>
@@ -49,9 +48,9 @@ namespace Boongaloo.API.Controllers
 
             try
             {
-                var result = this._unitOfWork.AreaRepository.GetAreas(lat, lon);
+                //var result = this._unitOfWork.AreaRepository.GetAreas(lat, lon);
 
-                return Ok(result);
+                return Ok(/*result*/);
             }
             catch (Exception ex)
             {
@@ -71,8 +70,8 @@ namespace Boongaloo.API.Controllers
         {
             try
             {
-                var result = this._unitOfWork.UserRepository.GetUsersFromArea(id);
-                return Ok(result);
+                //var result = this._unitOfWork.UserRepository.GetUsersFromArea(id);
+                return Ok(/*result*/);
             }
             catch (Exception ex)
             {

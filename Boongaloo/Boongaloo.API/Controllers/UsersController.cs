@@ -8,7 +8,7 @@ using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/v1/users")]
     public class UsersController : ApiController
     {
@@ -32,9 +32,9 @@ namespace Boongaloo.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = this._unitOfWork.UserRepository.GetUsers().FirstOrDefault(x => x.Id == id);
+            //var result = this._unitOfWork.UserRepository.GetUsers().FirstOrDefault(x => x.Id == id);
 
-            return Ok(result);
+            return Ok(/*result*/);
         }
 
         /// <summary>
@@ -51,10 +51,10 @@ namespace Boongaloo.API.Controllers
 
             try
             {
-                this._unitOfWork.UserRepository
-                    .UpdateUserSubscriptionsToGroups(userToGroupsModel.UserId, userToGroupsModel.GroupsSubscriptions);
+                //this._unitOfWork.UserRepository
+                //    .UpdateUserSubscriptionsToGroups(userToGroupsModel.UserId, userToGroupsModel.GroupsSubscriptions);
 
-                this._unitOfWork.Save();
+                //this._unitOfWork.Save();
 
                 return Ok();
             }
@@ -79,15 +79,15 @@ namespace Boongaloo.API.Controllers
 
             try
             {
-                if (this._unitOfWork.UserRepository
-                    .GetUsers()
-                    .Any(x => x.IdsrvUniqueId == newUser.IdsrvUniqueId || x.Email == newUser.Email))
-                    return BadRequest();
+                //if (this._unitOfWork.UserRepository
+                //    .GetUsers()
+                //    .Any(x => x.IdsrvUniqueId == newUser.IdsrvUniqueId || x.Email == newUser.Email))
+                //    return BadRequest();
 
-                this._unitOfWork.UserRepository.InsertUser(newUser);
-                this._unitOfWork.Save();
+                //this._unitOfWork.UserRepository.InsertUser(newUser);
+                //this._unitOfWork.Save();
 
-                return Created("users", newUser);/*TODO: Investigate what should be returned here in the args.*/
+                return Created("users", ""/*newUser*/);/*TODO: Investigate what should be returned here in the args.*/
             }
             catch (Exception ex)
             {
@@ -111,10 +111,10 @@ namespace Boongaloo.API.Controllers
 
             try
             {
-                updateUserData.Id = id;
-                this._unitOfWork.UserRepository.UpdateUser(updateUserData);
+                //updateUserData.Id = id;
+                //this._unitOfWork.UserRepository.UpdateUser(updateUserData);
 
-                this._unitOfWork.Save();
+                //this._unitOfWork.Save();
 
                 return Ok();
             }
