@@ -51,41 +51,76 @@ namespace Boongaloo.Repository.Repositories
                     select item2).ToList();
         }
 
+        public UserResponseDto GetUserByStsId(string stsId)
+        {
+            var userEntity = this._dbContext.Users.FirstOrDefault(u => u.IdsrvUniqueId == stsId);
+
+            if (userEntity == null)
+                return null;
+
+            var userDto = this._mapper.Map<User, UserResponseDto>(userEntity);
+
+            // 1. Add languages
+            var langaugeIds = this._dbContext.UserToLangauge
+                .Where(ul => ul.UserId == userEntity.Id)
+                .Select(l => l.LanguageId);
+            var languageEntities = this._dbContext.Languages.Where(l => langaugeIds.Contains(l.Id));
+            var languageDtos = this._mapper.Map<IEnumerable<Language>, IEnumerable<LanguageDto>>(languageEntities);
+
+            userDto.Langugages = languageDtos;
+            // 2. Add groups
+            var groupIds = this._dbContext.GroupToUser
+                .Where(ul => ul.UserId == userEntity.Id)
+                .Select(l => l.GroupId);
+            var groupEntities = this._dbContext.Groups.Where(gr => groupIds.Contains(gr.Id));
+            var groupDtos = this._mapper.Map<IEnumerable<Group>, IEnumerable<GroupDto>>(groupEntities);
+
+            userDto.Groups = groupDtos;
+
+            return userDto;
+        }
+
         public int InsertUser(NewUserRequestDto user)
         {
             var latestUserRecord = this.GetUsers().OrderBy(x => x.Id).LastOrDefault();
-            var nextUserId = latestUserRecord?.Id + 1 ?? 1;
+            var nextUserId = latestUserRecord != null ? latestUserRecord.Id + 1 : 1;
 
             // Create user entity and add it to users
             var userEntity = this._mapper.Map<NewUserRequestDto, User>(user);
             userEntity.Id = nextUserId;
             this._dbContext.Users.Add(userEntity);
 
-            // Foreach language add new pair in UserToLanguage store
-            foreach (var languageId in user.LanguageIds)
+            if (user.LanguageIds != null && user.LanguageIds.Any())
             {
-                var nextRecordId = this._dbContext.UserToLangauge.OrderBy(x => x.Id).LastOrDefault();
-                var nextId = nextRecordId?.Id + 1 ?? 1;
-                this._dbContext.UserToLangauge.Add(new UserToLanguage()
+                // Foreach language add new pair in UserToLanguage store
+                foreach (var languageId in user.LanguageIds)
                 {
-                    Id = nextId,
-                    LanguageId = languageId,
-                    UserId = nextUserId
-                });
+                    var nextRecordId = this._dbContext.UserToLangauge.OrderBy(x => x.Id).LastOrDefault();
+                    var nextId = nextRecordId?.Id + 1 ?? 1;
+                    this._dbContext.UserToLangauge.Add(new UserToLanguage()
+                    {
+                        Id = nextId,
+                        LanguageId = languageId,
+                        UserId = nextUserId
+                    });
+                }
             }
 
-            // Foreach group add new pair in the UserToGroup store
-            foreach (var groupId in user.GroupIds)
+            if (user.GroupIds != null && user.GroupIds.Any())
             {
-                var nextRecordId = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
-                var nextId = nextRecordId?.Id + 1 ?? 1;
-                this._dbContext.GroupToUser.Add(new GroupToUser()
+                // Foreach group add new pair in the UserToGroup store
+                foreach (var groupId in user.GroupIds)
                 {
-                    Id = nextId,
-                    GroupId = groupId,
-                    UserId = nextUserId
-                });
-            }
+                    var nextRecordId = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
+                    var nextId = nextRecordId?.Id + 1 ?? 1;
+                    this._dbContext.GroupToUser.Add(new GroupToUser()
+                    {
+                        Id = nextId,
+                        GroupId = groupId,
+                        UserId = nextUserId
+                    });
+                }
+            }       
 
             this._dbContext.SaveChanges();
 
