@@ -10,7 +10,7 @@ using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/v1/users")]
     public class UsersController : ApiController
     {
@@ -133,13 +133,13 @@ namespace Boongaloo.API.Controllers
         }
 
         /// <summary>
-        /// Example: GET api/v1/users/{id:int}/subscribtions
+        /// Example: GET api/v1/users/{id:int}/subscriptions
         /// </summary>
         /// <param name="uid">Updated user data</param>
         /// <returns>List of integers which indicate the group ids to which the user is subscribed</returns>
         [HttpGet]
-        [Route("{id:int}/subscribtions")]
-        public IHttpActionResult GetSubscribtions(int uid)
+        [Route("{uid:int}/subscriptions")]
+        public IHttpActionResult GetSubscriptions(int uid)
         {
             try
             {
