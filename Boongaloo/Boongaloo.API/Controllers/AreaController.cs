@@ -2,6 +2,7 @@
 using System.Web.Http;
 using Boongaloo.API.Helpers;
 using Boongaloo.Repository.UnitOfWork;
+using BusinessServices;
 
 namespace Boongaloo.API.Controllers
 {
@@ -9,11 +10,13 @@ namespace Boongaloo.API.Controllers
     [RoutePrefix("api/v1/areas")]
     public class AreaController : ApiController
     {
-        private BoongalooDbUnitOfWork _unitOfWork;
+        //private BoongalooDbUnitOfWork _unitOfWork;
+        private BoongalooDataService _dataService;
 
         public AreaController()
         {
-            _unitOfWork = new BoongalooDbUnitOfWork();
+            //_unitOfWork = new BoongalooDbUnitOfWork();
+            this._dataService = new BoongalooDataService();
         }
         
         /// <summary>

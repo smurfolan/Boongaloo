@@ -192,6 +192,9 @@
     <Content Include="DataStorage\areaGroupBridgeStore.json" />
     <Content Include="DataStorage\groupUserBridgeStore.json" />
     <Content Include="DataStorage\userStore.json" />
+    <EmbeddedResource Include="App_Data\BoongalooDb.sqlite">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="Properties\PublishProfiles\boongalooapi.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
