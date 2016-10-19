@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using System.Web.Http;
 using AutoMapper;
 using Boongaloo.API.Automapper;
@@ -45,6 +46,32 @@ namespace Boongaloo.API.Controllers
         }
 
         /// <summary>
+        /// Example: GET api/v1/users/{stsId:string}
+        /// </summary>
+        /// <param name="stsId">Base64 encoded STS id.</param>
+        /// <returns>If there's such user in the system - UserDto is returned, otherwise null.</returns>
+        [HttpGet]
+        [Route("{stsId}")]
+        public IHttpActionResult GetUserByStsId(string stsId)
+        {
+            try
+            {
+                var data = Convert.FromBase64String(stsId);
+                var decodedString = Encoding.UTF8.GetString(data);
+
+                var result = this._unitOfWork.UserRepository.GetUserByStsId(decodedString);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                BoongalooApiLogger.LogError("Error while getting user by STS id.", ex);
+                return InternalServerError();
+            }
+            
+        }
+
+        /// <summary>
         /// Example: POST api/v1/users/ChangeGroupsSubscribtion
         /// </summary>
         /// <param name="userToGroupsModel">{'UserId':int, 'GroupsSubscriptions':[3, 105]}</param>
@@ -75,7 +102,7 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Example: POST api/v1/users
         /// </summary>
-        /// <param name="newUser">{'IdsrvUniqueId' : 'adss23d2s', 'FirstName': 'Stefcho', 'LastName': 'Stefchev', 'Email': 'used@to.know', 'About': 'Straightforward', 'Gender': '0', 'BirthDate': '0001-01-01T00:00:00', 'PhoneNumber': '+395887647288', 'LanguageIds' : [1,3], 'GroupIds': [1]}</param>
+        /// <param name="newUser">{'IdsrvUniqueId' : 'https://boongaloocompanysts/identity78f100e9-9d90-4de8-9d7d', 'FirstName': 'Stefcho', 'LastName': 'Stefchev', 'Email': 'used@to.know', 'About': 'Straightforward', 'Gender': '0', 'BirthDate': '0001-01-01T00:00:00', 'PhoneNumber': '+395887647288', 'LanguageIds' : [1,3], 'GroupIds': [1]}</param>
         /// <returns>Http status code 201 if user was succesfuly created or 500 if error has occured.</returns>
         [HttpPost]
         [Route("")]

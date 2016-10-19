@@ -8,7 +8,8 @@ namespace Boongaloo.Repository.Interfaces
     {
         IEnumerable<UserResponseDto> GetUsers();
         User GetUserById(int areaId);
-        IEnumerable<User> GetUsersForGroupId(int groupId); 
+        IEnumerable<User> GetUsersForGroupId(int groupId);
+        UserResponseDto GetUserByStsId(string stsId);
 
         int InsertUser(NewUserRequestDto area);
         void DeleteUser(int areaId);
