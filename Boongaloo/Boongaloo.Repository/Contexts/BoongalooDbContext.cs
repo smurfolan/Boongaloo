@@ -10,27 +10,43 @@ namespace Boongaloo.Repository.Contexts
 {
     public class BoongalooDbContext : IDisposable
     {
-        private readonly string _groupStoreFileName = "DataStorage/groupStore.json";
-        private readonly string _areaStoreFileName = "DataStorage/areaStore.json";
-        private readonly string _userStoreFileName = "DataStorage/userStore.json";
-
-        private readonly string _areaToGroupStoreFileName = "DataStorage/areaGroupBridgeStore.json";
-        private readonly string _groupToUserStoreFileName = "DataStorage/groupUserBridgeStore.json";
-        private readonly string _groupToTagStoreFileName = "DataStorage/groupTagBridgeStore.json";
-        private readonly string _userToLanguagesStoreFileName = "DataStorage/userLanguageBridgeStore.json";
+        private static readonly string _groupStoreFileName = "DataStorage/groupStore.json";
+        private static readonly string _areaStoreFileName = "DataStorage/areaStore.json";
+        private static readonly string _userStoreFileName = "DataStorage/userStore.json";
+                 
+        private static readonly string _areaToGroupStoreFileName = "DataStorage/areaGroupBridgeStore.json";
+        private static readonly string _groupToUserStoreFileName = "DataStorage/groupUserBridgeStore.json";
+        private static readonly string _groupToTagStoreFileName = "DataStorage/groupTagBridgeStore.json";
+        private static readonly string _userToLanguagesStoreFileName = "DataStorage/userLanguageBridgeStore.json";
 
         public BoongalooDbContext()
+            :this(
+                 _groupStoreFileName, 
+                 _areaStoreFileName, 
+                 _userStoreFileName, 
+                 _areaToGroupStoreFileName, 
+                 _groupToUserStoreFileName, 
+                 _groupToTagStoreFileName,
+                 _userToLanguagesStoreFileName){}
+
+        public BoongalooDbContext(
+            string groupStoreFile, 
+            string areaStoreFile, 
+            string userStoreFile,
+            string areaToGroupStoreFile,
+            string groupToUserStoreFile,
+            string groupToTagStoreFile,
+            string userToLanguageStoreFile)
         {
-            this.ExtractGroupsFromFile(this._groupStoreFileName);
-            this.ExtractAreasFromFile(this._areaStoreFileName);
-            this.ExtractUsersFromFile(this._userStoreFileName);
+            this.ExtractGroupsFromFile(groupStoreFile);
+            this.ExtractAreasFromFile(areaStoreFile);
+            this.ExtractUsersFromFile(userStoreFile);
 
-            this.ExtractAreaToGroupsFromFile(this._areaToGroupStoreFileName);
-            this.ExtractGroupToUsersFromFile(this._groupToUserStoreFileName);
-            this.ExtractGroupToTagsFromFile(this._groupToTagStoreFileName);
-            this.ExtractUserToLanguagesFromFile(this._userToLanguagesStoreFileName);
+            this.ExtractAreaToGroupsFromFile(areaToGroupStoreFile);
+            this.ExtractGroupToUsersFromFile(groupToUserStoreFile);
+            this.ExtractGroupToTagsFromFile(groupToTagStoreFile);
+            this.ExtractUserToLanguagesFromFile(userToLanguageStoreFile);
         }
-
         
 
         public IList<Group> Groups { get; set; }

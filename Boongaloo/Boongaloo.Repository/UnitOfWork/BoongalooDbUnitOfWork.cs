@@ -6,7 +6,30 @@ namespace Boongaloo.Repository.UnitOfWork
 {
     public class BoongalooDbUnitOfWork : IDisposable
     {
-        private readonly BoongalooDbContext _dbContext = new BoongalooDbContext();
+        private readonly BoongalooDbContext _dbContext;
+
+        public BoongalooDbUnitOfWork()
+        {
+            this._dbContext = new BoongalooDbContext();
+        }
+
+        public BoongalooDbUnitOfWork(string groupStoreFile,
+            string areaStoreFile,
+            string userStoreFile,
+            string areaToGroupStoreFile,
+            string groupToUserStoreFile,
+            string groupToTagStoreFile,
+            string userToLanguageStoreFile)
+        {
+            this._dbContext = new BoongalooDbContext(
+                groupStoreFile, 
+                areaStoreFile, 
+                userStoreFile, 
+                areaToGroupStoreFile, 
+                groupToUserStoreFile, 
+                groupToTagStoreFile, 
+                userToLanguageStoreFile);
+        }
 
         // Initialize these from a constructor using DI
         private AreaRepository areaRepository;
