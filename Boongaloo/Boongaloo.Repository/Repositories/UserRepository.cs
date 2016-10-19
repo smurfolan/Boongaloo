@@ -38,9 +38,33 @@ namespace Boongaloo.Repository.Repositories
             return result;
         }
 
-        public User GetUserById(int userId)
+        public UserResponseDto GetUserById(int userId)
         {
-            return _dbContext.Users.FirstOrDefault(x => x.Id == userId);
+            var userEntity = _dbContext.Users.FirstOrDefault(x => x.Id == userId);
+
+            if (userEntity == null)
+                return null;
+
+            var userDto = this._mapper.Map<User, UserResponseDto>(userEntity);
+
+            // 1. Add languages
+            var langaugeIds = this._dbContext.UserToLangauge
+                .Where(ul => ul.UserId == userEntity.Id)
+                .Select(l => l.LanguageId);
+            var languageEntities = this._dbContext.Languages.Where(l => langaugeIds.Contains(l.Id));
+            var languageDtos = this._mapper.Map<IEnumerable<Language>, IEnumerable<LanguageDto>>(languageEntities);
+
+            userDto.Langugages = languageDtos;
+            // 2. Add groups
+            var groupIds = this._dbContext.GroupToUser
+                .Where(ul => ul.UserId == userEntity.Id)
+                .Select(l => l.GroupId);
+            var groupEntities = this._dbContext.Groups.Where(gr => groupIds.Contains(gr.Id));
+            var groupDtos = this._mapper.Map<IEnumerable<Group>, IEnumerable<GroupDto>>(groupEntities);
+
+            userDto.Groups = groupDtos;
+
+            return userDto;
         }
         public IEnumerable<User> GetUsersForGroupId(int groupId)
         {

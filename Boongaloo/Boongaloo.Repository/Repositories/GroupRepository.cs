@@ -98,6 +98,11 @@ namespace Boongaloo.Repository.Repositories
 
         public void InsertGroup(Group groupToInsert)
         {
+            var latestGroupRecord = this.GetGroups().OrderBy(x => x.Id).LastOrDefault();
+            var nextGroupId = latestGroupRecord?.Id + 1 ?? 1;
+
+            groupToInsert.Id = nextGroupId;
+
             this._dbContext.Groups.Insert(0, groupToInsert);
         }
         public void DeleteGroup(int groupId)

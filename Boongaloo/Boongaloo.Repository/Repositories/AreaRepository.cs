@@ -37,11 +37,13 @@ namespace Boongaloo.Repository.Repositories
                     select item2).ToList();
         }
 
-        public void InsertArea(Area area)
+        public int InsertArea(Area area)
         {
             var areas = this.GetAreas();
             area.Id = areas.Count() > 0 ? areas.OrderByDescending(x => x.Id).FirstOrDefault().Id + 1 : 1;
             _dbContext.Areas.Add(area);
+
+            return area.Id;
         }
         public void DeleteArea(int areaId)
         {

@@ -7,7 +7,7 @@ namespace Boongaloo.Repository.Interfaces
     public interface IUserRepository
     {
         IEnumerable<UserResponseDto> GetUsers();
-        User GetUserById(int areaId);
+        UserResponseDto GetUserById(int areaId);
         IEnumerable<User> GetUsersForGroupId(int groupId);
         UserResponseDto GetUserByStsId(string stsId);
 

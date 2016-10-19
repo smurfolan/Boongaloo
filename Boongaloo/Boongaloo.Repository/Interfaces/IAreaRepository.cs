@@ -9,7 +9,7 @@ namespace Boongaloo.Repository.Interfaces
         Area GetAreaById(int areaId);
         IEnumerable<Area> GetAreasForGroupId(int groupId); 
 
-        void InsertArea(Area area);
+        int InsertArea(Area area);
         void DeleteArea(int areaId);
         void UpdateArea(Area area);
 
