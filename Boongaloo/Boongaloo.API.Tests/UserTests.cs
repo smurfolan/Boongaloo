@@ -5,6 +5,7 @@ using Boongaloo.Repository.BoongalooDtos;
 using Boongaloo.Repository.Entities;
 using Boongaloo.Repository.UnitOfWork;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Boongaloo.API.Tests
 {
@@ -116,6 +117,44 @@ namespace Boongaloo.API.Tests
             Assert.AreEqual(secondTimeUpdatedUserGroups.Count(), 2);
             Assert.IsTrue(secondTimeUpdatedUserGroups.FirstOrDefault(x => x.Id == thirdGroupId) != null);
             Assert.IsTrue(secondTimeUpdatedUserGroups.FirstOrDefault(x => x.Id == firstGroupId) != null);
+        }
+
+        [TestMethod]
+        public void User_Can_Be_Successfuly_Received_After_His_Creation()
+        {
+            // arrange
+            var newUserDto = new NewUserRequestDto()
+            {
+                IdsrvUniqueId = "https://boongaloocompanysts/identity78f100e9-9d90-4de8-9d7d",
+                FirstName = "Stefcho",
+                LastName = "Stefchev",
+                Email = "used@to.know",
+                About = "Straightforward",
+                Gender = DTO.Enums.GenderEnum.Male,
+                BirthDate = DateTime.UtcNow,
+                PhoneNumber = "+395887647288",
+                LanguageIds = new List<int> { 1, 3 },
+                GroupIds = new List<int> { 1 }
+            };
+
+            // act
+            var newlyCreatedUserId = this.uow.UserRepository.InsertUser(newUserDto);
+            this.uow.Save();
+
+            var userFromDb = this.uow.UserRepository.GetUserByStsId("https://boongaloocompanysts/identity78f100e9-9d90-4de8-9d7d");
+
+            // assert
+            Assert.AreEqual(newlyCreatedUserId, userFromDb.Id);
+        }
+
+        [TestMethod]
+        public void User_Gets_Successfully_Updated()
+        {
+            // arrange
+
+            // act
+
+            // assert
         }
     }
 }
