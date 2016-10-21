@@ -58,10 +58,11 @@ namespace Boongaloo.Repository.Contexts
                 return new List<Language>()
                 {
                     new Language (1, "Bulgarian"),
-                    new Language (1, "English"),
-                    new Language (1, "French"),
-                    new Language (1, "German"),
-                    new Language (1, "Russian")
+                    new Language (2, "English"),
+                    new Language (3, "Spanish"),
+                    new Language (4, "French"),
+                    new Language (5, "German"),
+                    new Language (6, "Russian")
                 };
             }
         }

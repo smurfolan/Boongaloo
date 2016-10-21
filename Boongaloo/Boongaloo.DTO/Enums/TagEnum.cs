@@ -8,6 +8,6 @@ namespace Boongaloo.DTO.Enums
 {
     public enum TagEnum
     {
-        Help, Sport, Fun, Dating
+        Help, School, Fun, Sport, University, Other
     }
 }
