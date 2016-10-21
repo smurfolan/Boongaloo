@@ -12,7 +12,7 @@ namespace Boongaloo.Repository.Interfaces
         IEnumerable<Group> GetGroupsForUserId(int userId);
         IEnumerable<Group> GetGroupsForAreaId(int areaId); 
 
-        void InsertGroup(Group groupToInsert);
+        int InsertGroup(Group groupToInsert);
         void DeleteGroup(int groupId);
         void UpdateGroup(Group updatedGroup);
 

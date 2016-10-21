@@ -153,10 +153,67 @@ namespace Boongaloo.API.Tests
         public void User_Gets_Successfully_Updated()
         {
             // arrange
+            var newUserDto = new NewUserRequestDto()
+            {
+                IdsrvUniqueId = "https://boongaloocompanysts/identity78f100e9-9d90-4de8-9d7d",
+                FirstName = "Stefcho",
+                LastName = "Stefchev",
+                Email = "used@to.know",
+                About = "Straightforward",
+                Gender = DTO.Enums.GenderEnum.Male,
+                BirthDate = DateTime.UtcNow,
+                PhoneNumber = "+395887647288",
+                LanguageIds = new List<int> { 1, 3 },
+                GroupIds = new List<int> { 1 }
+            };
+
+            var updatedUserBirthDate = DateTime.UtcNow.AddYears(-34);
+
+            var updatedUserInfo = new NewUserRequestDto()
+            {
+                FirstName = "Stef",
+                LastName = "Stefche",
+                Email = "some@bo.dy",
+                About = "OtherABout",
+                Gender = DTO.Enums.GenderEnum.Female,
+                BirthDate = updatedUserBirthDate,
+                PhoneNumber = "+395887647233",
+                LanguageIds = new List<int> { 2, 3 },
+                GroupIds = new List<int> { 2 }
+            };
 
             // act
+            var newlyCreatedGroupId = this.uow.GroupRepository.InsertGroup(new Group()
+            {
+                Name = "latestOne"
+            });
+            updatedUserInfo.GroupIds = new List<int> {newlyCreatedGroupId};
+
+            var newlyCreatedUserId = this.uow.UserRepository.InsertUser(newUserDto);
+            this.uow.Save();
+
+            updatedUserInfo.Id = newlyCreatedUserId;
+            this.uow.UserRepository.UpdateUser(updatedUserInfo);
+            this.uow.Save();
 
             // assert
+            var updatedUser = this.uow.UserRepository.GetUserById(newlyCreatedUserId);
+
+            Assert.IsNotNull(updatedUser);
+            Assert.AreEqual(updatedUser.Id, newlyCreatedUserId);
+            Assert.AreEqual(updatedUser.About, "OtherABout");
+            Assert.AreEqual(updatedUser.BirthDate, updatedUserBirthDate);
+            Assert.AreEqual(updatedUser.Email, "some@bo.dy");
+            Assert.AreEqual(updatedUser.FirstName, "Stef");
+            Assert.AreEqual(updatedUser.LastName, "Stefche");
+            Assert.AreEqual(updatedUser.PhoneNumber, "+395887647233");
+
+            Assert.AreEqual(updatedUser.Langugages.Count(), 2);
+            Assert.IsTrue(updatedUser.Langugages.Select(x => x.Id).Contains(2));
+            Assert.IsTrue(updatedUser.Langugages.Select(x => x.Id).Contains(3));
+
+            Assert.AreEqual(updatedUser.Groups.Count(), 1);
+            Assert.IsTrue(updatedUser.Groups.Select(x => x.Id).Contains(newlyCreatedGroupId));
         }
 
         [TestMethod]

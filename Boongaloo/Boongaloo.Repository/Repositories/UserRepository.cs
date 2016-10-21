@@ -261,7 +261,6 @@ namespace Boongaloo.Repository.Repositories
             }
         }
 
-
         public IEnumerable<UserResponseDto> GetUsersFromGroup(int groupId)
         {
             var result = new List<UserResponseDto>();

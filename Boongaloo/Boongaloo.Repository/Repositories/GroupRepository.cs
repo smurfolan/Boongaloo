@@ -96,7 +96,7 @@ namespace Boongaloo.Repository.Repositories
                     select item2).ToList();
         }
 
-        public void InsertGroup(Group groupToInsert)
+        public int InsertGroup(Group groupToInsert)
         {
             var latestGroupRecord = this.GetGroups().OrderBy(x => x.Id).LastOrDefault();
             var nextGroupId = latestGroupRecord?.Id + 1 ?? 1;
@@ -104,6 +104,8 @@ namespace Boongaloo.Repository.Repositories
             groupToInsert.Id = nextGroupId;
 
             this._dbContext.Groups.Insert(0, groupToInsert);
+
+            return nextGroupId;
         }
         public void DeleteGroup(int groupId)
         {
