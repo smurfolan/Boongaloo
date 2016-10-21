@@ -118,5 +118,20 @@
             <param name="uid">Updated user data</param>
             <returns>List of integers which indicate the group ids to which the user is subscribed</returns>
         </member>
+        <member name="M:Boongaloo.API.Controllers.UsersController.Put(System.Int32,Boongaloo.Repository.BoongalooDtos.EditUserNotificationsRequestDto)">
+            <summary>
+            Example: PUT api/v1/users/{id:int}/UpdateNotifications
+            </summary>
+            <param name="id">Unique identifier of the notification we are going to update</param>
+            <param name="notifications">Body sample: </param>
+            <returns></returns>
+        </member>
+        <member name="M:Boongaloo.API.Controllers.UsersController.GetNotificationSettings(System.Int32)">
+            <summary>
+            Example: api/v1/users/{id:int}/NotificationSettings
+            </summary>
+            <param name="id">Unique identifier for user. NOT Identity Server Id.</param>
+            <returns>Latest notification settings set up by the user.</returns>
+        </member>
     </members>
 </doc>

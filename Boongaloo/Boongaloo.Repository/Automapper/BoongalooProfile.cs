@@ -21,6 +21,8 @@ namespace Boongaloo.Repository.Automapper
             CreateMap<Group, GroupDto>();
 
             CreateMap<NewUserRequestDto, User>();
+
+            CreateMap<UserNotificationSettings, UserNotificationSettingsResponseDto>();
         }
     }
 }

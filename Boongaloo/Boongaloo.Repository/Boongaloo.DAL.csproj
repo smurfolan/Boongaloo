@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Automapper\BoongalooProfile.cs" />
     <Compile Include="BoongalooDtos\AreaDto.cs" />
+    <Compile Include="BoongalooDtos\EditUserNotificationsRequestDto.cs" />
     <Compile Include="BoongalooDtos\GroupAsNewAreaRequestDto.cs" />
     <Compile Include="BoongalooDtos\GroupDto.cs" />
     <Compile Include="BoongalooDtos\GroupResponseDto.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="BoongalooDtos\StandaloneGroupRequestDto.cs" />
     <Compile Include="BoongalooDtos\TagDto.cs" />
     <Compile Include="BoongalooDtos\UserDto.cs" />
+    <Compile Include="BoongalooDtos\UserNotificationSettingsResponseDto.cs" />
     <Compile Include="BoongalooDtos\UserResponseDto.cs" />
     <Compile Include="Contexts\BoongalooDbContext.cs" />
     <Compile Include="Entities\Area.cs" />
@@ -73,11 +75,13 @@
     <Compile Include="Entities\Language.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserNotificationSettings.cs" />
     <Compile Include="Entities\UserToLanguage.cs" />
     <Compile Include="Enums\GenderEnum.cs" />
     <Compile Include="Interfaces\IGroupRepository.cs" />
     <Compile Include="Interfaces\ILanguageRepository.cs" />
     <Compile Include="Interfaces\ITagRepository.cs" />
+    <Compile Include="Interfaces\IUserNotificationSettingsRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AreaRepository.cs" />
@@ -85,6 +89,7 @@
     <Compile Include="Interfaces\IAreaRepository.cs" />
     <Compile Include="Repositories\LanguageRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
+    <Compile Include="Repositories\UserNotificationSettingsRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="UnitOfWork\BoongalooDbUnitOfWork.cs" />
   </ItemGroup>

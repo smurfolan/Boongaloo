@@ -144,7 +144,20 @@ namespace Boongaloo.Repository.Repositories
                         UserId = nextUserId
                     });
                 }
-            }       
+            }
+
+            // Create default user notification Settings
+            var latestNotificationSettingsRecord = _dbContext.UserNotificationSettings.OrderBy(x => x.Id).LastOrDefault();
+            var nextNotificationSettingsId = latestNotificationSettingsRecord != null ? latestNotificationSettingsRecord.Id + 1 : 1;
+
+            this._dbContext.UserNotificationSettings.Add(new UserNotificationSettings
+            {
+                Id = nextNotificationSettingsId,
+                AutomaticallySubscribeToAllGroups = true,
+                AutomaticallySubscribeToAllGroupsWithTag = false,
+                UserId = nextUserId,
+                SubscribedTagIds = new List<int>()
+            });
 
             this._dbContext.SaveChanges();
 

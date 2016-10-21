@@ -13,26 +13,29 @@ namespace Boongaloo.Repository.Contexts
         private static readonly string _groupStoreFileName = "DataStorage/groupStore.json";
         private static readonly string _areaStoreFileName = "DataStorage/areaStore.json";
         private static readonly string _userStoreFileName = "DataStorage/userStore.json";
-                 
+        private static readonly string _userNotificationSettingsStoreFileName = "DataStorage/userNotificationSettings.json";
+
         private static readonly string _areaToGroupStoreFileName = "DataStorage/areaGroupBridgeStore.json";
         private static readonly string _groupToUserStoreFileName = "DataStorage/groupUserBridgeStore.json";
         private static readonly string _groupToTagStoreFileName = "DataStorage/groupTagBridgeStore.json";
         private static readonly string _userToLanguagesStoreFileName = "DataStorage/userLanguageBridgeStore.json";
 
         public BoongalooDbContext()
-            :this(
-                 _groupStoreFileName, 
-                 _areaStoreFileName, 
-                 _userStoreFileName, 
-                 _areaToGroupStoreFileName, 
-                 _groupToUserStoreFileName, 
+            : this(
+                 _groupStoreFileName,
+                 _areaStoreFileName,
+                 _userStoreFileName,
+                 _userNotificationSettingsStoreFileName,
+                 _areaToGroupStoreFileName,
+                 _groupToUserStoreFileName,
                  _groupToTagStoreFileName,
-                 _userToLanguagesStoreFileName){}
+                 _userToLanguagesStoreFileName) { }
 
         public BoongalooDbContext(
-            string groupStoreFile, 
-            string areaStoreFile, 
+            string groupStoreFile,
+            string areaStoreFile,
             string userStoreFile,
+            string userNotificationsStoreFile,
             string areaToGroupStoreFile,
             string groupToUserStoreFile,
             string groupToTagStoreFile,
@@ -41,17 +44,18 @@ namespace Boongaloo.Repository.Contexts
             this.ExtractGroupsFromFile(groupStoreFile);
             this.ExtractAreasFromFile(areaStoreFile);
             this.ExtractUsersFromFile(userStoreFile);
+            this.ExtractUserNotificationsFromFile(userNotificationsStoreFile);
 
             this.ExtractAreaToGroupsFromFile(areaToGroupStoreFile);
             this.ExtractGroupToUsersFromFile(groupToUserStoreFile);
             this.ExtractGroupToTagsFromFile(groupToTagStoreFile);
             this.ExtractUserToLanguagesFromFile(userToLanguageStoreFile);
         }
-        
 
         public IList<Group> Groups { get; set; }
         public IList<Area> Areas { get; set; }
         public IList<User> Users { get; set; }
+        public IList<UserNotificationSettings> UserNotificationSettings {get;set;}
 
         public IList<Language> Languages { get
             {
@@ -92,6 +96,7 @@ namespace Boongaloo.Repository.Contexts
             var groupsSaved = this.SaveEntities(_groupStoreFileName);
             var areasSaved = this.SaveEntities(_areaStoreFileName);
             var usersSaved = this.SaveEntities(_userStoreFileName);
+            var userNotificationSettingsSaved = this.SaveEntities(_userNotificationSettingsStoreFileName);
 
             var areaToGroupSaved = this.SaveEntities(_areaToGroupStoreFileName);
             var groupToUserSaved = this.SaveEntities(_groupToUserStoreFileName);
@@ -101,6 +106,7 @@ namespace Boongaloo.Repository.Contexts
             return groupsSaved 
                 && areasSaved 
                 && usersSaved
+                && userNotificationSettingsSaved
                 && areaToGroupSaved
                 && groupToUserSaved
                 && groupToTagSaved
@@ -183,6 +189,16 @@ namespace Boongaloo.Repository.Contexts
             UserToLangauge = result.ToList();
         }
 
+        private void ExtractUserNotificationsFromFile(string userNotificationsStoreFile)
+        {
+            var fi = this.GetStoreFileInfo(userNotificationsStoreFile);
+
+            var json = File.ReadAllText(fi.PhysicalPath);
+            var result = JsonConvert.DeserializeObject<List<UserNotificationSettings>>(json);
+
+            UserNotificationSettings = result.ToList();
+        }
+
         private IFileInfo GetStoreFileInfo(string resourceFileLocation)
         {
             var resFileLocation = resourceFileLocation;
@@ -215,6 +231,8 @@ namespace Boongaloo.Repository.Contexts
                 json = JsonConvert.SerializeObject(GroupToTag);
             if (storeFileName == _userToLanguagesStoreFileName)
                 json = JsonConvert.SerializeObject(UserToLangauge);
+            if(storeFileName == _userNotificationSettingsStoreFileName)
+                json = JsonConvert.SerializeObject(UserNotificationSettings);
 
             var fileSystem = new Microsoft.Owin.FileSystems.PhysicalFileSystem("");
 

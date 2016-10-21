@@ -72,6 +72,7 @@
     <None Include="test_groupTagBridgeStore.json" />
     <None Include="test_groupUserBridgeStore.json" />
     <None Include="test_userLanguageBridgeStore.json" />
+    <None Include="test_userNotificationSettingsStore.json" />
     <None Include="test_userStore.json" />
   </ItemGroup>
   <Choose>

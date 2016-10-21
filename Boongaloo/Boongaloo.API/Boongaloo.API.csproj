@@ -185,6 +185,7 @@
     <Content Include="DataStorage\userStore.json" />
     <Content Include="DataStorage\groupTagBridgeStore.json" />
     <Content Include="DataStorage\userLanguageBridgeStore.json" />
+    <Content Include="DataStorage\userNotificationSettings.json" />
     <None Include="Properties\PublishProfiles\boongalooapi.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

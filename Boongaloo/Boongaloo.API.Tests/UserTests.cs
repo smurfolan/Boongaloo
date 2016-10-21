@@ -16,6 +16,7 @@ namespace Boongaloo.API.Tests
             "test_groupStore.json",
             "test_areaStore.json",
             "test_userStore.json",
+            "test_userNotificationSettingsStore.json",
             "test_areaGroupBridgeStore.json",
             "test_groupUserBridgeStore.json",
             "test_groupTagBridgeStore.json",
@@ -165,6 +166,61 @@ namespace Boongaloo.API.Tests
             // act
 
             // assert
+        }
+
+        [TestMethod]
+        public void User_Can_Update_His_Notification_Settings()
+        {
+            // arrange
+
+            // act
+
+            // assert
+        }
+
+        [TestMethod]
+        public void User_Can_Get_His_Notification_Settings()
+        {
+            // arrange
+            var newUserToBeAdded = new NewUserRequestDto()
+            {
+                IdsrvUniqueId = "https://boongaloocompanysts/identity78f100e9-9d90-4de8-9d7d",
+                FirstName = "Stefcho",
+                LastName = "Stefchev"
+            };
+
+            // act
+            var newUserId = this.uow.UserRepository.InsertUser(newUserToBeAdded);
+            this.uow.Save();
+
+            var notificationsForUser = this.uow.UserNotificationSettingsRepository.GetNotificationSettingsForUserWithId(newUserId);
+
+            // assert
+            Assert.IsNotNull(notificationsForUser);
+        }
+
+        [TestMethod]
+        public void Default_User_Notification_Settings_Are_Created_On_First_User_Login()
+        {
+            // arrange
+            var newUserToBeAdded = new NewUserRequestDto()
+            {
+                IdsrvUniqueId = "https://boongaloocompanysts/identity78f100e9-9d90-4de8-9d7d",
+                FirstName = "Stefcho",
+                LastName = "Stefchev"
+            };
+
+            // act
+            var newUserId = this.uow.UserRepository.InsertUser(newUserToBeAdded);
+            this.uow.Save();
+
+            // assert
+            var notificationSettings = this.uow.UserNotificationSettingsRepository.GetAllUserNotificationSettings().FirstOrDefault(u => u.UserId == newUserId);
+
+            Assert.IsNotNull(notificationSettings);
+            Assert.IsTrue(notificationSettings.AutomaticallySubscribeToAllGroups);
+            Assert.IsFalse(notificationSettings.AutomaticallySubscribeToAllGroupsWithTag);
+            Assert.AreEqual(notificationSettings.SubscribedTagIds.Count(), 0);
         }
     }
 }

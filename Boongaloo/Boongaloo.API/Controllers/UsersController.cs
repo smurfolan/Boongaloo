@@ -11,7 +11,7 @@ using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/v1/users")]
     public class UsersController : ApiController
     {
@@ -22,7 +22,8 @@ namespace Boongaloo.API.Controllers
         {
             _unitOfWork = new BoongalooDbUnitOfWork();
             // Handle assignment by DI
-            var mapperConfiguration = new MapperConfiguration(cfg => {
+            var mapperConfiguration = new MapperConfiguration(cfg =>
+            {
                 cfg.AddProfile<BoongalooProfile>();
             });
             _mapper = mapperConfiguration.CreateMapper();
@@ -68,7 +69,7 @@ namespace Boongaloo.API.Controllers
                 BoongalooApiLogger.LogError("Error while getting user by STS id.", ex);
                 return InternalServerError();
             }
-            
+
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Boongaloo.API.Controllers
         [Route("ChangeGroupsSubscribtion")]
         public IHttpActionResult Post([FromBody]RelateUserToGroupsDto userToGroupsModel)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest();
 
             try
@@ -139,7 +140,7 @@ namespace Boongaloo.API.Controllers
         [Route("{id:int}")]
         public IHttpActionResult Put(int id, [FromBody]NewUserRequestDto updateUserData)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest();
 
             try
@@ -177,6 +178,59 @@ namespace Boongaloo.API.Controllers
                 BoongalooApiLogger.LogError("Error getting user subscribtions.", ex);
                 return InternalServerError();
             }
+        }
+
+        /// <summary>
+        /// Example: PUT api/v1/users/{id:int}/UpdateNotifications
+        /// </summary>
+        /// <param name="id">Unique identifier of the notification we are going to update</param>
+        /// <param name="notifications">Body sample: </param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("{id:int}/UpdateNotifications")]
+        public IHttpActionResult Put(int id, [FromBody] EditUserNotificationsRequestDto notifications)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            try
+            {
+                // Update user notification settings
+            }
+            catch(Exception ex)
+            {
+                BoongalooApiLogger.LogError("Error updating user notification settings.", ex);
+                return InternalServerError();
+            }
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Example: api/v1/users/{id:int}/NotificationSettings
+        /// </summary>
+        /// <param name="id">Unique identifier for user. NOT Identity Server Id.</param>
+        /// <returns>Latest notification settings set up by the user.</returns>
+        [HttpGet]
+        [Route("{id:int}/NotificationSettings")]
+        public IHttpActionResult GetNotificationSettings(int id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            try
+            {
+                var result = this._unitOfWork.UserNotificationSettingsRepository.GetNotificationSettingsForUserWithId(id);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                BoongalooApiLogger.LogError("Error getting user notification settings.", ex);
+                return InternalServerError();
+            }
+
+            return Ok();
         }
     }
 }

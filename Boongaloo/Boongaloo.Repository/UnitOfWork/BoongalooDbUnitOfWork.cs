@@ -16,6 +16,7 @@ namespace Boongaloo.Repository.UnitOfWork
         public BoongalooDbUnitOfWork(string groupStoreFile,
             string areaStoreFile,
             string userStoreFile,
+            string userNotificationSettingsFile,
             string areaToGroupStoreFile,
             string groupToUserStoreFile,
             string groupToTagStoreFile,
@@ -24,7 +25,8 @@ namespace Boongaloo.Repository.UnitOfWork
             this._dbContext = new BoongalooDbContext(
                 groupStoreFile, 
                 areaStoreFile, 
-                userStoreFile, 
+                userStoreFile,
+                userNotificationSettingsFile,
                 areaToGroupStoreFile, 
                 groupToUserStoreFile, 
                 groupToTagStoreFile, 
@@ -35,6 +37,7 @@ namespace Boongaloo.Repository.UnitOfWork
         private AreaRepository areaRepository;
         private GroupRepository groupRepository;
         private UserRepository userRepository;
+        private UserNotificationSettingsRepository userNotificationSettingsRepository;
         private TagRepository tagRepository;
         private LanguageRepository languageRepository;
 
@@ -68,6 +71,18 @@ namespace Boongaloo.Repository.UnitOfWork
                 return userRepository;
             }
         }
+
+        public UserNotificationSettingsRepository UserNotificationSettingsRepository
+        {
+            get
+            {
+                if (userNotificationSettingsRepository == null)
+                    return new UserNotificationSettingsRepository(_dbContext);
+
+                return userNotificationSettingsRepository;
+            }
+        }
+
         public TagRepository TagRepository
         {
             get

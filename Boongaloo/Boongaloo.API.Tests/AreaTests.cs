@@ -12,6 +12,7 @@ namespace Boongaloo.API.Tests
             "test_groupStore.json",
             "test_areaStore.json",
             "test_userStore.json",
+            "test_userNotificationSettingsStore.json",
             "test_areaGroupBridgeStore.json",
             "test_groupUserBridgeStore.json",
             "test_groupTagBridgeStore.json",
