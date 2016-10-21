@@ -9,5 +9,6 @@ namespace Boongaloo.Repository.Interfaces
         IEnumerable<UserNotificationSettings> GetAllUserNotificationSettings();
         UserNotificationSettingsResponseDto GetNotificationSettingsForUserWithId(int userId);
         int InsertNewNotificationSettings(EditUserNotificationsRequestDto userNotificationSettings);
+        void UpdateUserNotificationSettings(int id, EditUserNotificationsRequestDto edittedInfo);
     }
 }

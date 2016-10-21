@@ -183,27 +183,28 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Example: PUT api/v1/users/{id:int}/UpdateNotifications
         /// </summary>
-        /// <param name="id">Unique identifier of the notification we are going to update</param>
+        /// <param name="id">Unique identifier of the user whose notification settings we are updating</param>
         /// <param name="notifications">Body sample: </param>
         /// <returns></returns>
         [HttpPut]
         [Route("{id:int}/UpdateNotifications")]
         public IHttpActionResult Put(int id, [FromBody] EditUserNotificationsRequestDto notifications)
         {
+            // TODO: Add validation which asserts that AutomaticallySubscribeToAllGroups != AutomaticallySubscribeToAllGroupsWithTag
             if (!ModelState.IsValid)
                 return BadRequest();
 
             try
             {
-                // Update user notification settings
+                this._unitOfWork.UserNotificationSettingsRepository.UpdateUserNotificationSettings(id, notifications);
+                
+                return Ok();
             }
             catch(Exception ex)
             {
                 BoongalooApiLogger.LogError("Error updating user notification settings.", ex);
                 return InternalServerError();
             }
-
-            return Ok();
         }
 
         /// <summary>

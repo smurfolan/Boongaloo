@@ -31,6 +31,21 @@ namespace Boongaloo.Repository.Repositories
             throw new NotImplementedException();
         }
 
+        public void UpdateUserNotificationSettings(int id, EditUserNotificationsRequestDto edittedInfo)
+        {
+            var userSettingsToUpdate = this._dbContext.UserNotificationSettings.FirstOrDefault(uns => uns.UserId == id);
+
+            if (userSettingsToUpdate == null)
+                throw new ArgumentException("There's no settings in our DB with id:" + id);
+
+            userSettingsToUpdate.AutomaticallySubscribeToAllGroups = edittedInfo.AutomaticallySubscribeToAllGroups;
+            userSettingsToUpdate.AutomaticallySubscribeToAllGroupsWithTag =
+                edittedInfo.AutomaticallySubscribeToAllGroupsWithTag;
+            userSettingsToUpdate.SubscribedTagIds = edittedInfo.SubscribedTagIds;
+
+            this._dbContext.SaveChanges();
+        }
+
         public IEnumerable<UserNotificationSettings> GetAllUserNotificationSettings()
         {
             return this._dbContext.UserNotificationSettings;

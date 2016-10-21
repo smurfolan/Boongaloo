@@ -6,6 +6,7 @@ using Boongaloo.Repository.Entities;
 using Boongaloo.Repository.UnitOfWork;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Boongaloo.DTO.Enums;
 
 namespace Boongaloo.API.Tests
 {
@@ -172,10 +173,40 @@ namespace Boongaloo.API.Tests
         public void User_Can_Update_His_Notification_Settings()
         {
             // arrange
+            var newUserToBeAdded = new NewUserRequestDto()
+            {
+                IdsrvUniqueId = "https://boongaloocompanysts/identity78f100e9-9d90-4de8-9d7d",
+                FirstName = "Stefcho",
+                LastName = "Stefchev"
+            };
+
+            var newUserNotificationSettings = new EditUserNotificationsRequestDto()
+            {
+                AutomaticallySubscribeToAllGroups = false,
+                AutomaticallySubscribeToAllGroupsWithTag = true,
+                SubscribedTagIds = new List<int>() { (int)TagEnum.Fun, (int)TagEnum.School}
+            };
 
             // act
+            var newUserId = this.uow.UserRepository.InsertUser(newUserToBeAdded);
+            this.uow.Save();
 
             // assert
+            var settingsBeforeUpdate =
+                this.uow.UserNotificationSettingsRepository.GetNotificationSettingsForUserWithId(newUserId);
+
+            Assert.IsNotNull(settingsBeforeUpdate);
+            Assert.IsTrue(settingsBeforeUpdate.AutomaticallySubscribeToAllGroups);
+            Assert.IsFalse(settingsBeforeUpdate.AutomaticallySubscribeToAllGroupsWithTag);
+            Assert.AreEqual(settingsBeforeUpdate.SubscribedTagIds.Count(), 0);
+
+            this.uow.UserNotificationSettingsRepository.UpdateUserNotificationSettings(newUserId, newUserNotificationSettings);
+
+            settingsBeforeUpdate = this.uow.UserNotificationSettingsRepository.GetNotificationSettingsForUserWithId(newUserId);
+
+            Assert.IsFalse(settingsBeforeUpdate.AutomaticallySubscribeToAllGroups);
+            Assert.IsTrue(settingsBeforeUpdate.AutomaticallySubscribeToAllGroupsWithTag);
+            Assert.AreEqual(settingsBeforeUpdate.SubscribedTagIds.Count(), 2);
         }
 
         [TestMethod]
