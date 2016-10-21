@@ -55,7 +55,7 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Example: POST /api/v1/groups
         /// </summary>
-        /// <param name="newGroup">Body sample:{'Name':'Second floor cooks', 'TagIds':[4,1], 'AreaIds':[1],'UserIds':[1]}</param>
+        /// <param name="newGroup">Body sample:{'name':'Second floor cooks', 'tagIds':[4,1], 'areaIds':[1],'userIds':[1]}</param>
         /// <returns>HTTP Code 201 if successfuly created and 500 if not.</returns>
         [HttpPost]
         [Route("")]
@@ -88,13 +88,16 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Example: POST /api/v1/groups/AsNewArea
         /// </summary>
-        /// <param name="newGroup">Body sample:{'Name':'Second floor cooks', 'TagIds':[4,1], 'AreaIds':[1],'UserIds':[1],'Latitude':42.657064, 'Longitude':23.28539, 'Radius':50}</param>
+        /// <param name="newGroup">Body sample:{'name':'Second floor cooks', 'tagIds':[4,1], 'areaIds':[1], 'userIds':[1], 'latitude':42.657064, 'longitude':23.28539, 'radius':50}</param>
         /// NOTE: 'AreaIds':[1] -> This is not the Id of the newly created area. This is all the other area ids if we were in the range of other areas but no matter of that we decided to create new area. 
         /// <returns>Uniqe identifier of the newly created group entity</returns>
         [HttpPost]
         [Route("AsNewArea")]
         public IHttpActionResult Post([FromBody] GroupAsNewAreaRequestDto newGroup)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             try
             {
                 // New Area was saved

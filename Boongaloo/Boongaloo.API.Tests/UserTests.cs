@@ -156,5 +156,15 @@ namespace Boongaloo.API.Tests
 
             // assert
         }
+
+        [TestMethod]
+        public void User_Subscribtion_With_No_Groups_Removes_All_Subscriptions_For_User()
+        {
+            // arrange
+
+            // act
+
+            // assert
+        }
     }
 }

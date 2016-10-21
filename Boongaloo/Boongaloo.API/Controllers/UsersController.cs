@@ -74,7 +74,7 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Example: POST api/v1/users/ChangeGroupsSubscribtion
         /// </summary>
-        /// <param name="userToGroupsModel">{'UserId':int, 'GroupsSubscriptions':[3, 105]}</param>
+        /// <param name="userToGroupsModel">Body sample: {'userId':1, 'groupsUserSubscribes':[3, 105]}</param>
         /// <returns>Http.OK if the operation was successful or Http.500 if there was an error.</returns>
         [HttpPost]
         [Route("ChangeGroupsSubscribtion")]
@@ -102,7 +102,7 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Example: POST api/v1/users
         /// </summary>
-        /// <param name="newUser">{'IdsrvUniqueId' : 'https://boongaloocompanysts/identity78f100e9-9d90-4de8-9d7d', 'FirstName': 'Stefcho', 'LastName': 'Stefchev', 'Email': 'used@to.know', 'About': 'Straightforward', 'Gender': '0', 'BirthDate': '0001-01-01T00:00:00', 'PhoneNumber': '+395887647288', 'LanguageIds' : [1,3], 'GroupIds': [1]}</param>
+        /// <param name="newUser">Body sample: {'idsrvUniqueId' : 'https://boongaloocompanysts/identity78f100e9-9d90-4de8-9d7d', 'firstName': 'Stefcho', 'lastName': 'Stefchev', 'email': 'used@to.know', 'about': 'Straightforward', 'gender': '0', 'birthDate': '0001-01-01T00:00:00', 'phoneNumber': '+395887647288', 'languageIds' : [1,3], 'groupIds': [1]}</param>
         /// <returns>Http status code 201 if user was succesfuly created or 500 if error has occured.</returns>
         [HttpPost]
         [Route("")]
@@ -119,7 +119,6 @@ namespace Boongaloo.API.Controllers
                     return BadRequest();
 
                 var newlyCreatedUserId = this._unitOfWork.UserRepository.InsertUser(newUser);
-                //this._unitOfWork.Save();
 
                 return Created("Success", "api/v1/users/" + newlyCreatedUserId);
             }

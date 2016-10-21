@@ -92,12 +92,15 @@ namespace Boongaloo.API.Controllers
         /// <summary>
         /// Example: POST api/v1/areas
         /// </summary>
-        /// <param name="area">Sample post: {'Radius':50, 'Latitude': 23.1233123,'Longitude': 43.1231232}</param>
+        /// <param name="area">Sample post: {'radius':50, 'latitude': 23.1233123,'longitude': 43.1231232}</param>
         /// <returns>HTTP Status of 201 code if area was successfuly created.</returns>
         [HttpPost]
         [Route("")]
         public IHttpActionResult Post([FromBody]AreaDto area)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             try
             {
                 var areaAsEntity = this._mapper.Map<AreaDto, Repository.Entities.Area>(area);
