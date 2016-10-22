@@ -184,7 +184,7 @@ namespace Boongaloo.API.Controllers
         /// Example: PUT api/v1/users/{id:int}/UpdateNotifications
         /// </summary>
         /// <param name="id">Unique identifier of the user whose notification settings we are updating</param>
-        /// <param name="notifications">Body sample: </param>
+        /// <param name="notifications">Body sample: {"automaticallySubscribeToAllGroups" : true, "automaticallySubscribeToAllGroupsWithTag" :  false, "subscribedTagIds" : [1, 2]}</param>
         /// <returns></returns>
         [HttpPut]
         [Route("{id:int}/UpdateNotifications")]

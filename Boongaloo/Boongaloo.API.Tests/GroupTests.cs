@@ -60,7 +60,7 @@ namespace Boongaloo.API.Tests
         }
 
         [TestMethod]
-        public void Groupa_Around_Coordinates_Can_Be_Extracted()
+        public void Groups_Around_Coordinates_Can_Be_Extracted()
         {
             // arrange
 

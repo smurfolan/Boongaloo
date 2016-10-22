@@ -58,8 +58,8 @@
             Example: POST /api/v1/groups/AsNewArea
             </summary>
             <param name="newGroup">Body sample:{'name':'Second floor cooks', 'tagIds':[4,1], 'areaIds':[1], 'userId':1, 'latitude':42.657064, 'longitude':23.28539, 'radius':50}</param>
-            NOTE: 'AreaIds':[1] -> This is not the Id of the newly created area. This is all the other area ids if we were in the range of other areas but no matter of that we decided to create new area. 
-            NOTE: 'userId':1 -> Supposed to be the id of the user. If you pass it, you automatically get subscribed to the group you created. Otherwise, you just create it without following it.
+            <param name="AreaIdsNote">NOTE: 'AreaIds':[1] -> This is not the Id of the newly created area. This is all the other area ids if we were in the range of other areas but no matter of that we decided to create new area.</param>
+            <param name="UserIdNote">NOTE: 'userId':1 -> Supposed to be the id of the user. If you pass it, you automatically get subscribed to the group you created. Otherwise, you just create it without following it.</param>
             <returns>Uniqe identifier of the newly created group entity</returns>
         </member>
         <member name="M:Boongaloo.API.Controllers.GroupsController.Get(System.Int32)">
