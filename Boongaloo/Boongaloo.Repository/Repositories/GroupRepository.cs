@@ -170,8 +170,7 @@ namespace Boongaloo.Repository.Repositories
                     GroupId = grouToInsert.Id,
                     Id = nextUserToGroupId
                 });               
-            }
-            
+            }         
 
             // Insert into the bridge table GroupTags
             var allTagIds = _dbContext.Tags.Select(t => t.Id).ToList();

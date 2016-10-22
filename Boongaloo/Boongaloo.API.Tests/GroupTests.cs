@@ -62,11 +62,46 @@ namespace Boongaloo.API.Tests
         [TestMethod]
         public void Groups_Around_Coordinates_Can_Be_Extracted()
         {
+            // NB: Test group that is inside 2 areas
+
             // arrange
+            var newAreaId = this.uow.AreaRepository.InsertArea(new Area()
+            {
+                Latitude = 42.659888,
+                Longitude = 23.366023,
+                Radius = RadiusRangeEnum.FiftyMeters
+            });
+
+            this.uow.Save();
+
+            var newGroup = new StandaloneGroupRequestDto()
+            {
+                Name = "Second floor cooks",
+                TagIds = new List<int>() { (int)TagEnum.Fun, (int)TagEnum.University },
+                AreaIds = new List<int>() { newAreaId }
+            };
+
+            var latestGroupRecord = this.uow.GroupRepository.GetGroups().OrderBy(x => x.Id).LastOrDefault();
+            var nextGroupId = latestGroupRecord?.Id + 1 ?? 1;
+
+            
+            this.uow.GroupRepository.InsertGroup(
+                new Group() { Id = nextGroupId, Name = "Second floor cooks" },
+                newGroup.AreaIds,
+                newGroup.TagIds,
+                -1);
+
+            this.uow.Save();
 
             // act
+            var groupAroundCoordinates = this.uow.GroupRepository.GetGroups(42.659620, 23.365650);
 
             // assert
+            Assert.IsNotNull(groupAroundCoordinates);
+            Assert.IsTrue(groupAroundCoordinates.Select(g => g.Id).Contains(nextGroupId));
+
+            groupAroundCoordinates = this.uow.GroupRepository.GetGroups(42.659550, 23.365521);
+            Assert.AreEqual(groupAroundCoordinates.Count(), 0);
         }
 
         #region Helper methods
