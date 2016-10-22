@@ -129,7 +129,7 @@ namespace Boongaloo.Repository.Repositories
             Group grouToInsert, 
             IEnumerable<int> areaIds, 
             IEnumerable<int> tagIds, 
-            IEnumerable<int> userIds)
+            int userId)
         {
             var latestGroupRecord = this.GetGroups().OrderBy(x => x.Id).LastOrDefault();
             var nextGroupId = latestGroupRecord?.Id + 1 ?? 1;
@@ -157,25 +157,19 @@ namespace Boongaloo.Repository.Repositories
                 }
             }           
 
-            // Insert into the bridge table UserGroup
+            // Insert into the bridge table UserGroup(Automatically subscribe user to new group)
             var allUserIds = _dbContext.Users.Select(u => u.Id).ToList();
-            if(userIds != null)
+            if(allUserIds.Contains(userId))
             {
-                foreach (var userId in userIds)
+                var latestAreaToGroupRecord = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
+                var nextUserToGroupId = latestAreaToGroupRecord?.Id + 1 ?? 1;
+                
+                this._dbContext.GroupToUser.Add(new GroupToUser()
                 {
-                    if (!allUserIds.Contains(userId))
-                        continue;
-
-                    var latestAreaToGroupRecord = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
-                    var nextUserToGroupId = latestAreaToGroupRecord?.Id + 1 ?? 1;
-
-                    this._dbContext.GroupToUser.Add(new GroupToUser()
-                    {
-                        UserId = userId,
-                        GroupId = grouToInsert.Id,
-                        Id = nextUserToGroupId
-                    });
-                }
+                    UserId = userId,
+                    GroupId = grouToInsert.Id,
+                    Id = nextUserToGroupId
+                });               
             }
             
 

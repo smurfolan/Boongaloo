@@ -11,18 +11,8 @@ using Boongaloo.DTO.Enums;
 namespace Boongaloo.API.Tests
 {
     [TestClass]
-    public class UserTests
+    public class UserTests : BaseTest
     {
-        private BoongalooDbUnitOfWork uow = new BoongalooDbUnitOfWork(
-            "test_groupStore.json",
-            "test_areaStore.json",
-            "test_userStore.json",
-            "test_userNotificationSettingsStore.json",
-            "test_areaGroupBridgeStore.json",
-            "test_groupUserBridgeStore.json",
-            "test_groupTagBridgeStore.json",
-            "test_userLanguageBridgeStore.json");
-
         [TestMethod]
         public void User_Gets_Successfuly_Created()
         {

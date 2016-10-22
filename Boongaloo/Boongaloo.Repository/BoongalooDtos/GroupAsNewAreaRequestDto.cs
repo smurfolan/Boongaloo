@@ -13,7 +13,7 @@ namespace Boongaloo.Repository.BoongalooDtos
         public IEnumerable<int> TagIds { get; set; }
 
         public IEnumerable<int> AreaIds { get; set; }
-        public IEnumerable<int> UserIds { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         public double Latitude { get; set; }

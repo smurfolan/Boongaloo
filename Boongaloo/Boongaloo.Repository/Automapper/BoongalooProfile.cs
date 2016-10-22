@@ -23,6 +23,8 @@ namespace Boongaloo.Repository.Automapper
             CreateMap<NewUserRequestDto, User>();
 
             CreateMap<UserNotificationSettings, UserNotificationSettingsResponseDto>();
+
+            CreateMap<Area, AreaResponseDto>();
         }
     }
 }

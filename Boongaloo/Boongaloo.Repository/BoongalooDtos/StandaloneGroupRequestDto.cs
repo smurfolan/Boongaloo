@@ -11,7 +11,9 @@ namespace Boongaloo.Repository.BoongalooDtos
         [Required]
         public IEnumerable<int> TagIds { get; set; }
 
+        [Required]
         public IEnumerable<int> AreaIds { get; set; }  
-        public IEnumerable<int> UserIds { get; set; } 
+
+        public int UserId { get; set; } 
     }
 }

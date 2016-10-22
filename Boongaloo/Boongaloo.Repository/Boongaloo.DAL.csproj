@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Automapper\BoongalooProfile.cs" />
     <Compile Include="BoongalooDtos\AreaDto.cs" />
+    <Compile Include="BoongalooDtos\AreaResponseDto.cs" />
     <Compile Include="BoongalooDtos\EditUserNotificationsRequestDto.cs" />
     <Compile Include="BoongalooDtos\GroupAsNewAreaRequestDto.cs" />
     <Compile Include="BoongalooDtos\GroupDto.cs" />

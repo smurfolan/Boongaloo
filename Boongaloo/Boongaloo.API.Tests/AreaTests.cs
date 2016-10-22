@@ -1,24 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Boongaloo.Repository.UnitOfWork;
 using Boongaloo.Repository.Entities;
 using System.Linq;
 
 namespace Boongaloo.API.Tests
 {
     [TestClass]
-    public class AreaTests
+    public class AreaTests : BaseTest
     {
-        private BoongalooDbUnitOfWork uow = new BoongalooDbUnitOfWork(
-            "test_groupStore.json",
-            "test_areaStore.json",
-            "test_userStore.json",
-            "test_userNotificationSettingsStore.json",
-            "test_areaGroupBridgeStore.json",
-            "test_groupUserBridgeStore.json",
-            "test_groupTagBridgeStore.json",
-            "test_userLanguageBridgeStore.json");
-
-
         [TestMethod]
         public void Area_Gets_Successsfully_Added()
         {

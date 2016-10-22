@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Boongaloo.Repository.BoongalooDtos;
 using Boongaloo.Repository.Entities;
 
 namespace Boongaloo.Repository.Interfaces
@@ -6,7 +7,7 @@ namespace Boongaloo.Repository.Interfaces
     public interface IAreaRepository
     {
         IEnumerable<Area> GetAreas();
-        Area GetAreaById(int areaId);
+        AreaResponseDto GetAreaById(int areaId);
         IEnumerable<Area> GetAreasForGroupId(int groupId); 
 
         int InsertArea(Area area);
