@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.Http;
 using Boongaloo.API.Helpers;
-using Boongaloo.Repository.UnitOfWork;
 using BusinessServices;
 
 namespace Boongaloo.API.Controllers
@@ -32,8 +31,8 @@ namespace Boongaloo.API.Controllers
             //    return BadRequest(ModelState);
 
             //var result = this._unitOfWork.AreaRepository.GetAreas().FirstOrDefault(x => x.Id == id);
-
-            return Ok("Success"/*result*/);
+            var result = _dataService.GetAllAreas();
+            return Ok(result);
         }
 
         /// <summary>

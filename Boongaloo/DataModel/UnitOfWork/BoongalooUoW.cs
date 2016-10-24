@@ -1,10 +1,24 @@
-﻿using System;
+﻿using DataModel.Repositories;
+using System;
 
 namespace DataModel.UnitOfWork
 {
     public class BoongalooUoW : IDisposable
     {
         private readonly BoongalooDbCtx _dbContext = new BoongalooDbCtx();
+
+        private AreaRepository areaRepository;
+
+        public AreaRepository AreaRepository
+        {
+            get
+            {
+                if (areaRepository == null)
+                    return new AreaRepository(_dbContext);
+
+                return areaRepository;
+            }
+        }
 
         private bool _disposed = false;
 

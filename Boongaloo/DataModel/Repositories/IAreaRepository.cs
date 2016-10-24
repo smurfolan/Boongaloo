@@ -1,15 +1,14 @@
 ﻿using BusinessEntities;
-using DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessServices
+namespace DataModel.Repositories
 {
-    public interface IBoongalooDataService
+    public interface IAreaRepository
     {
-        IEnumerable<AreaDto> GetAllAreas();
+        IEnumerable<Area> GetAreas();
     }
 }

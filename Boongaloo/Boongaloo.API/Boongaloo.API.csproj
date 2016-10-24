@@ -228,6 +228,10 @@
       <Project>{95C07FA1-F974-4E4A-A169-C4F4F881965E}</Project>
       <Name>Boongaloo.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BusinessEntities\BusinessEntities.csproj">
+      <Project>{0eec2d1e-94c3-46f2-9e02-161692e6037d}</Project>
+      <Name>BusinessEntities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BusinessServices\BusinessServices.csproj">
       <Project>{d200ec98-5dfe-4bfd-a14f-2a69de7525f1}</Project>
       <Name>BusinessServices</Name>
