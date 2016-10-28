@@ -192,17 +192,20 @@ namespace Boongaloo.Repository.Repositories
                 this._dbContext.UserToLangauge.Remove(languageRecordsToRemove[i]);
 
             // Add new language records
-            foreach (var languageId in user.LanguageIds)
+            if (user.LanguageIds != null && user.LanguageIds.Any())
             {
-                var nextRecordId = this._dbContext.UserToLangauge.OrderBy(x => x.Id).LastOrDefault();
-                var nextId = nextRecordId?.Id + 1 ?? 1;
-                this._dbContext.UserToLangauge.Add(new UserToLanguage()
+                foreach (var languageId in user.LanguageIds)
                 {
-                    Id = nextId,
-                    LanguageId = languageId,
-                    UserId = user.Id
-                });
-            }
+                    var nextRecordId = this._dbContext.UserToLangauge.OrderBy(x => x.Id).LastOrDefault();
+                    var nextId = nextRecordId?.Id + 1 ?? 1;
+                    this._dbContext.UserToLangauge.Add(new UserToLanguage()
+                    {
+                        Id = nextId,
+                        LanguageId = languageId,
+                        UserId = user.Id
+                    });
+                }
+            }         
 
             // Remove old group records
             var groupRecordsToRemove = this._dbContext.GroupToUser
@@ -213,17 +216,20 @@ namespace Boongaloo.Repository.Repositories
                 this._dbContext.GroupToUser.Remove(groupRecordsToRemove[i]);
 
             // Add new group records
-            foreach (var groupId in user.GroupIds)
+            if (user.GroupIds != null && user.GroupIds.Any())
             {
-                var nextRecordId = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
-                var nextId = nextRecordId?.Id + 1 ?? 1;
-                this._dbContext.GroupToUser.Add(new GroupToUser()
+                foreach (var groupId in user.GroupIds)
                 {
-                    Id = nextId,
-                    GroupId = groupId,
-                    UserId = user.Id
-                });
-            }
+                    var nextRecordId = this._dbContext.GroupToUser.OrderBy(x => x.Id).LastOrDefault();
+                    var nextId = nextRecordId?.Id + 1 ?? 1;
+                    this._dbContext.GroupToUser.Add(new GroupToUser()
+                    {
+                        Id = nextId,
+                        GroupId = groupId,
+                        UserId = user.Id
+                    });
+                }
+            }          
 
             this._dbContext.SaveChanges();
         }

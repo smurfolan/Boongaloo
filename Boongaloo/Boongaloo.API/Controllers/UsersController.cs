@@ -11,7 +11,7 @@ using Boongaloo.Repository.UnitOfWork;
 
 namespace Boongaloo.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/v1/users")]
     public class UsersController : ApiController
     {
@@ -134,7 +134,7 @@ namespace Boongaloo.API.Controllers
         /// Example: PUT api/v1/users/{id:int}
         /// </summary>
         /// <param name="id">Unique identifier of the user that will be updated</param>
-        /// <param name="updateUserData">Updated user data</param>
+        /// <param name="updateUserData">Updated user data. Body sample: {'idsrvUniqueId' : 'https://boongaloocompanysts/identity78f100e9-9d90-4de8-9d7d', 'firstName': 'Stefcho', 'lastName': 'Stefchev', 'email': 'used@to.know', 'about': 'Straightforward', 'gender': '0', 'birthDate': '0001-01-01T00:00:00', 'phoneNumber': '+395887647288', 'languageIds' : [1,3]</param>
         /// <returns></returns>
         [HttpPut]
         [Route("{id:int}")]
