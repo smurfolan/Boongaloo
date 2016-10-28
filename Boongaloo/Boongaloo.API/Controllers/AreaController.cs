@@ -31,8 +31,16 @@ namespace Boongaloo.API.Controllers
             //    return BadRequest(ModelState);
 
             //var result = this._unitOfWork.AreaRepository.GetAreas().FirstOrDefault(x => x.Id == id);
-            var result = _dataService.GetAllAreas();
-            return Ok(result);
+            try
+            {
+                var result = _dataService.GetAllMyEntities();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                BoongalooApiLogger.LogError("Waaaa Waaaa Waaaa.", ex);
+                return InternalServerError();
+            }           
         }
 
         /// <summary>

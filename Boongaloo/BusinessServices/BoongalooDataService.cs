@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using DataModel;
+﻿using System.Collections.Generic;
 using DataModel.UnitOfWork;
 using BusinessEntities;
 using System.Linq;
@@ -9,17 +7,17 @@ namespace BusinessServices
 {
     public class BoongalooDataService : IBoongalooDataService
     {
-        private readonly BoongalooUoW _unitOfWork;
+        private readonly BoongalooUnitOfWork _unitOfWork;
 
         public BoongalooDataService()
         {
-            _unitOfWork = new BoongalooUoW();
+            _unitOfWork = new BoongalooUnitOfWork();
         }
 
-        public IEnumerable<AreaDto> GetAllAreas()
+        public IEnumerable<MyEntityDto> GetAllMyEntities()
         {
-            return this._unitOfWork.AreaRepository.GetAreas()
-                .Select(a => new AreaDto() { Id = a.Id, Latitude = a.Latitude, Longitude = a.Longitude})
+            return this._unitOfWork.MyEntityRepository.GetMyEntities()
+                .Select(a => new MyEntityDto() { Id = a.Id, MyColumn = a.MyColumn})
                 .ToList();
         }
     }
