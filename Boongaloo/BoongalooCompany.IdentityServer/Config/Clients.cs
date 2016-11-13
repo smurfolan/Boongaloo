@@ -15,6 +15,7 @@ namespace BoongalooCompany.IdentityServer.Config
                     ClientName = "Trip Gallery (Authorization Code)",
                     Flow = Flows.AuthorizationCode, 
                     AllowAccessToAllScopes = true,
+                    RequireConsent = false,
 
                     // redirect = URI of our callback controller in the MVC application
                     RedirectUris = new List<string>
