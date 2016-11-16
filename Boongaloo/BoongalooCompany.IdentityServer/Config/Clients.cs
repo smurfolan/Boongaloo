@@ -25,7 +25,14 @@ namespace BoongalooCompany.IdentityServer.Config
                      ClientSecrets = new List<Secret>()
                     {
                         new Secret(Boongaloo.Constants.BoongalooClientSecret.Sha256())
-                    }                    
+                    },
+
+                    // refresh token options
+                    AccessTokenType = AccessTokenType.Jwt,
+                    AccessTokenLifetime = 3600,
+                    SlidingRefreshTokenLifetime = 1296000,
+                    RefreshTokenUsage = TokenUsage.OneTimeOnly,
+                    RefreshTokenExpiration = TokenExpiration.Sliding
                 } ,
                 new Client 
                 {
