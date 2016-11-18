@@ -31,9 +31,9 @@ namespace BoongalooCompany.IdentityServer.Config
                     // refresh token options
                     AccessTokenType = AccessTokenType.Jwt,
                     AccessTokenLifetime = 3600,
-                    SlidingRefreshTokenLifetime = 1296000,
-                    RefreshTokenUsage = TokenUsage.OneTimeOnly,
-                    RefreshTokenExpiration = TokenExpiration.Sliding
+                    RefreshTokenUsage = TokenUsage.ReUse,
+                    RefreshTokenExpiration = TokenExpiration.Absolute,
+                    AbsoluteRefreshTokenLifetime = 1296000
                 } ,
                 new Client 
                 {
