@@ -17,7 +17,7 @@ namespace BoongalooCompany.IdentityServer.Config
                     AllowAccessToAllScopes = true,
                     RequireConsent = false,
 
-                    // redirect = URI of our callback controller in the MVC application
+                    // redirect = URI of our callback controller in the IOS application
                     RedirectUris = new List<string>
                     {
                         Boongaloo.Constants.BoongalooIOSCallback
@@ -33,7 +33,13 @@ namespace BoongalooCompany.IdentityServer.Config
                     AccessTokenLifetime = 3600,
                     RefreshTokenUsage = TokenUsage.ReUse,
                     RefreshTokenExpiration = TokenExpiration.Absolute,
-                    AbsoluteRefreshTokenLifetime = 1296000
+                    AbsoluteRefreshTokenLifetime = 1296000,
+
+                    // Post logout information is sent to the selected custom URL Schema on the IOS app
+                    PostLogoutRedirectUris = new List<string>()
+                    {
+                        Boongaloo.Constants.BoongalooIOSPostLogoutCallback
+                    }
                 } ,
                 new Client 
                 {
