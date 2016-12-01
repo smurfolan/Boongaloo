@@ -43,9 +43,11 @@ namespace BoongalooCompany.IdentityServer.Controllers
                 using (var userRepository = new UserRepository())
                 {
                     // create a new account
-                    var newUser = new User();
-                    newUser.Subject = Guid.NewGuid().ToString();
-                    newUser.IsActive = true;
+                    var newUser = new User
+                    {
+                        Subject = Guid.NewGuid().ToString(),
+                        IsActive = true
+                    };
 
                     // add the external identity provider as login provider
                     // => external_provider_user_id contains the id/key
@@ -60,7 +62,7 @@ namespace BoongalooCompany.IdentityServer.Controllers
 
                     userRepository.AddUser(newUser);
 
-                    // continue where we left off                
+                    // continue where we left off   
                     return Redirect(await ctx.Environment.GetPartialLoginResumeUrlAsync());
                 }
             }
@@ -80,31 +82,43 @@ namespace BoongalooCompany.IdentityServer.Controllers
             ClaimsIdentity partialSignInUser)
         {
             // EMAIL
+
+            //// FACEBOOK returns no other claims than 'name'. That is why we force the user to go to the additional info entry window.
+            var userEmail = partialSignInUser.Claims.FirstOrDefault(
+                c => c.Type == IdentityServer3.Core.Constants.ClaimTypes.Email);
+
             newUser.UserClaims.Add(new UserClaim()
             {
                 Id = Guid.NewGuid().ToString(),
                 Subject = newUser.Subject,
                 ClaimType = IdentityServer3.Core.Constants.ClaimTypes.Email,
-                ClaimValue = partialSignInUser.Claims.First(
-                    c => c.Type == IdentityServer3.Core.Constants.ClaimTypes.Email).Value
+                ClaimValue = userEmail != null ? userEmail.Value : model.Email
             });
 
             // GIVEN NAME
+
+            //// FACEBOOK returns no other claims than 'name'. That is why we force the user to go to the additional info entry window.
+            var userName = partialSignInUser.Claims.FirstOrDefault(c => c.Type == "given_name"); 
+
             newUser.UserClaims.Add(new UserClaim()
             {
                 Id = Guid.NewGuid().ToString(),
                 Subject = newUser.Subject,
                 ClaimType = IdentityServer3.Core.Constants.ClaimTypes.GivenName,
-                ClaimValue = partialSignInUser.Claims.First(c => c.Type == "given_name").Value
+                ClaimValue = userName != null ? userName.Value : model.FirstName
             });
 
             // FAMILY NAME
+
+            //// FACEBOOK returns no other claims than 'name'. That is why we force the user to go to the additional info entry window.
+            var familyName = partialSignInUser.Claims.FirstOrDefault(c => c.Type == "family_name");
+
             newUser.UserClaims.Add(new UserClaim()
             {
                 Id = Guid.NewGuid().ToString(),
                 Subject = newUser.Subject,
                 ClaimType = IdentityServer3.Core.Constants.ClaimTypes.FamilyName,
-                ClaimValue = partialSignInUser.Claims.First(c => c.Type == "family_name").Value
+                ClaimValue = familyName != null ? familyName.Value : model.LastName
             });             
         }
     }

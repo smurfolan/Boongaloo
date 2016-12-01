@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Owin.Security.Providers.LinkedIn;
@@ -12,6 +13,8 @@ namespace BoongalooCompany.IdentityServer.Helpers
             LinkedInAuthentication(app, signInAsType);
 
             GoogleAuthentication(app, signInAsType);
+
+            FacebookAuthentication(app, signInAsType);
         }
 
         private static void LinkedInAuthentication(IAppBuilder app, string signInAsType)
@@ -48,6 +51,25 @@ namespace BoongalooCompany.IdentityServer.Helpers
                     OnAuthenticated = (context) =>
                     {
 
+                        return Task.FromResult(0);
+                    }
+                }
+            });
+        }
+
+        private static void FacebookAuthentication(IAppBuilder app, string signInAsType)
+        {
+            app.UseFacebookAuthentication(new FacebookAuthenticationOptions()
+            {
+                AuthenticationType = "Facebook",
+                Caption = "Facebook",
+                SignInAsAuthenticationType = signInAsType,
+                AppId = "1159020837547948",
+                AppSecret = "67c2af410af9704159a67fc10d61311f",
+                Provider = new FacebookAuthenticationProvider()
+                {
+                    OnAuthenticated = (context) =>
+                    {
                         return Task.FromResult(0);
                     }
                 }

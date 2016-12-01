@@ -91,6 +91,17 @@ namespace BoongalooCompany.IdentityServer.Services
         {
             using (var userRepository = new UserRepository())
             {
+                // TODO: Research how to fetch more data from facebook in the shape of claims.
+                // SPECIAL CASE for FACEBOOK. Since it returns no claims at all except for 'name', we have to force the user to enter that info.
+                if (context.ExternalIdentity.Provider.ToLower() == "facebook")
+                {
+                    context.AuthenticateResult =
+                        new AuthenticateResult(
+                            "~/completeadditionalinformation?provider=" + context.ExternalIdentity.Provider,
+                            context.ExternalIdentity);
+                    return Task.FromResult(0);
+                }
+
                 // is the external provider already linked to an account?
                 var existingLinkedUser = userRepository.GetUserForExternalProvider(context.ExternalIdentity.Provider,
                  context.ExternalIdentity.ProviderId);

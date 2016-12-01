@@ -4,16 +4,29 @@
     ViewBag.Title = "Complete Additional Information";
 }
 
-<h2>Complete Additional Information</h2>
-
 @using (Html.BeginForm())
 {
-    <h1>
-        If external information is needed by the user, we are filling it up here and update CompleteAdditionalInformationModel with fields.
-    </h1>
+    <h3>
+        Awesome! You're real! We just need a bit more info about you...
+    </h3>
 
     <div class="form-group" hidden="hidden">
         @Html.TextBoxFor(m => m.ExternalProviderName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label for="First">First name</label>
+        @Html.TextBoxFor(m => m.FirstName, new {@class = "form-control"})
+    </div>
+
+    <div class="form-group">
+        <label>Last name</label>
+        @Html.TextBoxFor(m => m.LastName, new {@class = "form-control"})
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
     </div>
 
     <div class="form-group">
