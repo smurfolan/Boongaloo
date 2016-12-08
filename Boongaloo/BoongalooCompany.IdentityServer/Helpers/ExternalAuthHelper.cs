@@ -10,14 +10,10 @@ namespace BoongalooCompany.IdentityServer.Helpers
     {
         public static void ConfigureExternalAuthProviders(IAppBuilder app, string signInAsType)
         {
-            LinkedInAuthentication(app, signInAsType);
-
             GoogleAuthentication(app, signInAsType);
-
-            FacebookAuthentication(app, signInAsType);
         }
 
-        private static void LinkedInAuthentication(IAppBuilder app, string signInAsType)
+        private static void GoogleAuthentication(IAppBuilder app, string signInAsType)
         {
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions
             {
@@ -31,45 +27,6 @@ namespace BoongalooCompany.IdentityServer.Helpers
                     OnAuthenticated = (context) =>
                     {
 
-                        return Task.FromResult(0);
-                    }
-                }
-            });
-        }
-
-        private static void GoogleAuthentication(IAppBuilder app, string signInAsType)
-        {
-            app.UseLinkedInAuthentication(new LinkedInAuthenticationOptions()
-            {
-                AuthenticationType = "LinkedIn",
-                Caption = "LinkedIn",
-                SignInAsAuthenticationType = signInAsType,
-                ClientId = "777k6ke7zh5851",
-                ClientSecret = "3VuCX21r1AkXnGmd",
-                Provider = new LinkedInAuthenticationProvider()
-                {
-                    OnAuthenticated = (context) =>
-                    {
-
-                        return Task.FromResult(0);
-                    }
-                }
-            });
-        }
-
-        private static void FacebookAuthentication(IAppBuilder app, string signInAsType)
-        {
-            app.UseFacebookAuthentication(new FacebookAuthenticationOptions()
-            {
-                AuthenticationType = "Facebook",
-                Caption = "Facebook",
-                SignInAsAuthenticationType = signInAsType,
-                AppId = "1159020837547948",
-                AppSecret = "67c2af410af9704159a67fc10d61311f",
-                Provider = new FacebookAuthenticationProvider()
-                {
-                    OnAuthenticated = (context) =>
-                    {
                         return Task.FromResult(0);
                     }
                 }

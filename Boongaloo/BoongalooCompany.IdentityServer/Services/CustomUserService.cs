@@ -9,6 +9,8 @@ using BoongalooCompany.Repository;
 using BoongalooCompany.Repository.Entities;
 using IdentityServer3.Core.Extensions;
 using System.Security.Claims;
+using System.Web;
+using System.Web.Mvc;
 using Serilog;
 
 namespace BoongalooCompany.IdentityServer.Services
@@ -91,17 +93,6 @@ namespace BoongalooCompany.IdentityServer.Services
         {
             using (var userRepository = new UserRepository())
             {
-                // TODO: Research how to fetch more data from facebook in the shape of claims.
-                // SPECIAL CASE for FACEBOOK. Since it returns no claims at all except for 'name', we have to force the user to enter that info.
-                if (context.ExternalIdentity.Provider.ToLower() == "facebook")
-                {
-                    context.AuthenticateResult =
-                        new AuthenticateResult(
-                            "~/completeadditionalinformation?provider=" + context.ExternalIdentity.Provider,
-                            context.ExternalIdentity);
-                    return Task.FromResult(0);
-                }
-
                 // is the external provider already linked to an account?
                 var existingLinkedUser = userRepository.GetUserForExternalProvider(context.ExternalIdentity.Provider,
                  context.ExternalIdentity.ProviderId);
@@ -132,10 +123,12 @@ namespace BoongalooCompany.IdentityServer.Services
                 var userWithMatchingEmailClaim = userRepository.GetUserByEmail(emailClaim.Value);
 
                 if (userWithMatchingEmailClaim == null && 
-                    (context.ExternalIdentity.Provider.ToLower() == "google" || 
-                    context.ExternalIdentity.Provider.ToLower() == "linkedin"))
+                    (context.ExternalIdentity.Provider.ToLower() == "google"))
                 {
-                    // no existing link. If it's a google/linkedin user, we are going to ask for additional information.
+                    // no existing link. If it's a google user, we are going to ask for additional information.
+
+                    //TODO: Directly navigate to CompleteAdditionalInformationController/public async Task<ActionResult> Index(CompleteAdditionalInformationModel model)
+                    //HttpContext.Current.Response.RedirectToRoute();
                     context.AuthenticateResult = 
                         new AuthenticateResult(
                             "~/completeadditionalinformation?provider=" + context.ExternalIdentity.Provider, 
