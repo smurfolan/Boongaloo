@@ -9,9 +9,7 @@ using BoongalooCompany.Repository;
 using BoongalooCompany.Repository.Entities;
 using IdentityServer3.Core.Extensions;
 using System.Security.Claims;
-using System.Web;
-using System.Web.Mvc;
-using Serilog;
+using BoongalooCompany.IdentityServer.Helpers;
 
 namespace BoongalooCompany.IdentityServer.Services
 {
@@ -125,38 +123,41 @@ namespace BoongalooCompany.IdentityServer.Services
                 if (userWithMatchingEmailClaim == null && 
                     (context.ExternalIdentity.Provider.ToLower() == "google"))
                 {
-                    // no existing link. If it's a google user, we are going to ask for additional information.
+                    var newUser = new User
+                    {
+                        Subject = Guid.NewGuid().ToString(),
+                        IsActive = true
+                    };
 
-                    //TODO: Directly navigate to CompleteAdditionalInformationController/public async Task<ActionResult> Index(CompleteAdditionalInformationModel model)
-                    //HttpContext.Current.Response.RedirectToRoute();
-                    context.AuthenticateResult = 
-                        new AuthenticateResult(
-                            "~/completeadditionalinformation?provider=" + context.ExternalIdentity.Provider, 
-                            context.ExternalIdentity);
-                    return Task.FromResult(0);
+                    newUser.UserLogins.Add(new UserLogin()
+                    {
+                        Subject = newUser.Subject,
+                        LoginProvider = context.ExternalIdentity.Provider,
+                        ProviderKey = context.ExternalIdentity.Provider
+                    });
+
+                    ClaimsHelper.AddUserClaimsForExternalUser(null, newUser, context.ExternalIdentity.Claims);
+
+                    userRepository.AddUser(newUser);
                 }
 
-                if (userWithMatchingEmailClaim == null)
-                {
-                    context.AuthenticateResult = new AuthenticateResult("No user with the matching email claim.");
-                    return Task.FromResult(0);
-                }
+                userWithMatchingEmailClaim = userRepository.GetUserByEmail(emailClaim.Value);
 
                 // register this external provider for this user account
                 userRepository.AddUserLogin(userWithMatchingEmailClaim.Subject,
-                    context.ExternalIdentity.Provider,
-                    context.ExternalIdentity.ProviderId);
+                     context.ExternalIdentity.Provider,
+                     context.ExternalIdentity.ProviderId);
 
-                // use this existing account
-                context.AuthenticateResult = new AuthenticateResult(
-                       userWithMatchingEmailClaim.Subject,
-                       userWithMatchingEmailClaim.UserClaims.First(c => c.ClaimType == Constants.ClaimTypes.GivenName).ClaimValue,
-                       userWithMatchingEmailClaim.UserClaims.Select<UserClaim, Claim>(uc => new Claim(uc.ClaimType, uc.ClaimValue)),
-                       authenticationMethod: Constants.AuthenticationMethods.External,
-                       identityProvider: context.ExternalIdentity.Provider);
+                 // use this existing account
+                 context.AuthenticateResult = new AuthenticateResult(
+                     userWithMatchingEmailClaim.Subject,
+                     userWithMatchingEmailClaim.UserClaims.First(c => c.ClaimType == Constants.ClaimTypes.GivenName).ClaimValue,
+                     userWithMatchingEmailClaim.UserClaims.Select<UserClaim, Claim>(uc => new Claim(uc.ClaimType, uc.ClaimValue)),
+                     authenticationMethod: Constants.AuthenticationMethods.External,
+                     identityProvider: context.ExternalIdentity.Provider);
+                
             }
             
-
             return Task.FromResult(0);
         }
     }
