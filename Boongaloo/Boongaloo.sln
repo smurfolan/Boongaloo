@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boongaloo.MVCClient", "Boon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boongaloo.Constants", "Boongaloo.Constants\Boongaloo.Constants.csproj", "{1BEC8DBC-04F3-4EEA-B3D7-422D80A6ACD1}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Boongaloo.AngularClient", "http://localhost:15745", "{428EB0F2-A452-48CF-B882-71E18997017F}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TripGallery.AngularClient", "http://localhost:15745", "{428EB0F2-A452-48CF-B882-71E18997017F}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
@@ -49,6 +49,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoongalooCompany.Repository", "BoongalooCompany.Repository\BoongalooCompany.Repository.csproj", "{D07A403F-8D9F-4C82-AC8E-F7DE5469E694}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boongaloo.API.Tests", "Boongaloo.API.Tests\Boongaloo.API.Tests.csproj", "{0371E4AD-1673-4FD2-8A8B-74B62CA8BC3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boongaloo.MvcClient.AuthCode", "Boongaloo.MvcClient.AuthCode\Boongaloo.MvcClient.AuthCode.csproj", "{FC8BDF16-F1ED-40F9-A123-38144F51463E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,6 +94,10 @@ Global
 		{0371E4AD-1673-4FD2-8A8B-74B62CA8BC3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0371E4AD-1673-4FD2-8A8B-74B62CA8BC3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0371E4AD-1673-4FD2-8A8B-74B62CA8BC3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC8BDF16-F1ED-40F9-A123-38144F51463E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC8BDF16-F1ED-40F9-A123-38144F51463E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC8BDF16-F1ED-40F9-A123-38144F51463E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC8BDF16-F1ED-40F9-A123-38144F51463E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,5 +112,6 @@ Global
 		{FBD3CF6A-CDE8-4347-9BEF-9EC877037C9F} = {F9664945-584A-475A-B5AC-C694BAC872F1}
 		{D07A403F-8D9F-4C82-AC8E-F7DE5469E694} = {F9664945-584A-475A-B5AC-C694BAC872F1}
 		{0371E4AD-1673-4FD2-8A8B-74B62CA8BC3B} = {7A0FEB1D-E2D7-47B7-82A4-C3500D6D4636}
+		{FC8BDF16-F1ED-40F9-A123-38144F51463E} = {72FEFBCB-1305-4DA7-9EB0-73C0D81745E9}
 	EndGlobalSection
 EndGlobal
