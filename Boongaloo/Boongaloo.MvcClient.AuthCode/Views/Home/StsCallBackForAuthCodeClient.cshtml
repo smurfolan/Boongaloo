@@ -1,0 +1,36 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StsCallBackForAuthCodeClient</title>
+</head>
+<body>
+<div>
+    <span>Access token:</span>
+    <textarea rows="10" cols="150">
+        @ViewData["access_token"]
+    </textarea><br>
+    
+    <span>Id token:</span>
+    <textarea rows="10" cols="150">
+        @ViewData["id_token"]
+    </textarea><br>
+    
+    <span>Refresh token:</span>
+    <textarea rows="10" cols="150">
+        @ViewData["refresh_token"]
+    </textarea><br>
+    
+    <span>Refresh token expires in:</span>
+    <textarea rows="10" cols="150">
+        @ViewData["rf_expires_in"]
+    </textarea><br>
+</div>
+</body>
+</html>

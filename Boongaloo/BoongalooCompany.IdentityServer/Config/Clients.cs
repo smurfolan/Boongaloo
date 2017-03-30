@@ -20,7 +20,8 @@ namespace BoongalooCompany.IdentityServer.Config
                     // redirect = URI of our callback controller in the IOS application
                     RedirectUris = new List<string>
                     {
-                        Boongaloo.Constants.BoongalooIOSCallback
+                        Boongaloo.Constants.BoongalooIOSCallback,
+                        Boongaloo.Constants.BoongalooMvcAuthCodePostLogoutCallback
                     },           
 
                      ClientSecrets = new List<Secret>()

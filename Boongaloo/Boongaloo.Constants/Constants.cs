@@ -6,6 +6,9 @@ namespace Boongaloo
         public const string BoongalooIOSCallback = "app:/com.boongaloo.ios";
         public const string BoongalooIOSPostLogoutCallback = "app:/com.boongaloo.ios.logout";
 
+        public const string BoongalooMvcAuthCodePostLogoutCallback =
+            "https://localhost:44346/Home/StsCallBackForAuthCodeClient";
+
         public const string BoongalooAPI = "https://boongalooapi.azurewebsites.net/";
         public const string BoongalooMVC = "https://localhost:44318/";
         public const string BoongalooMVCSTSCallback = "https://localhost:44318/stscallback";
@@ -14,7 +17,7 @@ namespace Boongaloo
         public const string BoongalooClientSecret = "myrandomclientsecret";
 
         public const string BoongalooIssuerUri = "https://boongaloocompanysts/identity";
-        public const string BoongalooSTSOrigin = "https://boongalooidsrv.azurewebsites.net";
+        public const string BoongalooSTSOrigin = "https://localhost:44317"; //"https://boongalooidsrv.azurewebsites.net";
         public const string BoongalooSTS = BoongalooSTSOrigin + "/identity";
         public const string BoongalooSTSTokenEndpoint = BoongalooSTS + "/connect/token";
         public const string BoongalooSTSAuthorizationEndpoint = BoongalooSTS + "/connect/authorize";
