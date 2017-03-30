@@ -72,7 +72,7 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
             var timer = new Timer(async (e) =>
             {
                 await ExecuteWebApiCall(cachedStuff);
-            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(5).TotalMilliseconds));
+            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(1).TotalMilliseconds));
             
             return null;
         }
@@ -124,8 +124,9 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
 
             try
             {
-                var areaByIdFromWebApi = await client.GetAsync("/api/v1/areas/75082199-00cd-4873-8a8b-ad6710570a82");
+                var areaByIdFromWebApi = await client.GetAsync("/api/v1/areas/fe990448-670a-42fb-8b02-18f24c94cb49");
                 Debug.WriteLine($"Call made at: {DateTime.Now} and result was: {areaByIdFromWebApi.StatusCode}");
+                Debug.WriteLine($"Token expires at: {cachedStuff.AccessTokenExpiresAt}");
             }
             catch (Exception ex)
             {
