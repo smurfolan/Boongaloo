@@ -1,4 +1,5 @@
-﻿@inherits System.Web.Mvc.WebViewPage
+﻿@using System.Web.Mvc.Html
+@inherits System.Web.Mvc.WebViewPage
 @{
     Layout = null;
 }
@@ -12,25 +13,10 @@
 </head>
 <body>
 <div>
-    <span>Access token:</span>
-    <textarea rows="10" cols="150">
-        @ViewData["access_token"]
-    </textarea><br>
-    
-    <span>Id token:</span>
-    <textarea rows="10" cols="150">
-        @ViewData["id_token"]
-    </textarea><br>
-    
-    <span>Refresh token:</span>
-    <textarea rows="10" cols="150">
-        @ViewData["refresh_token"]
-    </textarea><br>
-    
-    <span>Refresh token expires in:</span>
-    <textarea rows="10" cols="150">
-        @ViewData["rf_expires_in"]
-    </textarea><br>
+    ACCESS TOKEN, ID TOKEN, REFRESH TOKEN AND EXPIRATION ARE NOW ADDED TO APPLICATION CACHE!
+</div>
+<div>
+    @Html.ActionLink("Start calling the WebApi", "StartCallingWebApi")
 </div>
 </body>
 </html>

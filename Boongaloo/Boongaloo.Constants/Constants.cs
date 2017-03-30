@@ -9,7 +9,7 @@ namespace Boongaloo
         public const string BoongalooMvcAuthCodePostLogoutCallback =
             "https://localhost:44346/Home/StsCallBackForAuthCodeClient";
 
-        public const string BoongalooAPI = "https://boongalooapi.azurewebsites.net/";
+        public const string BoongalooAPI = "http://likkleapi.azurewebsites.net/";
         public const string BoongalooMVC = "https://localhost:44318/";
         public const string BoongalooMVCSTSCallback = "https://localhost:44318/stscallback";
         public const string BoongalooAngular = "https://localhost:44316/";
