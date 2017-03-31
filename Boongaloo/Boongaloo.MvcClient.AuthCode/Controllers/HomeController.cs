@@ -67,10 +67,9 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
 
         public ActionResult StartCallingWebApi()
         {
-            var cachedStuff = this._cache.Get(this.tokensCacheKey) as TokenModel;
-            
             var timer = new Timer(async (e) =>
             {
+                var cachedStuff = this._cache.Get(this.tokensCacheKey) as TokenModel;
                 await ExecuteWebApiCall(cachedStuff);
             }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(1).TotalMilliseconds));
             
@@ -97,16 +96,20 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
                 {
                     var newTokens = await client.RequestRefreshTokenAsync(cachedStuff.RefreshToken);
 
-                    this._cache[this.tokensCacheKey] = new TokenModel()
+                    var value = new TokenModel()
                     {
                         AccessToken = newTokens.AccessToken,
                         IdToken = newTokens.IdentityToken,
                         RefreshToken = newTokens.RefreshToken,
-                        AccessTokenExpiresAt = DateTime.Parse(DateTime.Now.AddSeconds(newTokens.ExpiresIn).ToString(CultureInfo.InvariantCulture))
+                        AccessTokenExpiresAt =
+                            DateTime.Parse(
+                                DateTime.Now.AddSeconds(newTokens.ExpiresIn).ToString(CultureInfo.InvariantCulture))
                     };
-                }
 
-                await MakeValidApiCall(this._cache[this.tokensCacheKey] as TokenModel);
+                    this._cache.Set(this.tokensCacheKey, (object)value, new CacheItemPolicy());
+
+                    await MakeValidApiCall(value);
+                }
             }
         }
 
