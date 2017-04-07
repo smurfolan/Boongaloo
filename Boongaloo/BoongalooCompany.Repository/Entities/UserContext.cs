@@ -4,11 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BoongalooCompany.Repository.Entities
 {
+    // TODO: Extract generic out of this one and RefreshTokenContext
     public class UserContext : IDisposable
     {
         private string _fileDBLocation;

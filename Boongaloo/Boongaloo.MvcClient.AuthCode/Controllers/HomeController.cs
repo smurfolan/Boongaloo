@@ -71,7 +71,7 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
             {
                 var cachedStuff = this._cache.Get(this.tokensCacheKey) as TokenModel;
                 await ExecuteWebApiCall(cachedStuff);
-            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(5).TotalMilliseconds));
+            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(2).TotalMilliseconds));
             
             return null;
         }

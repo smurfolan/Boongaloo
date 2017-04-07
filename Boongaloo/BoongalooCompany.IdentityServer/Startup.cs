@@ -45,6 +45,10 @@ namespace BoongalooCompany.IdentityServer
                 var customUserService = new CustomUserService();
                 idServerServiceFactory.UserService = new Registration<IUserService>(resolver => customUserService);
 
+                // use custom service for tokens maintainance
+                var customRefreshTokenStore = new CustomRefreshTokenStore();
+                idServerServiceFactory.RefreshTokenStore = new Registration<IRefreshTokenStore>(resolver => customRefreshTokenStore);
+
                 var options = new IdentityServerOptions
                 {
                     Factory = idServerServiceFactory,
