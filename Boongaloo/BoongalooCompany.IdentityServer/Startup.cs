@@ -35,6 +35,7 @@ namespace BoongalooCompany.IdentityServer
                 {
                     CacheViews = false
                 };
+                defaultViewServiceOptions.Stylesheets.Add("/Content/Site.css");
 
                 idServerServiceFactory.ConfigureDefaultViewService(defaultViewServiceOptions);
 
@@ -52,7 +53,7 @@ namespace BoongalooCompany.IdentityServer
                 var options = new IdentityServerOptions
                 {
                     Factory = idServerServiceFactory,
-                    SiteName = "BoongalooCompany Security Token Service",
+                    SiteName = "STS",
                     SigningCertificate = LoadCertificate(),
                     IssuerUri = Boongaloo.Constants.BoongalooIssuerUri,
                     PublicOrigin = Boongaloo.Constants.BoongalooSTSOrigin,

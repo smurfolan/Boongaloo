@@ -1,18 +1,53 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿body{
+    background-image:url("/Content/Images/login-bg.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
 }
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.panel {
+    background-color: transparent;
+    border: none;
+    text-align: center;
 }
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.panel-body {
+    width: 80%;
+    margin: 0 auto;
 }
-
+.page-header {
+    width: 40%;
+    margin: 0 auto;
+    border-bottom: none;
+}
+body > div.container.page-login > div:nth-child(3) > div.col-md-12.col-sm-12 > div > ul > li > a {
+    color: #ffffff;
+}
+body > div.container.page-login > div:nth-child(3) > div.panel-body > ul > li > a {
+    background-color: transparent;
+    color: #ffffff;
+}
+.form-control {
+    background-color: transparent;
+    border: solid 2px #fff;
+    border-radius: 16px;
+    padding: 20px 10px;
+    text-align: center;
+    color: #fff;
+    box-shadow: none;
+}
+.ng-prisitne{
+    color: #ffffff;
+}
+body > div.container.page-login > div > div > div > div > form {
+    color: #ffffff;
+}
+.btn-login {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 16px;
+    color: rgba(135, 72, 111, 0.95);
+}
+.glyphicon {
+    font-size: 1.2em;
+} 
