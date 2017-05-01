@@ -59,3 +59,11 @@
     </div>
     <!---- </div> -->
 </div>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function (event) {
+        //A bit of a workaround for the navbar header line that shows up. 
+        //TODO: If more elegant way is found for hiding it - go for it. Pure javascript is used since jQuery is not available here.
+        document.getElementsByClassName("navbar")[0].style.visibility = 'hidden';
+    });
+</script>
