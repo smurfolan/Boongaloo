@@ -19,26 +19,27 @@ namespace BoongalooCompany.IdentityServer.Controllers
         [HttpPost]
         public ActionResult Index(string signin, CreateUserAccountModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                using (var userRepository = new UserRepository())
-                {
-                    // create a new account
-                    var newUser = new User
-                    {
-                        Subject = Guid.NewGuid().ToString(),
-                        IsActive = true
-                    };
-
-                    this.AddUserClaimsForLocalUser(newUser, model);
-         
-                    userRepository.AddUser(newUser);
-
-                    // redirect to the login page, passing in the signin parameter
-                    return Redirect("~/identity/" + Constants.RoutePaths.Login + "?signin=" + signin);
-                }
+                return View("Index", model);
             }
-            return View();
+
+            using (var userRepository = new UserRepository())
+            {
+                // create a new account
+                var newUser = new User
+                {
+                    Subject = Guid.NewGuid().ToString(),
+                    IsActive = true
+                };
+
+                this.AddUserClaimsForLocalUser(newUser, model);
+         
+                userRepository.AddUser(newUser);
+
+                // redirect to the login page, passing in the signin parameter
+                return Redirect("~/identity/" + Constants.RoutePaths.Login + "?signin=" + signin);
+            }
         }
 
         /// <summary>
@@ -77,6 +78,15 @@ namespace BoongalooCompany.IdentityServer.Controllers
                 Subject = newUser.Subject,
                 ClaimType = Constants.ClaimTypes.FamilyName,
                 ClaimValue = model.LastName
+            });
+
+            // ADDRESS
+            newUser.UserClaims.Add(new UserClaim()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Subject = newUser.Subject,
+                ClaimType = Constants.ClaimTypes.Address,
+                ClaimValue = model.Address
             });
         }
     }

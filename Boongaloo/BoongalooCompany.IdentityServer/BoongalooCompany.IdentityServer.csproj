@@ -43,6 +43,14 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentValidation, Version=6.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.4.1\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc, Version=6.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.MVC5.6.4.0\lib\Net45\FluentValidation.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="IdentityServer3">
       <HintPath>..\packages\IdentityServer3.2.0.0\lib\net45\IdentityServer3.dll</HintPath>
     </Reference>
@@ -211,6 +219,7 @@
     <Compile Include="Services\CustomRefreshTokenStore.cs" />
     <Compile Include="Services\CustomUserService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Validators\CreateUserAccountModelValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Boongaloo.Constants\Boongaloo.Constants.csproj">

@@ -145,5 +145,10 @@ namespace BoongalooCompany.Repository
 
             }
         }
+
+        public User GetUserByUsername(string userName)
+        {
+            return _ctx.Users.FirstOrDefault(u => u.UserName == userName);
+        }
     }
 }

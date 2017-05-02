@@ -51,7 +51,7 @@ namespace BoongalooCompany.IdentityServer.Services
                 };
 
                 // add the other UserClaims
-                claims.AddRange(user.UserClaims.Select<UserClaim, Claim>(
+                claims.AddRange(user.UserClaims.Where(uc => uc.ClaimValue != null).Select<UserClaim, Claim>(
                     uc => new Claim(uc.ClaimType, uc.ClaimValue)));
 
                 // only return the requested claims
