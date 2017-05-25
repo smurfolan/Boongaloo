@@ -51,3 +51,7 @@ body > div.container.page-login > div > div > div > div > form {
 .glyphicon {
     font-size: 1.2em;
 } 
+
+.red-text {
+    color: lightcoral
+}
