@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Create Account";
+    var signInId = this.Request.QueryString.Get("signin");
+    var loginScreenUrl = string.Format("/identity/login?signin={0}", signInId);
 }
 
 @Styles.Render("~/Content/css")
@@ -40,6 +42,7 @@
             @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
         </div>
         <div class="form-group" style="text-align: center">
+            <a href="@loginScreenUrl" class="btn btn-primary">Back</a>
             <button class="btn btn-primary">Create</button>
         </div>
     </fieldset>
