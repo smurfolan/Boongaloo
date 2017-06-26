@@ -61,7 +61,7 @@ namespace BoongalooCompany.IdentityServer
                     AuthenticationOptions = new AuthenticationOptions()
                     {
                         EnablePostSignOutAutoRedirect = true,
-                        PostSignOutAutoRedirectDelay = 2,
+                        // PostSignOutAutoRedirectDelay = 2,
                         // Provide link to other(additional) web page in order to be able to login (Registration, Reset password etc.)
                         LoginPageLinks = new List<LoginPageLink>()
                         {

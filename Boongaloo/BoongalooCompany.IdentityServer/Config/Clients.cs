@@ -32,9 +32,9 @@ namespace BoongalooCompany.IdentityServer.Config
                     // refresh token options
                     AccessTokenType = AccessTokenType.Jwt,
                     AccessTokenLifetime = 600,
-                    RefreshTokenUsage = TokenUsage.OneTimeOnly, // Every time generates new refresh token. Not only access token.
-                    RefreshTokenExpiration = TokenExpiration.Sliding,//TokenExpiration.Absolute,
-                    SlidingRefreshTokenLifetime = 1296000,//AbsoluteRefreshTokenLifetime = 360,
+                    RefreshTokenUsage = TokenUsage.ReUse, // Every time generates new refresh token. Not only access token.
+                    RefreshTokenExpiration = TokenExpiration.Absolute,//TokenExpiration.Sliding,
+                    AbsoluteRefreshTokenLifetime = 1296000,//SlidingRefreshTokenLifetime = 1296000,
 
                     // Post logout information is sent to the selected custom URL Schema on the IOS app
                     PostLogoutRedirectUris = new List<string>()
