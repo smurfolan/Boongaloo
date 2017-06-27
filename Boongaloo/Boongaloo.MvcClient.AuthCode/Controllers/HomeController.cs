@@ -59,7 +59,7 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
                 AccessToken = tokenResponse.AccessToken,
                 IdToken = tokenResponse.IdentityToken,
                 RefreshToken = tokenResponse.RefreshToken,
-                AccessTokenExpiresAt = DateTime.Parse(DateTime.Now.AddSeconds(tokenResponse.ExpiresIn).ToString(CultureInfo.InvariantCulture))
+                AccessTokenExpiresAt = DateTime.Parse(DateTime.Now.AddSeconds(tokenResponse.ExpiresIn).ToString(CultureInfo.InvariantCulture), CultureInfo.InstalledUICulture)
             };
 
             return View();
@@ -71,7 +71,7 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
             {
                 var cachedStuff = this._cache.Get(this.tokensCacheKey) as TokenModel;
                 await ExecuteWebApiCall(cachedStuff);
-            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(70).TotalMilliseconds));
+            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(2).TotalMilliseconds));
             
             return null;
         }
@@ -103,7 +103,7 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
                         RefreshToken = newTokens.RefreshToken,
                         AccessTokenExpiresAt =
                             DateTime.Parse(
-                                DateTime.Now.AddSeconds(newTokens.ExpiresIn).ToString(CultureInfo.InvariantCulture))
+                                DateTime.Now.AddSeconds(newTokens.ExpiresIn).ToString(CultureInfo.InvariantCulture), CultureInfo.InstalledUICulture)
                     };
 
                     this._cache.Set(this.tokensCacheKey, (object)value, new CacheItemPolicy());
