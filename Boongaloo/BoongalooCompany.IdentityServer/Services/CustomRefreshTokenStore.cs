@@ -16,6 +16,8 @@ namespace BoongalooCompany.IdentityServer.Services
         {
             using (var context = new RefreshTokenRepository())
             {
+                this.RemovePreviousLoginsForCurrentUser(context, value.SubjectId);
+
                 context.Insert(key, value);
             }
 
@@ -58,5 +60,25 @@ namespace BoongalooCompany.IdentityServer.Services
         {
             throw new NotImplementedException();
         }
+
+        #region Private
+        /// <summary>
+        /// The purpose of this method is refresh token store optimization. After each login it grows with unneccessary data.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="subjectId"></param>
+        private void RemovePreviousLoginsForCurrentUser(RefreshTokenRepository context, string subjectId)
+        {
+            var previousLogin = context.All(subjectId);
+
+            if (!previousLogin.Any())
+                return;
+
+            foreach (var item in previousLogin)
+            {
+                context.Remove(item.Key);
+            }
+        }
+        #endregion
     }
 }
