@@ -10,6 +10,7 @@
     background-color: transparent;
     border: none;
     text-align: center;
+    color: white;
 }
 .panel-body {
     width: 80%;
@@ -48,7 +49,8 @@ body > div.container.page-login > div > div > div > div > form {
     border-radius: 16px;
     color: rgba(135, 72, 111, 0.95);
 }
-.glyphicon {
+
+glyphicon {
     font-size: 1.2em;
 } 
 
