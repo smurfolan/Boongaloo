@@ -1,73 +1,68 @@
-﻿<div ng-hide="!model.LoginButtonClicked || !model.username || !model.username" style="text-align: center; margin-left:43%; margin-top:65%">
-    <div class="loader img-responsive"></div>
+﻿<div style="text-align: center; margin-left:43%; margin-top:65%">
+    <div class="loader img-responsive" ng-show="model.LoginButtonClicked && model.username && model.username"></div>
 </div>
 
-<div class="login-wrapper" ng-hide="model.LoginButtonClicked && model.username && model.username">
-    <div class="page-header">
-        <img class="img-responsive" src="../Content/Images/logo.png" alt="" />
-    </div>
+<div class="page-header">
+    <img class="img-responsive" src="../Content/Images/logo.png" alt="" />
+</div>
 
-    <div class="row" ng-show="model.errorMessage">
-        <div class="col-md-12 col-sm-12">
-            <div ng-init="model.LoginButtonClicked = false" class="alert alert-danger">
-                <strong>Error:</strong>
-                {{model.errorMessage}}
-            </div>
+<div class="row" ng-show="model.errorMessage">
+    <div class="col-md-12 col-sm-12">
+        <div ng-init="model.LoginButtonClicked = false" class="alert alert-danger">
+            <strong>Error:</strong>
+            {{model.errorMessage}}
         </div>
     </div>
+</div>
 
-    <div class="row" ng-hide="model.LoginButtonClicked && model.username && model.username">
-        <div class="col-md-12 col-sm-12" ng-show="model.loginUrl">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <form name="form" method="post" action="{{model.loginUrl}}">
-                        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
-
-                        <fieldset>
-                            <div class="form-group">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                <input required name="username" id="username" type="text" class="form-control" placeholder="Username" ng-change="model.errorMessage = false; model.LoginButtonClicked = false" ng-model="model.username" maxlength="100">
-                            </div>
-                            <div class="form-group">
-                                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                                <input required id="password" name="password" type="password" class="form-control" placeholder="Password" ng-change="model.errorMessage = false; model.LoginButtonClicked = false" ng-model="model.password" maxlength="100" autocomplete="off" focus-if="model.username">
-                            </div>
-                            <div class="form-group login-remember" ng-show="model.allowRememberMe">
-                                <label for="rememberMe">
-                                    <input type="checkbox" id="rememberMe" name="rememberMe" ng-model="model.rememberMe" value="true">
-                                    <strong>Remember me</strong>
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-login btn-primary" ng-init="model.LoginButtonClicked = false" ng-click="model.LoginButtonClicked = true"><stong>Login</stong></button>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-                <ul class="list-unstyled">
-                    <li ng-repeat="link in model.additionalLinks"><a ng-href="{{link.href}}">{{link.text}}</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!---<div class="col-md-6 col-sm-6 external-providers" ng-show="model.externalProviders.length">-->
+<div class="row">
+    <div class="col-md-12 col-sm-12" ng-show="model.loginUrl">
         <div class="panel panel-default">
-            <!--  <div class="panel-heading">
-                  <h3 class="panel-title">External Login</h3> -->
-        </div>
-        <div class="panel-body">
-            <ul class="list-inline">
-                <li ng-repeat="provider in model.externalProviders">
-                    <a class="btn btn-default" href="{{provider.href}}">{{provider.text}}</a>
-                </li>
+            <div class="panel-body">
+                <form name="form" method="post" action="{{model.loginUrl}}">
+                    <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+                    <fieldset>
+                        <div class="form-group">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <input required name="username" id="username" type="text" class="form-control" placeholder="Username" ng-change="model.errorMessage = false; model.LoginButtonClicked = false" ng-model="model.username" maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                            <input required id="password" name="password" type="password" class="form-control" placeholder="Password" ng-change="model.errorMessage = false; model.LoginButtonClicked = false" ng-model="model.password" maxlength="100" autocomplete="off" focus-if="model.username">
+                        </div>
+                        <div class="form-group login-remember" ng-show="model.allowRememberMe">
+                            <label for="rememberMe">
+                                <input type="checkbox" id="rememberMe" name="rememberMe" ng-model="model.rememberMe" value="true">
+                                <strong>Remember me</strong>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-login btn-primary" ng-init="model.LoginButtonClicked = false" ng-click="model.LoginButtonClicked = true"><stong>Login</stong></button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <ul class="list-unstyled">
+                <li ng-repeat="link in model.additionalLinks"><a ng-href="{{link.href}}">{{link.text}}</a></li>
             </ul>
         </div>
-        <!---- </div> -->
     </div>
+
+    <!---<div class="col-md-6 col-sm-6 external-providers" ng-show="model.externalProviders.length">-->
+    <div class="panel panel-default">
+        <!--  <div class="panel-heading">
+              <h3 class="panel-title">External Login</h3> -->
+    </div>
+    <div class="panel-body">
+        <ul class="list-inline">
+            <li ng-repeat="provider in model.externalProviders">
+                <a class="btn btn-default" href="{{provider.href}}">{{provider.text}}</a>
+            </li>
+        </ul>
+    </div>
+    <!---- </div> -->
 </div>
-
-
-
 
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function (event) {
