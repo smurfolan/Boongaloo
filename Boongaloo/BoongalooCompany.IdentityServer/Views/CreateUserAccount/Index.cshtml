@@ -29,17 +29,9 @@
             @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", required = "required" })
         </div>
         <div class="form-group">
-            <label style="color: whitesmoke">Last name</label>
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
             <label style="color: whitesmoke">Email</label><span class="red-text">*</span>
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required" })
-            @Html.ValidationMessageFor(x => x.Email, "Not valid email address", new { @class = "red-text" })
-        </div>
-        <div class="form-group">
-            <label style="color: whitesmoke">Address</label>
-            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Email, "Email invalid or already in use by other user.", new { @class = "red-text" })
         </div>
         <div class="form-group" style="text-align: center">
             <a href="@loginScreenUrl" class="btn btn-primary">Back</a>

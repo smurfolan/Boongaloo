@@ -26,7 +26,6 @@ namespace BoongalooCompany.IdentityServer.Controllers
 
             using (var userRepository = new UserRepository())
             {
-                // create a new account
                 var newUser = new User
                 {
                     Subject = Guid.NewGuid().ToString(),
@@ -69,24 +68,6 @@ namespace BoongalooCompany.IdentityServer.Controllers
                 Subject = newUser.Subject,
                 ClaimType = Constants.ClaimTypes.GivenName,
                 ClaimValue = model.FirstName
-            });
-
-            // FAMILY NAME
-            newUser.UserClaims.Add(new UserClaim()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Subject = newUser.Subject,
-                ClaimType = Constants.ClaimTypes.FamilyName,
-                ClaimValue = model.LastName
-            });
-
-            // ADDRESS
-            newUser.UserClaims.Add(new UserClaim()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Subject = newUser.Subject,
-                ClaimType = Constants.ClaimTypes.Address,
-                ClaimValue = model.Address
             });
         }
     }

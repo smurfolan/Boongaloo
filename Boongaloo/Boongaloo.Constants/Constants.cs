@@ -24,8 +24,5 @@ namespace Boongaloo
         public const string BoongalooSTSUserInfoEndpoint = BoongalooSTS + "/connect/userinfo";
         public const string BoongalooSTSEndSessionEndpoint = BoongalooSTS + "/connect/endsession";
         public const string BoongalooSTSRevokeTokenEndpoint = BoongalooSTS + "/connect/revocation";
-
-
     }
-
 }
