@@ -68,7 +68,7 @@ namespace BoongalooCompany.IdentityServer
                             new LoginPageLink()
                             {
                                 Type = "createaccount"/*Should be unique*/,
-                                Text = "Crate a new account",
+                                Text = "Create a new account",
                                 Href = "~/createuseraccount"
                             }
                         },
