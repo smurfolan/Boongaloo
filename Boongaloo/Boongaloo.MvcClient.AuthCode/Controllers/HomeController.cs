@@ -119,7 +119,7 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
 
             client.SetBearerToken(cachedStuff.AccessToken);
 
-            client.BaseAddress = new Uri(Constants.BoongalooAPI);
+            client.BaseAddress = new Uri(Constants.BoongalooStagingAPI);
 
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(

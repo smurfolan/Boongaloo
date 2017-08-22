@@ -10,6 +10,7 @@ namespace Boongaloo
             "https://localhost:44346/Home/StsCallBackForAuthCodeClient";
 
         public const string BoongalooAPI = "http://likkleapi.azurewebsites.net/";
+        public const string BoongalooStagingAPI = "http://likkleapi-staging.azurewebsites.net/";
         public const string BoongalooMVC = "https://localhost:44318/";
         public const string BoongalooMVCSTSCallback = "https://localhost:44318/stscallback";
         public const string BoongalooAngular = "https://localhost:44316/";

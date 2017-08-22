@@ -37,7 +37,11 @@ namespace BoongalooCompany.Repository.Entities
         {
             // write trips to json file, overwriting the old one
 
-            var json = JsonConvert.SerializeObject(RefreshTokens, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore});
+            var json = JsonConvert.SerializeObject(RefreshTokens, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                Formatting = Formatting.None
+            });
 
             var fileSystem = new Microsoft.Owin.FileSystems.PhysicalFileSystem("");
 
