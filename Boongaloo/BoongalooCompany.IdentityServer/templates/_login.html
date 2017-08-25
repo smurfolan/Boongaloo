@@ -15,7 +15,8 @@
     <div class="col-md-12 col-sm-12" ng-show="model.loginUrl">
         <div class="panel panel-default">
             <div class="panel-body">
-                <form name="form" method="post" action="{{model.loginUrl}}">
+                <!-- The 'onsubmit' attribute is used to disable the login button when it was clicked. If more elegant solution is available go for it.-->
+                <form name="form" method="post" action="{{model.loginUrl}}" onsubmit="loginButton.disabled = true;return true;">
                     <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
                     <fieldset>
@@ -34,9 +35,9 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <button onclick="location.href='boongaloo://loginButtonInersect'" class="btn btn-login btn-primary" ng-init="model.LoginButtonClicked = false" ng-click="model.LoginButtonClicked = true">
+                            <button onclick="location.href='boongaloo://loginButtonInersect'" name="loginButton" class="btn btn-login btn-primary" ng-init="model.LoginButtonClicked = false" ng-click="model.LoginButtonClicked = true">
                                 <span ng-show="model.LoginButtonClicked && model.username && model.password" class="glyphicon glyphicon-refresh spinning"></span>
-                                <span ng-show="!model.LoginButtonClicked || !model.username || !model.password">Login</span>    
+                                <span ng-show="!model.LoginButtonClicked || !model.username || !model.password">Login</span>
                             </button>
                         </div>
                     </fieldset>
