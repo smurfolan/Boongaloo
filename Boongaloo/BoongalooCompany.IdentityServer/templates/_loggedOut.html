@@ -1,5 +1,6 @@
 ﻿<div class="page-header">
-    <h1>
+    <img class="img-responsive" src="../Content/Images/logo.png" alt="" />
+    <!--<h1>
         Logout
         <small>You are now logged out (SSO version)</small>
     </h1>
@@ -7,13 +8,21 @@
         Click <a ng-href="{{model.redirectUrl}}">here</a> to return to the
         <span ng-bind="model.clientName"></span> application.
     </div>
-    <iframe class="signout" ng-repeat="url in model.iFrameUrls" ng-src="{{url}}"></iframe>
+    <iframe class="signout" ng-repeat="url in model.iFrameUrls" ng-src="{{url}}"></iframe>-->
 
     <!-- This portion of code is used for the Single-Sign-Out option
-        If we are about to add a new client and we want him to be part of the 
-        SSOut functionality, we have to add his logout endpoint here -->
+    If we are about to add a new client and we want him to be part of the
+    SSOut functionality, we have to add his logout endpoint here -->
     <!--MVC-->
-    <iframe hidden src="https://localhost:44318/UserAccount/LocalLogout"></iframe>
+    <!-- <iframe hidden src="https://localhost:44318/UserAccount/LocalLogout"></iframe> -->
     <!--Angular-->
-    <iframe hidden src="https://localhost:44316/locallogout.html"></iframe>
+    <!-- <iframe hidden src="https://localhost:44316/locallogout.html"></iframe> -->
 </div>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function (event) {
+        //A bit of a workaround for the navbar header line that shows up.
+        //TODO: If more elegant way is found for hiding it - go for it. Pure javascript is used since jQuery is not available here.
+        document.getElementsByClassName("navbar")[0].style.visibility = 'hidden';
+    });
+</script>
