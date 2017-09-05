@@ -8,6 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using IdentityModel.Client;
+using Microsoft.AspNet.SignalR.Client;
+using System.Collections.Generic;
 
 namespace Boongaloo.MvcClient.AuthCode.Controllers
 {
@@ -67,6 +69,9 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
 
         public ActionResult StartCallingWebApi()
         {
+            Task a = new Task(async () => await ConnectToSignalRAsync());
+            a.Start();
+
             var timer = new Timer(async (e) =>
             {
                 var cachedStuff = this._cache.Get(this.tokensCacheKey) as TokenModel;
@@ -74,6 +79,18 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
             }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(2).TotalMilliseconds));
             
             return null;
+        }
+
+        private async Task ConnectToSignalRAsync()
+        {
+            var hubConnection = new HubConnection("http://localhost:54036/", new Dictionary<string, string>()
+            {
+                { "userId", "52360a79-7f57-4a70-9590-c632196f8a56" }
+            });
+
+            IHubProxy stockTickerHubProxy = hubConnection.CreateHubProxy("BoongalooGroupsActivityHub");
+
+            await hubConnection.Start();
         }
 
         private async Task ExecuteWebApiCall(TokenModel cachedStuff)
