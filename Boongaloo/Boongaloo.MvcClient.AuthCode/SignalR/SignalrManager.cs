@@ -20,10 +20,36 @@ namespace Boongaloo.MvcClient.AuthCode.SignalR
 
             stockTickerHubProxy
                 .On<IEnumerable<Guid>, SRGroupDto, bool>(
-                "GroupAttachedToExistingAreasWasCreatedAroundMe",
-                (areaIds, groupDto, isSubsribedByMe) => GroupAttachedToExistingAreasWasCreatedAroundMe(areaIds, groupDto, isSubsribedByMe));
+                    "GroupAttachedToExistingAreasWasCreatedAroundMe",
+                    GroupAttachedToExistingAreasWasCreatedAroundMe);
+
+            stockTickerHubProxy
+                .On<SRAreaDto, SRGroupDto, bool>(
+                    "GroupAsNewAreaWasCreatedAroundMe",
+                    GroupAsNewAreaWasCreatedAroundMe);
+
+            stockTickerHubProxy
+                .On<IEnumerable<SRAreaDto>, SRGroupDto, bool>(
+                    "GroupAroundMeWasRecreated",
+                    GroupAroundMeWasRecreated);
 
             await hubConnection.Start();
+        }
+
+        private static void GroupAroundMeWasRecreated(
+            IEnumerable<SRAreaDto> areaDtos, 
+            SRGroupDto groupDto, 
+            bool isSubscribedByMe)
+        {
+            Debug.WriteLine($"AreaDtos:{areaDtos}, GroupDto:{groupDto}, IsSubsribedByMe:{isSubscribedByMe}.");
+        }
+
+        public static void GroupAsNewAreaWasCreatedAroundMe(
+            SRAreaDto areaDto, 
+            SRGroupDto groupDto, 
+            bool isSubscribedByMe)
+        {
+            Debug.WriteLine($"AreaDto:{areaDto}, GroupDto:{groupDto}, IsSubsribedByMe:{isSubscribedByMe}.");
         }
 
         public static void GroupAttachedToExistingAreasWasCreatedAroundMe(
