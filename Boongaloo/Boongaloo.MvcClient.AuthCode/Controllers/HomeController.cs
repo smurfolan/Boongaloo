@@ -8,8 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using IdentityModel.Client;
-using Microsoft.AspNet.SignalR.Client;
-using System.Collections.Generic;
+using Boongaloo.MvcClient.AuthCode.SignalR;
 
 namespace Boongaloo.MvcClient.AuthCode.Controllers
 {
@@ -20,7 +19,7 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
 
         public HomeController()
         {
-            _cache = MemoryCache.Default;
+            _cache = MemoryCache.Default;      
         }
 
         // GET: Home
@@ -69,7 +68,8 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
 
         public ActionResult StartCallingWebApi()
         {
-            Task a = new Task(async () => await ConnectToSignalRAsync());
+            // Connect this testing purposes app to SignalR hub on the REST service it tests. We do it here cause here we can be sure user is logged in.
+            Task a = new Task(async () => await SignalrManager.ConnectToSignalRAsync());
             a.Start();
 
             var timer = new Timer(async (e) =>
@@ -80,19 +80,7 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
             
             return null;
         }
-
-        private async Task ConnectToSignalRAsync()
-        {
-            var hubConnection = new HubConnection("http://localhost:54036/", new Dictionary<string, string>()
-            {
-                { "userId", "52360a79-7f57-4a70-9590-c632196f8a56" }
-            });
-
-            IHubProxy stockTickerHubProxy = hubConnection.CreateHubProxy("BoongalooGroupsActivityHub");
-
-            await hubConnection.Start();
-        }
-
+  
         private async Task ExecuteWebApiCall(TokenModel cachedStuff)
         {
             // Ensure that access token expires in more than one minute
