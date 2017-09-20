@@ -33,7 +33,27 @@ namespace Boongaloo.MvcClient.AuthCode.SignalR
                     "GroupAroundMeWasRecreated",
                     GroupAroundMeWasRecreated);
 
+            stockTickerHubProxy
+                .On<Guid>(
+                    "GroupWasJoinedByUser",
+                    GroupWasJoinedByUser);
+
+            stockTickerHubProxy
+                .On<Guid>(
+                    "GroupWasLeftByUser",
+                    GroupWasLeftByUser);
+
             await hubConnection.Start();
+        }
+
+        private static void GroupWasLeftByUser(Guid groupId)
+        {
+            Debug.WriteLine($"Group id:{groupId}.");
+        }
+
+        private static void GroupWasJoinedByUser(Guid groupId)
+        {
+            Debug.WriteLine($"Group id:{groupId}.");
         }
 
         private static void GroupAroundMeWasRecreated(
