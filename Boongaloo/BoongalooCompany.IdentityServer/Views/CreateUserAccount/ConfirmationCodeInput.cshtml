@@ -1,24 +1,30 @@
 ﻿@model BoongalooCompany.IdentityServer.Models.ConfirmationCodeInputModel
 
+@{
+    ViewBag.Title = "Create Account";
+    var signInId = Model.Signin;
+    var loginScreenUrl = string.Format("/identity/login?signin={0}", signInId);
+}
+
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
 
-<h3 style="color: whitesmoke; text-align: center;">Enter code</h3>
-
 @using (Html.BeginForm("SubmitConfirmationCode", "CreateUserAccount"))
 {
-    <fieldset style="margin: 0 auto; width:80%;">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="col-md-10">
+    <h3 style="color: whitesmoke; text-align: center;">Enter code</h3>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <fieldset style="margin: 0px auto; width:80%;">       
+        <div class="col-md-10 form-group">
             @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group" style="text-align: center">
-            <button class="btn btn-primary">Send</button>
-        </div>
+        </div>      
+        <div class="col-md-10 form-group">
+            @Html.HiddenFor(model => model.UserEmail, Model.UserEmail)
+        </div> 
     </fieldset>
+    <div class="form-group" style="text-align: center">
+        <a href="@loginScreenUrl" class="btn btn-primary">Back</a>
+        <button class="btn btn-primary">Send</button>
+    </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
