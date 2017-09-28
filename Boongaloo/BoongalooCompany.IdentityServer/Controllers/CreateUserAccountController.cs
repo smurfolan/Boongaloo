@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BoongalooCompany.IdentityServer.Models;
 using BoongalooCompany.Repository;
 using BoongalooCompany.Repository.Entities;
+using BoongalooCompany.IdentityServer.Services;
 
 namespace BoongalooCompany.IdentityServer.Controllers
 {
@@ -14,6 +15,14 @@ namespace BoongalooCompany.IdentityServer.Controllers
         private static readonly Dictionary<string, string> SigninValues = new Dictionary<string, string>();
         private static readonly List<CreateUserAccountModel> ContextUsers = new List<CreateUserAccountModel>();
         private static readonly Dictionary<string, string> SecretlyGeneratedCodes = new Dictionary<string, string>();
+
+        private readonly IMailDeliveryService _mailDeliveryService;
+
+        public CreateUserAccountController(/*IMailDeliveryService mailDeliveryService*/)
+        {
+            // this._mailDeliveryService = mailDeliveryService;
+            this._mailDeliveryService = new MailDeliveryService();
+        }
 
         // GET: CreateUserAccount
         [HttpGet]
@@ -37,7 +46,8 @@ namespace BoongalooCompany.IdentityServer.Controllers
             var randomSixDigitNumber = this.RandomSixDigitNumber();
             SecretlyGeneratedCodes.Add(model.Email, randomSixDigitNumber);
 
-            // send it on email
+            // send it on email (TODO: Think of handling a scenario where exception is thrown or some kind of error occurs). Make it async.
+            this._mailDeliveryService.SendCode(model.Email, randomSixDigitNumber);
 
             // navigate to page where input for th ecode is expected
             return View("ConfirmationCodeInput", new ConfirmationCodeInputModel()
