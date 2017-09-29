@@ -11,7 +11,7 @@ namespace Boongaloo.MvcClient.AuthCode.SignalR
     {
         public static async Task ConnectToSignalRAsync()
         {
-            var hubConnection = new HubConnection("http://localhost:54036/", new Dictionary<string, string>()
+            var hubConnection = new HubConnection("http://likkleapi-staging.azurewebsites.net/", new Dictionary<string, string>()
             {
                 { "userId", "52360a79-7f57-4a70-9590-c632196f8a56" }
             });
@@ -33,7 +33,27 @@ namespace Boongaloo.MvcClient.AuthCode.SignalR
                     "GroupAroundMeWasRecreated",
                     GroupAroundMeWasRecreated);
 
+            stockTickerHubProxy
+                .On<Guid>(
+                    "GroupWasJoinedByUser",
+                    GroupWasJoinedByUser);
+
+            stockTickerHubProxy
+                .On<Guid>(
+                    "GroupWasLeftByUser",
+                    GroupWasLeftByUser);
+
             await hubConnection.Start();
+        }
+
+        private static void GroupWasLeftByUser(Guid groupId)
+        {
+            Debug.WriteLine($"Group id:{groupId}.");
+        }
+
+        private static void GroupWasJoinedByUser(Guid groupId)
+        {
+            Debug.WriteLine($"Group id:{groupId}.");
         }
 
         private static void GroupAroundMeWasRecreated(

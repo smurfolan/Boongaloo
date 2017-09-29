@@ -185,6 +185,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\CreateUserAccount\Index.cshtml" />
     <Content Include="Views\CompleteAdditionalInformation\Index.cshtml" />
+    <Content Include="Views\CreateUserAccount\ConfirmationCodeInput.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -213,11 +214,14 @@
     <Compile Include="Helpers\ExternalAuthHelper.cs" />
     <Compile Include="Models\BaseUserInfo.cs" />
     <Compile Include="Models\CompleteAdditionalInformationModel.cs" />
+    <Compile Include="Models\ConfirmationCodeInputModel.cs" />
     <Compile Include="Models\CreateUserAccountModel.cs" />
     <Compile Include="Models\TwoFactorAuthenticationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CustomRefreshTokenStore.cs" />
     <Compile Include="Services\CustomUserService.cs" />
+    <Compile Include="Services\IMailDeliveryService.cs" />
+    <Compile Include="Services\MailDeliveryService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Validators\CreateUserAccountModelValidator.cs" />
   </ItemGroup>
