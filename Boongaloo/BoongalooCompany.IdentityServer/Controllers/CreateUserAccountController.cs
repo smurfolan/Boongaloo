@@ -7,6 +7,7 @@ using BoongalooCompany.IdentityServer.Models;
 using BoongalooCompany.Repository;
 using BoongalooCompany.Repository.Entities;
 using BoongalooCompany.IdentityServer.Services;
+using System.Threading.Tasks;
 
 namespace BoongalooCompany.IdentityServer.Controllers
 {
@@ -46,8 +47,18 @@ namespace BoongalooCompany.IdentityServer.Controllers
             var randomSixDigitNumber = this.RandomSixDigitNumber();
             SecretlyGeneratedCodes.Add(model.Email, randomSixDigitNumber);
 
-            // send it on email (TODO: Think of handling a scenario where exception is thrown or some kind of error occurs). Make it async.
-            this._mailDeliveryService.SendCode(model.Email, randomSixDigitNumber);
+            // send it on email. TODO: Currently we silently move the user to login page. Notification could be implemented.
+            try
+            {
+                this._mailDeliveryService.SendCode(model.Email, randomSixDigitNumber);
+            }
+            catch (Exception)
+            {
+                SigninValues.Remove(model.Email);
+                ContextUsers.Remove(model);
+
+                return Redirect($"/identity/login?signin={signin}");
+            }
 
             // navigate to page where input for th ecode is expected
             return View("ConfirmationCodeInput", new ConfirmationCodeInputModel()

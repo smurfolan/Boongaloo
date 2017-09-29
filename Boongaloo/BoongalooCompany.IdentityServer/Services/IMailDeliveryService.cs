@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace BoongalooCompany.IdentityServer.Services
+﻿namespace BoongalooCompany.IdentityServer.Services
 {
     public interface IMailDeliveryService
     {
