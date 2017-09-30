@@ -84,8 +84,9 @@ namespace BoongalooCompany.IdentityServer
                     },
                     LoggingOptions = new LoggingOptions()
                     {
-                        //EnableHttpLogging = true, https://github.com/IdentityServer/IdentityServer3/issues/1672
-                        EnableWebApiDiagnostics = true
+                        //EnableHttpLogging = true,// https://github.com/IdentityServer/IdentityServer3/issues/1672
+                        EnableWebApiDiagnostics = true,
+                        WebApiDiagnosticsIsVerbose = true
                     }
 
                 };

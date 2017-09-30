@@ -15,6 +15,8 @@ namespace BoongalooCompany.IdentityServer
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             FluentValidationModelValidatorProvider.Configure();
+
+            log4net.Config.XmlConfigurator.Configure();
         }
     }
 }

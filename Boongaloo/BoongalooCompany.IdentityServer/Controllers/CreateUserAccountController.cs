@@ -19,6 +19,8 @@ namespace BoongalooCompany.IdentityServer.Controllers
 
         private readonly IMailDeliveryService _mailDeliveryService;
 
+        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public CreateUserAccountController(/*IMailDeliveryService mailDeliveryService*/)
         {
             // this._mailDeliveryService = mailDeliveryService;
@@ -52,8 +54,10 @@ namespace BoongalooCompany.IdentityServer.Controllers
             {
                 this._mailDeliveryService.SendCode(model.Email, randomSixDigitNumber);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.Error(ex.Message, ex);
+
                 SigninValues.Remove(model.Email);
                 ContextUsers.Remove(model);
 
