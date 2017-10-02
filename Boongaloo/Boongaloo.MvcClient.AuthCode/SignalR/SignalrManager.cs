@@ -11,7 +11,7 @@ namespace Boongaloo.MvcClient.AuthCode.SignalR
     {
         public static async Task ConnectToSignalRAsync()
         {
-            var hubConnection = new HubConnection("http://likkleapi-staging.azurewebsites.net/", new Dictionary<string, string>()
+            var hubConnection = new HubConnection(Constants.BoongalooStagingAPI, new Dictionary<string, string>()
             {
                 { "userId", "52360a79-7f57-4a70-9590-c632196f8a56" }
             });
