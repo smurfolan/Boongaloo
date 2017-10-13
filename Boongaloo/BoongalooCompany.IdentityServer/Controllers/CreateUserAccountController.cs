@@ -17,14 +17,14 @@ namespace BoongalooCompany.IdentityServer.Controllers
         private static readonly List<CreateUserAccountModel> ContextUsers = new List<CreateUserAccountModel>();
         private static readonly Dictionary<string, string> SecretlyGeneratedCodes = new Dictionary<string, string>();
 
-        private readonly IMailDeliveryService _mailDeliveryService;
+        private readonly IConfirmationCodeDeliveryService _mailDeliveryService;
 
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public CreateUserAccountController(/*IMailDeliveryService mailDeliveryService*/)
         {
             // this._mailDeliveryService = mailDeliveryService;
-            this._mailDeliveryService = new MailDeliveryService();
+            this._mailDeliveryService = new ConfirmationCodeDeliveryService();
         }
 
         // GET: CreateUserAccount
@@ -52,7 +52,7 @@ namespace BoongalooCompany.IdentityServer.Controllers
             // send it on email. TODO: Currently we silently move the user to login page. Notification could be implemented.
             try
             {
-                this._mailDeliveryService.SendCode(model.Email, randomSixDigitNumber);
+                this._mailDeliveryService.SendCodeViaMail(model.Email, randomSixDigitNumber);
             }
             catch (Exception ex)
             {
