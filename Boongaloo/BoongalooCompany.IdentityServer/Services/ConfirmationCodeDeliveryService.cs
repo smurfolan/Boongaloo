@@ -1,5 +1,4 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -59,6 +58,9 @@ namespace BoongalooCompany.IdentityServer.Services
                 to,
                 from: new PhoneNumber("+15558675309"),
                 body: $"Your confirmation code is: {code}");
+
+            if (message.Status != MessageResource.StatusEnum.Sent)
+                throw new System.Exception($"Error while trying to send confirmation code {code} to {to}");
         }
     }
 }

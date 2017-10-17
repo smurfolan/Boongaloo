@@ -7,7 +7,6 @@ using BoongalooCompany.IdentityServer.Models;
 using BoongalooCompany.Repository;
 using BoongalooCompany.Repository.Entities;
 using BoongalooCompany.IdentityServer.Services;
-using System.Threading.Tasks;
 
 namespace BoongalooCompany.IdentityServer.Controllers
 {

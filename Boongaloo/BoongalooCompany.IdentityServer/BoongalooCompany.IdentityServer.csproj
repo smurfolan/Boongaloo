@@ -247,6 +247,10 @@
       <Project>{1bec8dbc-04f3-4eea-b3d7-422d80a6acd1}</Project>
       <Name>Boongaloo.Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Boongaloo.DTO\Boongaloo.DTO.csproj">
+      <Project>{BB37F09A-7FD4-4480-A065-4511A7899191}</Project>
+      <Name>Boongaloo.DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BoongalooCompany.Repository\BoongalooCompany.Repository.csproj">
       <Project>{d07a403f-8d9f-4c82-ac8e-f7de5469e694}</Project>
       <Name>BoongalooCompany.Repository</Name>

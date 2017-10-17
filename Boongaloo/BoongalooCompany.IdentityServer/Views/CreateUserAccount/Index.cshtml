@@ -1,4 +1,5 @@
-﻿@model BoongalooCompany.IdentityServer.Models.CreateUserAccountModel
+﻿@using Boongaloo.DTO.Enums;
+@model BoongalooCompany.IdentityServer.Models.CreateUserAccountModel
 
 @{
     ViewBag.Title = "Create Account";
@@ -8,6 +9,7 @@
 
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
 
 <h3 style="color: whitesmoke; text-align: center;">Sign up</h3>
 
@@ -33,10 +35,23 @@
             <label style="color: whitesmoke">First name</label><span class="red-text">*</span>
             @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", required = "required" })
         </div>
-        <div class="form-group">
-            <label style="color: whitesmoke">Email</label><span class="red-text">*</span><span style="font-size: 11px;color: whitesmoke"> (confirmation code will be sent)</span>
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required" })
+
+        <label style="color: whitesmoke">Confirmation by:</label><span class="red-text">*</span>
+        @foreach (var value in ConfirmationTypeEnum.GetValues(typeof(Boongaloo.DTO.Enums.ConfirmationTypeEnum)))
+        {
+            <span style="padding-left:20px;"></span>
+            @Html.RadioButtonFor(m => m.ConfirmationType, value)
+            @Html.Label(value.ToString(), new { @style = "color: whitesmoke;" })
+        }
+        <div id="emailInput" class="form-group">
+            <label style="color: whitesmoke">Email</label><span class="red-text">*</span>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control"})
             @Html.ValidationMessageFor(x => x.Email, null, new { @class = "red-text" })
+        </div>
+        <div id="phoneInput" class="form-group">
+            <label style="color: whitesmoke">Phone</label><span class="red-text">*</span>
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control"})
+            @Html.ValidationMessageFor(x => x.PhoneNumber, null, new { @class = "red-text" })
         </div>
         <div class="form-group" style="text-align: center">
             <a href="@loginScreenUrl" class="btn btn-primary">Back</a>
@@ -44,3 +59,22 @@
         </div>
     </fieldset>
 }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#emailInput').hide();
+        $('#phoneInput').show();
+
+        $('input[type="radio"]').click(function () {
+            if ($(this).attr('value') == 'Sms') {
+                $('#emailInput').hide();
+                $('#phoneInput').show();
+            }
+
+            if ($(this).attr('value') == 'Email'){
+                $('#emailInput').show();
+                $('#phoneInput').hide();
+            }
+        });
+    });
+</script>
