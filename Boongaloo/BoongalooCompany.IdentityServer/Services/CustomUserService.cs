@@ -15,8 +15,9 @@ namespace BoongalooCompany.IdentityServer.Services
 {
     public class CustomUserService : UserServiceBase
     {
+        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         // Authenticate against local user store.
-        public override Task AuthenticateLocalAsync(IdentityServer3.Core.Models.LocalAuthenticationContext context)
+        public override Task AuthenticateLocalAsync(LocalAuthenticationContext context)
         {
             using (var userRepository = new UserRepository())
             {
@@ -37,7 +38,7 @@ namespace BoongalooCompany.IdentityServer.Services
             }
         }
 
-        public override Task GetProfileDataAsync(IdentityServer3.Core.Models.ProfileDataRequestContext context)
+        public override Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
             using (var userRepository = new UserRepository())
             {
@@ -67,7 +68,7 @@ namespace BoongalooCompany.IdentityServer.Services
             }
         }
 
-        public override Task IsActiveAsync(IdentityServer3.Core.Models.IsActiveContext context)
+        public override Task IsActiveAsync(IsActiveContext context)
         {
             using (var userRepository = new UserRepository())
             {
@@ -91,6 +92,7 @@ namespace BoongalooCompany.IdentityServer.Services
         {
             using (var userRepository = new UserRepository())
             {
+                Log.Info("Inside AuthenticateExternalAsync");
                 // is the external provider already linked to an account?
                 var existingLinkedUser = userRepository.GetUserForExternalProvider(context.ExternalIdentity.Provider,
                  context.ExternalIdentity.ProviderId);
@@ -98,6 +100,7 @@ namespace BoongalooCompany.IdentityServer.Services
                 // it is - set as authentication result;
                 if (existingLinkedUser != null)
                 {
+                    Log.Info("User for external provider exists in the DB.");
                     context.AuthenticateResult = new AuthenticateResult(
                         existingLinkedUser.Subject,
                         existingLinkedUser.UserClaims.First(c => c.ClaimType == Constants.ClaimTypes.GivenName).ClaimValue,
@@ -105,24 +108,28 @@ namespace BoongalooCompany.IdentityServer.Services
                         authenticationMethod: Constants.AuthenticationMethods.External,
                         identityProvider: context.ExternalIdentity.Provider);
 
+                    Log.Info("Authentication result was added to the context.");
                     return Task.FromResult(0);
                 }
 
+                Log.Info("User for external provider does not exist in the DB.");
                 // no existing link, get email claim to match user
                 var emailClaim = context.ExternalIdentity.Claims.FirstOrDefault(c => c.Type == "email");
                 if (emailClaim == null)
                 {
+                    Log.Info("No user claim available from the external provider.");
                     // return error - we need an email claim to match
                     context.AuthenticateResult = new AuthenticateResult("No email claim available.");
                     return Task.FromResult(0);
                 }
-
+                Log.Info("There's email claim in the result from the external provider.");
                 // find a user with a matching e-mail claim.  
                 var userWithMatchingEmailClaim = userRepository.GetUserByEmail(emailClaim.Value);
 
                 if (userWithMatchingEmailClaim == null && 
                     (context.ExternalIdentity.Provider.ToLower() == "google"))
                 {
+                    Log.Info("There's no user with matching email in the DB and provider is google.");
                     var newUser = new User
                     {
                         Subject = Guid.NewGuid().ToString(),
@@ -139,6 +146,7 @@ namespace BoongalooCompany.IdentityServer.Services
                     ClaimsHelper.AddUserClaimsForExternalUser(null, newUser, context.ExternalIdentity.Claims);
 
                     userRepository.AddUser(newUser);
+                    Log.Info("New user was created and added to the DB.");
                 }
 
                 userWithMatchingEmailClaim = userRepository.GetUserByEmail(emailClaim.Value);
@@ -155,7 +163,9 @@ namespace BoongalooCompany.IdentityServer.Services
                      userWithMatchingEmailClaim.UserClaims.Select<UserClaim, Claim>(uc => new Claim(uc.ClaimType, uc.ClaimValue)),
                      authenticationMethod: Constants.AuthenticationMethods.External,
                      identityProvider: context.ExternalIdentity.Provider);
-                
+
+                Log.Info("External provider was assigned to the newly created user and AuthenticationResult was set to the context with that new user.");
+
             }
             
             return Task.FromResult(0);
