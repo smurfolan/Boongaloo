@@ -92,7 +92,7 @@ namespace BoongalooCompany.IdentityServer.Services
         {
             using (var userRepository = new UserRepository())
             {
-                Log.Info("Inside AuthenticateExternalAsync");
+                Log.Info($"Inside AuthenticateExternalAsync. ReturnUrl is {context.SignInMessage.ReturnUrl}");
                 // is the external provider already linked to an account?
                 var existingLinkedUser = userRepository.GetUserForExternalProvider(context.ExternalIdentity.Provider,
                  context.ExternalIdentity.ProviderId);
