@@ -24,25 +24,24 @@
         <div class="form-group">
             <label style="color: whitesmoke">Password</label><span class="red-text">*</span>
             @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required" })
-            @Html.ValidationMessageFor(x => x.Password)
+            @Html.ValidationMessageFor(x => x.Password, null, new { @class = "red-text" })
         </div>
         <div class="form-group">
             <label style="color: whitesmoke">Confirm Password</label><span class="red-text">*</span>
             @Html.PasswordFor(m => m.ConfirmationPassword, new { @class = "form-control", required = "required" })
             @Html.ValidationMessageFor(x => x.ConfirmationPassword, null, new { @class = "red-text" })
         </div>
-        <div class="form-group">
-            <label style="color: whitesmoke">First name</label><span class="red-text">*</span>
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", required = "required" })
-        </div>
 
-        <label style="color: whitesmoke">Confirmation by:</label><span class="red-text">*</span>
+        <label style="color: whitesmoke">Verify me by:</label><span class="red-text">*</span>
         @foreach (var value in ConfirmationTypeEnum.GetValues(typeof(Boongaloo.DTO.Enums.ConfirmationTypeEnum)))
         {
             <span style="padding-left:20px;"></span>
             @Html.RadioButtonFor(m => m.ConfirmationType, value)
             @Html.Label(value.ToString(), new { @style = "color: whitesmoke;" })
         }
+        <br/>
+        @Html.ValidationMessageFor(x => x.ConfirmationType, null, new { @class = "red-text" })
+
         <div id="emailInput" class="form-group">
             <label style="color: whitesmoke">Email</label><span class="red-text">*</span>
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control"})

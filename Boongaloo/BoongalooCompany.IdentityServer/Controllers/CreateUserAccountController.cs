@@ -7,6 +7,7 @@ using BoongalooCompany.IdentityServer.Models;
 using BoongalooCompany.Repository;
 using BoongalooCompany.Repository.Entities;
 using BoongalooCompany.IdentityServer.Services;
+using Boongaloo.DTO.Enums;
 
 namespace BoongalooCompany.IdentityServer.Controllers
 {
@@ -38,8 +39,14 @@ namespace BoongalooCompany.IdentityServer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Index", model);
+                return View("~/Views/CreateUserAccount/Index.cshtml", model);
             }
+
+            //switch (model.ConfirmationType)
+            //{
+            //    case ConfirmationTypeEnum.Email: return EmailConfirmationCodeInput();
+            //    case ConfirmationTypeEnum.Sms: return SmsConfirmationCodeInput();
+            //}
 
             SigninValues.Add(model.Email, signin);
             ContextUsers.Add(model);
@@ -117,7 +124,7 @@ namespace BoongalooCompany.IdentityServer.Controllers
                 Id = Guid.NewGuid().ToString(),
                 Subject = newUser.Subject,
                 ClaimType = Constants.ClaimTypes.GivenName,
-                ClaimValue = model.FirstName
+                ClaimValue = model.Username
             });
         }
 
