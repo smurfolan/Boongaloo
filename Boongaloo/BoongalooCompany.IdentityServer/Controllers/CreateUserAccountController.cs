@@ -13,9 +13,9 @@ namespace BoongalooCompany.IdentityServer.Controllers
 {
     public class CreateUserAccountController : Controller
     {
-        private static readonly Dictionary<string, string> SigninValues = new Dictionary<string, string>();
+        private static readonly Dictionary<Guid, string> SigninValues = new Dictionary<Guid, string>();
         private static readonly List<CreateUserAccountModel> ContextUsers = new List<CreateUserAccountModel>();
-        private static readonly Dictionary<string, string> SecretlyGeneratedCodes = new Dictionary<string, string>();
+        private static readonly Dictionary<Guid, string> SecretlyGeneratedCodes = new Dictionary<Guid, string>();
 
         private readonly IConfirmationCodeDeliveryService _mailDeliveryService;
 
@@ -42,29 +42,29 @@ namespace BoongalooCompany.IdentityServer.Controllers
                 return View("~/Views/CreateUserAccount/Index.cshtml", model);
             }
 
-            //switch (model.ConfirmationType)
-            //{
-            //    case ConfirmationTypeEnum.Email: return EmailConfirmationCodeInput();
-            //    case ConfirmationTypeEnum.Sms: return SmsConfirmationCodeInput();
-            //}
-
-            SigninValues.Add(model.Email, signin);
+            model.TemporaryUserId = Guid.NewGuid();
+ 
+            SigninValues.Add(model.TemporaryUserId, signin);
             ContextUsers.Add(model);
 
-            // var generate code
             var randomSixDigitNumber = this.RandomSixDigitNumber();
-            SecretlyGeneratedCodes.Add(model.Email, randomSixDigitNumber);
+            SecretlyGeneratedCodes.Add(model.TemporaryUserId, randomSixDigitNumber);
 
-            // send it on email. TODO: Currently we silently move the user to login page. Notification could be implemented.
             try
             {
-                this._mailDeliveryService.SendCodeViaMail(model.Email, randomSixDigitNumber);
+                switch (model.ConfirmationType)
+                {
+                    case ConfirmationTypeEnum.Email:
+                        this._mailDeliveryService.SendCodeViaMail(model.Email, randomSixDigitNumber); break;
+                    case ConfirmationTypeEnum.Sms:
+                        this._mailDeliveryService.SendCodeViaSms(model.PhoneNumber, randomSixDigitNumber); break;
+                }
             }
             catch (Exception ex)
             {
                 Log.Error(ex.Message, ex);
 
-                SigninValues.Remove(model.Email);
+                SigninValues.Remove(model.TemporaryUserId);
                 ContextUsers.Remove(model);
 
                 return Redirect($"/identity/login?signin={signin}");
@@ -73,7 +73,7 @@ namespace BoongalooCompany.IdentityServer.Controllers
             // navigate to page where input for th ecode is expected
             return View("ConfirmationCodeInput", new ConfirmationCodeInputModel()
             {
-                UserEmail = model.Email,
+                TemporaryUserId = model.TemporaryUserId,
                 Signin = signin
             });
         }
@@ -82,22 +82,24 @@ namespace BoongalooCompany.IdentityServer.Controllers
         public ActionResult SubmitConfirmationCode(ConfirmationCodeInputModel confirmationCode)
         {
             string confirmationCodeSentToUser;
-            SecretlyGeneratedCodes.TryGetValue(confirmationCode.UserEmail, out confirmationCodeSentToUser);
+            SecretlyGeneratedCodes.TryGetValue(confirmationCode.TemporaryUserId, out confirmationCodeSentToUser);
 
             if (confirmationCode.Code == confirmationCodeSentToUser)
             {
-                SecretlyGeneratedCodes.Remove(confirmationCode.UserEmail);
-                return this.CreateUserAndNavigateToLoginPage(confirmationCode.UserEmail);
+                SecretlyGeneratedCodes.Remove(confirmationCode.TemporaryUserId);
+
+                return this.CreateUserAndNavigateToLoginPage(confirmationCode.TemporaryUserId);
             }
 
             ModelState.AddModelError("Code", "Code you've entered is wrong.");
 
             return View("ConfirmationCodeInput", new ConfirmationCodeInputModel()
             {
-                UserEmail = confirmationCode.UserEmail,
-                Signin = SigninValues.FirstOrDefault(sv => sv.Key == confirmationCode.UserEmail).Value
+                TemporaryUserId = confirmationCode.TemporaryUserId,
+                Signin = SigninValues.FirstOrDefault(sv => sv.Key == confirmationCode.TemporaryUserId).Value
             });
         }
+
         /// <summary>
         /// Collects all the user provided information into list of claims related to the user in our store
         /// </summary>
@@ -133,10 +135,10 @@ namespace BoongalooCompany.IdentityServer.Controllers
         /// </summary>
         /// <param name="confirmationCodeUserEmail"></param>
         /// <returns></returns>
-        private ActionResult CreateUserAndNavigateToLoginPage(string confirmationCodeUserEmail)
+        private ActionResult CreateUserAndNavigateToLoginPage(Guid confirmationCodeTemporaryUseId)
         {
-            var contextUser = ContextUsers.FirstOrDefault(u => u.Email == confirmationCodeUserEmail);
-            var signingValue = SigninValues.FirstOrDefault(sv => sv.Key == confirmationCodeUserEmail).Value;
+            var contextUser = ContextUsers.FirstOrDefault(u => u.TemporaryUserId == confirmationCodeTemporaryUseId);
+            var signingValue = SigninValues.FirstOrDefault(sv => sv.Key == confirmationCodeTemporaryUseId).Value;
 
             using (var userRepository = new UserRepository())
             {
@@ -151,7 +153,7 @@ namespace BoongalooCompany.IdentityServer.Controllers
                 userRepository.AddUser(newUser);
 
                 ContextUsers.Remove(contextUser);
-                SigninValues.Remove(confirmationCodeUserEmail);
+                SigninValues.Remove(confirmationCodeTemporaryUseId);
 
                 // redirect to the login page, passing in the signin parameter
                 return Redirect("~/identity/" + Constants.RoutePaths.Login + "?signin=" + signingValue);

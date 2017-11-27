@@ -20,7 +20,7 @@
             @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
         </div>      
         <div class="col-md-10 form-group">
-            @Html.HiddenFor(model => model.UserEmail, Model.UserEmail)
+            @Html.HiddenFor(model => model.TemporaryUserId, Model.TemporaryUserId)
         </div> 
     </fieldset>
     <div class="form-group" style="text-align: center">
