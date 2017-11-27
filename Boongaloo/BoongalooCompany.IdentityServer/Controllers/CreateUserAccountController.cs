@@ -27,7 +27,6 @@ namespace BoongalooCompany.IdentityServer.Controllers
             this._mailDeliveryService = new ConfirmationCodeDeliveryService();
         }
 
-        // GET: CreateUserAccount
         [HttpGet]
         public ActionResult Index(string signin)
         {
@@ -67,10 +66,10 @@ namespace BoongalooCompany.IdentityServer.Controllers
                 SigninValues.Remove(model.TemporaryUserId);
                 ContextUsers.Remove(model);
 
-                return Redirect($"/identity/login?signin={signin}");
+                ModelState.AddModelError("ConfirmationType", "Imposible to send you confirmation code.");
+                return View("~/Views/CreateUserAccount/Index.cshtml", model);
             }
 
-            // navigate to page where input for th ecode is expected
             return View("ConfirmationCodeInput", new ConfirmationCodeInputModel()
             {
                 TemporaryUserId = model.TemporaryUserId,
