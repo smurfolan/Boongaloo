@@ -17,14 +17,18 @@ namespace BoongalooCompany.IdentityServer.Services
 
         private readonly string TwilioSID;
         private readonly string TwilioAuthToken;
-        
+        private readonly string TwilioOutgoingPhoneNumber;
+
+
         public ConfirmationCodeDeliveryService()
         {
             this.BoongalooEmail = ConfigurationManager.AppSettings["BoongalooEmail"];
             this.BoongalooEmailPassword = ConfigurationManager.AppSettings["BoongalooEmailPassword"];
             this.SmtpClientHost = ConfigurationManager.AppSettings["SmtpClientHost"];
             this.TwilioSID = ConfigurationManager.AppSettings["TwilioSID"];
-            this.TwilioAuthToken = ConfigurationManager.AppSettings["TwilioAuthToken"];  
+            this.TwilioAuthToken = ConfigurationManager.AppSettings["TwilioAuthToken"];
+            this.TwilioOutgoingPhoneNumber = ConfigurationManager.AppSettings["TwilioOutgoingPhoneNumber"];
+            
         }
         public void SendCodeViaMail(string recipientEmail, string code)
         {
@@ -56,10 +60,11 @@ namespace BoongalooCompany.IdentityServer.Services
             var to = new PhoneNumber(phoneNumber);
             var message = MessageResource.Create(
                 to,
-                from: new PhoneNumber("+359885408000"),
-                body: $"Your confirmation code is: {code}");
+                from: new PhoneNumber(this.TwilioOutgoingPhoneNumber),
+                body: $"Boongaloo verification code: {code}");
 
-            if (message.Status != MessageResource.StatusEnum.Sent)
+            if (message.Status == MessageResource.StatusEnum.Failed || 
+                    message.Status == MessageResource.StatusEnum.Undelivered)
                 throw new System.Exception($"Error while trying to send confirmation code {code} to {to}");
         }
     }
