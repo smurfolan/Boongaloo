@@ -50,21 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoongalooWebApiDto\AreaDto.cs" />
-    <Compile Include="BoongalooWebApiDto\EditUserDto.cs" />
-    <Compile Include="BoongalooWebApiDto\GroupDto.cs" />
-    <Compile Include="BoongalooWebApiDto\GroupSubscriptionDto.cs" />
-    <Compile Include="BoongalooWebApiDto\RelateUserToGroupsDto.cs" />
-    <Compile Include="BoongalooWebApiDto\UserAddedResponse.cs" />
-    <Compile Include="BoongalooWebApiDto\UserDto.cs" />
-    <Compile Include="Enums\GenderEnum.cs" />
-    <Compile Include="Enums\LanguagesEnum.cs" />
-    <Compile Include="Enums\RadiusEnum.cs" />
-    <Compile Include="Enums\RadiusRangeEnum.cs" />
-    <Compile Include="Enums\TagEnum.cs" />
+    <Compile Include="Enums\ConfirmationTypeEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RolesEnum.cs" />
-    <Compile Include="UserInfoFromAccessToken.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
