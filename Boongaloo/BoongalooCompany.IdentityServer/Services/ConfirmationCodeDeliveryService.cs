@@ -56,7 +56,7 @@ namespace BoongalooCompany.IdentityServer.Services
             var to = new PhoneNumber(phoneNumber);
             var message = MessageResource.Create(
                 to,
-                from: new PhoneNumber("+15558675309"),
+                from: new PhoneNumber("+359885408000"),
                 body: $"Your confirmation code is: {code}");
 
             if (message.Status != MessageResource.StatusEnum.Sent)
