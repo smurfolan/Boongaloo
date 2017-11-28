@@ -61,12 +61,20 @@ namespace BoongalooCompany.IdentityServer.Controllers
             }
             catch (Exception ex)
             {
+                // TODO: Upgrade account in order to be able to send SMS to whoever (https://www.twilio.com/docs/api/errors/21608)
+                var unverifiedPhoneNumber = (ex is Twilio.Exceptions.ApiException) 
+                    && ((Twilio.Exceptions.ApiException)ex).Code == 21608;
+
                 Log.Error(ex.Message, ex);
 
                 SigninValues.Remove(model.TemporaryUserId);
                 ContextUsers.Remove(model);
 
-                ModelState.AddModelError("ConfirmationType", "Imposible to send you confirmation code.");
+                var errorMessage = unverifiedPhoneNumber 
+                    ? "Sorry, your phone number is not supported. Try email." 
+                    : "Impossible to send you confirmation code.";
+
+                ModelState.AddModelError("ConfirmationType", errorMessage);
                 return View("~/Views/CreateUserAccount/Index.cshtml", model);
             }
 
