@@ -60,7 +60,7 @@ namespace BoongalooCompany.IdentityServer.Validators
                 var phoneNumberValidationResult = PhoneNumberResource.Fetch(new PhoneNumber(phoneNumber));
                 return true;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return false;
             }

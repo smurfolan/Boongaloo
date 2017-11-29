@@ -14,50 +14,60 @@ namespace BoongalooCompany.Repository.Entities
     {
         private string _fileDBLocation;
 
+        private Object readWriteFileLock = new Object();
+
         public RefreshTokenContext(string fileDBLocation)
         {
             _fileDBLocation = fileDBLocation;
-
-            var fileSystem = new Microsoft.Owin.FileSystems.PhysicalFileSystem("");
-
-            IFileInfo fi;
-            if (fileSystem.TryGetFileInfo(_fileDBLocation, out fi))
-            {
-
-                var json = File.ReadAllText(fi.PhysicalPath);
-                var result = JsonConvert.DeserializeObject<List<RefreshToken>>(json, new ClaimConverter());
-
-                RefreshTokens = result.ToList();
-            }
+            this.InitializeRefreshTokenContext();
         }
 
         public IList<RefreshToken> RefreshTokens { get; set; }
 
         public bool SaveChanges()
         {
-            // write trips to json file, overwriting the old one
-
-            var json = JsonConvert.SerializeObject(RefreshTokens, new JsonSerializerSettings()
+            lock (readWriteFileLock)
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                Formatting = Formatting.None
-            });
+                var json = JsonConvert.SerializeObject(RefreshTokens, new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    Formatting = Formatting.None
+                });
 
-            var fileSystem = new Microsoft.Owin.FileSystems.PhysicalFileSystem("");
+                var fileSystem = new Microsoft.Owin.FileSystems.PhysicalFileSystem("");
 
-            IFileInfo fi;
-            if (fileSystem.TryGetFileInfo(_fileDBLocation, out fi))
-            {
-                File.WriteAllText(fi.PhysicalPath, json);
-                return true;
+                IFileInfo fi;
+                if (fileSystem.TryGetFileInfo(_fileDBLocation, out fi))
+                {
+                    File.WriteAllText(fi.PhysicalPath, json);
+                    return true;
+                }
+
+                return false;
             }
-
-            return false;
         }
 
         public void Dispose()
         {
             // cleanup
+        }
+
+        private void InitializeRefreshTokenContext()
+        {
+            lock (readWriteFileLock)
+            {
+                var fileSystem = new Microsoft.Owin.FileSystems.PhysicalFileSystem("");
+
+                IFileInfo fi;
+                if (fileSystem.TryGetFileInfo(_fileDBLocation, out fi))
+                {
+
+                    var json = File.ReadAllText(fi.PhysicalPath);
+                    var result = JsonConvert.DeserializeObject<List<RefreshToken>>(json, new ClaimConverter());
+
+                    RefreshTokens = result.ToList();
+                }
+            }
         }
     }
 
