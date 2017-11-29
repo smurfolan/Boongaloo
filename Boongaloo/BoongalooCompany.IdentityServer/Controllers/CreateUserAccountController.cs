@@ -1,6 +1,5 @@
 ﻿using IdentityServer3.Core;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using BoongalooCompany.IdentityServer.Models;
@@ -8,14 +7,15 @@ using BoongalooCompany.Repository;
 using BoongalooCompany.Repository.Entities;
 using BoongalooCompany.IdentityServer.Services;
 using Boongaloo.DTO.Enums;
+using System.Collections.Concurrent;
 
 namespace BoongalooCompany.IdentityServer.Controllers
 {
     public class CreateUserAccountController : Controller
     {
-        private static readonly Dictionary<Guid, string> SigninValues = new Dictionary<Guid, string>();
-        private static readonly List<CreateUserAccountModel> ContextUsers = new List<CreateUserAccountModel>();
-        private static readonly Dictionary<Guid, string> SecretlyGeneratedCodes = new Dictionary<Guid, string>();
+        private static readonly ConcurrentDictionary<Guid, string> SigninValues = new ConcurrentDictionary<Guid, string>();
+        private static readonly ConcurrentDictionary<Guid, CreateUserAccountModel> ContextUsers = new ConcurrentDictionary<Guid, CreateUserAccountModel>();
+        private static readonly ConcurrentDictionary<Guid, string> SecretlyGeneratedCodes = new ConcurrentDictionary<Guid, string>();
 
         private readonly IConfirmationCodeDeliveryService _mailDeliveryService;
 
@@ -43,11 +43,11 @@ namespace BoongalooCompany.IdentityServer.Controllers
 
             model.TemporaryUserId = Guid.NewGuid();
  
-            SigninValues.Add(model.TemporaryUserId, signin);
-            ContextUsers.Add(model);
+            SigninValues.TryAdd(model.TemporaryUserId, signin);
+            ContextUsers.TryAdd(model.TemporaryUserId, model);
 
             var randomSixDigitNumber = this.RandomSixDigitNumber();
-            SecretlyGeneratedCodes.Add(model.TemporaryUserId, randomSixDigitNumber);
+            SecretlyGeneratedCodes.TryAdd(model.TemporaryUserId, randomSixDigitNumber);
 
             try
             {
@@ -67,8 +67,8 @@ namespace BoongalooCompany.IdentityServer.Controllers
 
                 Log.Error(ex.Message, ex);
 
-                SigninValues.Remove(model.TemporaryUserId);
-                ContextUsers.Remove(model);
+                SigninValues.TryRemove(model.TemporaryUserId, out string signingValueBeingRemoved);
+                ContextUsers.TryRemove(model.TemporaryUserId, out CreateUserAccountModel contextUserBeingRemoved);
 
                 var errorMessage = unverifiedPhoneNumber 
                     ? "Sorry, your phone number is not supported. Try email." 
@@ -93,8 +93,7 @@ namespace BoongalooCompany.IdentityServer.Controllers
 
             if (confirmationCode.Code == confirmationCodeSentToUser)
             {
-                SecretlyGeneratedCodes.Remove(confirmationCode.TemporaryUserId);
-
+                SecretlyGeneratedCodes.TryRemove(confirmationCode.TemporaryUserId, out string codeBeingRemoved);
                 return this.CreateUserAndNavigateToLoginPage(confirmationCode.TemporaryUserId);
             }
 
@@ -142,10 +141,10 @@ namespace BoongalooCompany.IdentityServer.Controllers
         /// </summary>
         /// <param name="confirmationCodeUserEmail"></param>
         /// <returns></returns>
-        private ActionResult CreateUserAndNavigateToLoginPage(Guid confirmationCodeTemporaryUseId)
+        private ActionResult CreateUserAndNavigateToLoginPage(Guid confirmationCodeTemporaryUserId)
         {
-            var contextUser = ContextUsers.FirstOrDefault(u => u.TemporaryUserId == confirmationCodeTemporaryUseId);
-            var signingValue = SigninValues.FirstOrDefault(sv => sv.Key == confirmationCodeTemporaryUseId).Value;
+            var contextUser = ContextUsers.FirstOrDefault(u => u.Value.TemporaryUserId == confirmationCodeTemporaryUserId);
+            var signingValue = SigninValues.FirstOrDefault(sv => sv.Key == confirmationCodeTemporaryUserId).Value;
 
             using (var userRepository = new UserRepository())
             {
@@ -155,12 +154,12 @@ namespace BoongalooCompany.IdentityServer.Controllers
                     IsActive = true
                 };
 
-                this.AddUserClaimsForLocalUser(newUser, contextUser);
+                this.AddUserClaimsForLocalUser(newUser, contextUser.Value);
 
                 userRepository.AddUser(newUser);
 
-                ContextUsers.Remove(contextUser);
-                SigninValues.Remove(confirmationCodeTemporaryUseId);
+                ContextUsers.TryRemove(contextUser.Key, out CreateUserAccountModel contextUserBeingRemoved);
+                SigninValues.TryRemove(confirmationCodeTemporaryUserId, out string signingValueBeingRemoved);
 
                 // redirect to the login page, passing in the signin parameter
                 return Redirect("~/identity/" + Constants.RoutePaths.Login + "?signin=" + signingValue);
