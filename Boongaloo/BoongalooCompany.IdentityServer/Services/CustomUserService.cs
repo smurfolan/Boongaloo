@@ -84,7 +84,7 @@ namespace BoongalooCompany.IdentityServer.Services
                 return Task.FromResult(0);
             }
         }
-
+        
         // gets called whenever the user uses external identity provider to authenticate
         // now we will try to map external user to a local user
         public override Task AuthenticateExternalAsync(ExternalAuthenticationContext context)

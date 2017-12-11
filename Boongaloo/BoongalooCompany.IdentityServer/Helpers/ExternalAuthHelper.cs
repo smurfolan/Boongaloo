@@ -2,7 +2,6 @@
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using Owin.Security.Providers.LinkedIn;
 
 namespace BoongalooCompany.IdentityServer.Helpers
 {
@@ -11,6 +10,7 @@ namespace BoongalooCompany.IdentityServer.Helpers
         public static void ConfigureExternalAuthProviders(IAppBuilder app, string signInAsType)
         {
             GoogleAuthentication(app, signInAsType);
+            FacebookAuthentication(app, signInAsType);
         }
 
         private static void GoogleAuthentication(IAppBuilder app, string signInAsType)
@@ -26,11 +26,33 @@ namespace BoongalooCompany.IdentityServer.Helpers
                 {
                     OnAuthenticated = (context) =>
                     {
-
                         return Task.FromResult(0);
                     }
                 }
             });
+        }
+
+        private static void FacebookAuthentication(IAppBuilder app, string signInAsType)
+        {
+            var fbOptions = new FacebookAuthenticationOptions()
+            {
+                AuthenticationType = "Facebook",
+                Caption = "Facebook",
+                SignInAsAuthenticationType = signInAsType,
+                AppId = "1743032272668435",
+                AppSecret = "3addd5c09d99166f0cb2469164368016",
+                Provider = new FacebookAuthenticationProvider()
+                {
+                    OnAuthenticated = (context) =>
+                    {
+                        return Task.FromResult(0);
+                    }
+                },
+                UserInformationEndpoint = "https://graph.facebook.com/v2.5/me?fields=id,name,email"
+            };
+
+            fbOptions.Scope.Add("email");
+            app.UseFacebookAuthentication(fbOptions);
         }
     }
 }
