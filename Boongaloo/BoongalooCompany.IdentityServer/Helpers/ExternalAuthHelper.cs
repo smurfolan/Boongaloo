@@ -48,7 +48,7 @@ namespace BoongalooCompany.IdentityServer.Helpers
                         return Task.FromResult(0);
                     }
                 },
-                UserInformationEndpoint = "https://graph.facebook.com/v2.5/me?fields=id,name,email"
+                UserInformationEndpoint = "https://graph.facebook.com/v2.5/me?fields=id,name,first_name,last_name,email"
             };
 
             fbOptions.Scope.Add("email");

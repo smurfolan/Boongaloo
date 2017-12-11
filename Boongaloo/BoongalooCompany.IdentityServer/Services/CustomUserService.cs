@@ -16,7 +16,7 @@ namespace BoongalooCompany.IdentityServer.Services
     public class CustomUserService : UserServiceBase
     {
         // Authenticate against local user store.
-        public override Task AuthenticateLocalAsync(IdentityServer3.Core.Models.LocalAuthenticationContext context)
+        public override Task AuthenticateLocalAsync(LocalAuthenticationContext context)
         {
             using (var userRepository = new UserRepository())
             {
@@ -37,7 +37,7 @@ namespace BoongalooCompany.IdentityServer.Services
             }
         }
 
-        public override Task GetProfileDataAsync(IdentityServer3.Core.Models.ProfileDataRequestContext context)
+        public override Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
             using (var userRepository = new UserRepository())
             {
@@ -67,7 +67,7 @@ namespace BoongalooCompany.IdentityServer.Services
             }
         }
 
-        public override Task IsActiveAsync(IdentityServer3.Core.Models.IsActiveContext context)
+        public override Task IsActiveAsync(IsActiveContext context)
         {
             using (var userRepository = new UserRepository())
             {
@@ -92,8 +92,9 @@ namespace BoongalooCompany.IdentityServer.Services
             using (var userRepository = new UserRepository())
             {
                 // is the external provider already linked to an account?
-                var existingLinkedUser = userRepository.GetUserForExternalProvider(context.ExternalIdentity.Provider,
-                 context.ExternalIdentity.ProviderId);
+                var existingLinkedUser = userRepository.GetUserForExternalProvider(
+                    context.ExternalIdentity.Provider,
+                    context.ExternalIdentity.ProviderId);
 
                 // it is - set as authentication result;
                 if (existingLinkedUser != null)
@@ -101,7 +102,7 @@ namespace BoongalooCompany.IdentityServer.Services
                     context.AuthenticateResult = new AuthenticateResult(
                         existingLinkedUser.Subject,
                         existingLinkedUser.UserClaims.First(c => c.ClaimType == Constants.ClaimTypes.GivenName).ClaimValue,
-                        existingLinkedUser.UserClaims.Select<UserClaim, Claim>(uc => new Claim(uc.ClaimType, uc.ClaimValue)),
+                        existingLinkedUser.UserClaims.Select(uc => new Claim(uc.ClaimType, uc.ClaimValue)),
                         authenticationMethod: Constants.AuthenticationMethods.External,
                         identityProvider: context.ExternalIdentity.Provider);
 
@@ -120,8 +121,7 @@ namespace BoongalooCompany.IdentityServer.Services
                 // find a user with a matching e-mail claim.  
                 var userWithMatchingEmailClaim = userRepository.GetUserByEmail(emailClaim.Value);
 
-                if (userWithMatchingEmailClaim == null && 
-                    (context.ExternalIdentity.Provider.ToLower() == "google"))
+                if (userWithMatchingEmailClaim == null)
                 {
                     var newUser = new User
                     {
