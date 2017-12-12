@@ -33,21 +33,29 @@ namespace BoongalooCompany.IdentityServer.Helpers
             });
 
             // GIVEN NAME
+            var firstName = claimsArray.Any(c => c.Type == "given_name")
+                    ? claimsArray.First(c => c.Type == "given_name").Value
+                    : claimsArray.First(c => c.Type == "name").Value;
+
             newUser.UserClaims.Add(new UserClaim()
             {
                 Id = Guid.NewGuid().ToString(),
                 Subject = newUser.Subject,
                 ClaimType = IdentityServer3.Core.Constants.ClaimTypes.GivenName,
-                ClaimValue = claimsArray.First(c => c.Type == "given_name").Value
+                ClaimValue = firstName
             });
 
             // FAMILY NAME
+            var lastName = claimsArray.Any(c => c.Type == "family_name")
+                    ? claimsArray.First(c => c.Type == "family_name").Value
+                    : string.Empty;
+
             newUser.UserClaims.Add(new UserClaim()
             {
                 Id = Guid.NewGuid().ToString(),
                 Subject = newUser.Subject,
                 ClaimType = IdentityServer3.Core.Constants.ClaimTypes.FamilyName,
-                ClaimValue = claimsArray.First(c => c.Type == "family_name").Value
+                ClaimValue = lastName
             });
         }
     }
