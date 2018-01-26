@@ -3,24 +3,18 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Runtime.Caching;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using IdentityModel.Client;
 using Boongaloo.MvcClient.AuthCode.SignalR;
+using Boongaloo.MvcClient.AuthCode.Models;
 
 namespace Boongaloo.MvcClient.AuthCode.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private ObjectCache _cache;
-        private readonly string tokensCacheKey = "Tokens";
-
-        public HomeController()
-        {
-            _cache = MemoryCache.Default;      
-        }
+        public HomeController(){}
 
         // GET: Home
         public ActionResult Index()
@@ -55,7 +49,7 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
             Constants.BoongalooMvcAuthCodePostLogoutCallback
             );
 
-            this._cache[this.tokensCacheKey] = new TokenModel()
+            this.Tokens = new TokenModel()
             {
                 AccessToken = tokenResponse.AccessToken,
                 IdToken = tokenResponse.IdentityToken,
@@ -74,7 +68,7 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
 
             var timer = new Timer(async (e) =>
             {
-                var cachedStuff = this._cache.Get(this.tokensCacheKey) as TokenModel;
+                var cachedStuff = this.Tokens;
                 await ExecuteWebApiCall(cachedStuff);
             }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(2).TotalMilliseconds));
             
@@ -111,7 +105,7 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
                                 DateTime.Now.AddSeconds(newTokens.ExpiresIn).ToString(CultureInfo.InvariantCulture), CultureInfo.InstalledUICulture)
                     };
 
-                    this._cache.Set(this.tokensCacheKey, (object)value, new CacheItemPolicy());
+                    this.Tokens = value;
 
                     await MakeValidApiCall(value);
                 }
@@ -141,16 +135,5 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
                 Debug.WriteLine("Error while fetching data from WebApi. More:" + ex.Message);
             }
         }
-    }
-
-    public class TokenModel
-    {
-        public string AccessToken { get; set; }
-
-        public string IdToken { get; set; }
-
-        public string RefreshToken { get; set; }
-
-        public DateTime AccessTokenExpiresAt { get; set; }
-    }
+    }  
 }

@@ -1,0 +1,91 @@
+﻿@using System.Web.Mvc.Html
+@model Boongaloo.MvcClient.AuthCode.Models.UserModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <h4>UserModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RestId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RestId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StsId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StsId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.About)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.About)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BirthDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
