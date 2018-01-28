@@ -1,4 +1,5 @@
 ﻿using Boongaloo.MvcClient.AuthCode.Models;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Boongaloo.MvcClient.AuthCode.Controllers
@@ -7,16 +8,21 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
     {
         private readonly string tokensKey = "Tokens";
 
+        private static Dictionary<string, object> CommonStorage 
+            = new Dictionary<string, object>();
+
+        public BaseController() { }
+        
         protected TokenModel Tokens {
             get
             {
-                return Session[tokensKey] as TokenModel;
+                return CommonStorage[tokensKey] as TokenModel;
             }
             set
             {
                 if (value is TokenModel)
                 {
-                    Session[tokensKey] = value;
+                    CommonStorage[tokensKey] = value;
                 }
             }
         }

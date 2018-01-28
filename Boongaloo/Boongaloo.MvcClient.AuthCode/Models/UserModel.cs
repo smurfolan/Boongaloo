@@ -5,6 +5,8 @@ namespace Boongaloo.MvcClient.AuthCode.Models
 {
     public class UserModel
     {
+        public UserModel(){}
+
         public Guid RestId { get; set; }
         public string StsId { get; set; }
         public string FirstName { get; set; }

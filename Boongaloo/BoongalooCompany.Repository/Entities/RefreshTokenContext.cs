@@ -34,7 +34,7 @@ namespace BoongalooCompany.Repository.Entities
                     Formatting = Formatting.None
                 });
 
-                var fileSystem = new Microsoft.Owin.FileSystems.PhysicalFileSystem("");
+                var fileSystem = new PhysicalFileSystem("");
 
                 IFileInfo fi;
                 if (fileSystem.TryGetFileInfo(_fileDBLocation, out fi))
@@ -56,7 +56,7 @@ namespace BoongalooCompany.Repository.Entities
         {
             lock (readWriteFileLock)
             {
-                var fileSystem = new Microsoft.Owin.FileSystems.PhysicalFileSystem("");
+                var fileSystem = new PhysicalFileSystem("");
 
                 IFileInfo fi;
                 if (fileSystem.TryGetFileInfo(_fileDBLocation, out fi))

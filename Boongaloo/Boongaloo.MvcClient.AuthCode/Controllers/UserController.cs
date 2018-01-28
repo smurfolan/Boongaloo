@@ -1,4 +1,4 @@
-﻿using Boongaloo.MvcClient.AuthCode.Models;
+﻿using Boongaloo.MvcClient.AuthCode.DTOs;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -8,6 +8,12 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
 {
     public class UserController : BaseController
     {
+        private LikkleApiProxy apiProxy;
+
+        public UserController()
+        {
+            apiProxy = new LikkleApiProxy(this.Tokens);
+        }
         // GET: User
         public ActionResult Index()
         {
@@ -18,16 +24,24 @@ namespace Boongaloo.MvcClient.AuthCode.Controllers
 
             var tokenS = jwtHandler.ReadToken(this.Tokens.AccessToken) as JwtSecurityToken;
 
+            var issuer = tokenS.Claims.First(claim => claim.Type == "iss").Value; ;
             var stsId = tokenS.Claims.First(claim => claim.Type == "sub").Value;
 
-            var user = this.GetUserByStsId(stsId);
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes($"{issuer}{stsId}");
+            var uniqueStSIdentifier = Convert.ToBase64String(plainTextBytes);
+
+            // Automap to ViewModel
+            var user = this.GetUserByStsId(uniqueStSIdentifier);
 
             return View(user);
         }
 
-        private UserModel GetUserByStsId(string stsId)
+        private UserDto GetUserByStsId(string stsId)
         {
-            throw new NotImplementedException();
+            return apiProxy.Get<UserDto>(
+                $"users/bystsid/{stsId}", 
+                null, 
+                null);
         }
     }
 }
