@@ -77,14 +77,16 @@ namespace BoongalooCompany.IdentityServer.Validators
             Match match = regex.Match(email);
 
             var emailFormatIsValid = match.Success;
-            bool emailIsNotAlreadyExisting;
 
-            using (var userRepository = new UserRepository())
-            {
-                emailIsNotAlreadyExisting = userRepository.GetUserByEmail(email) == null;
-            }
-            
-            return emailFormatIsValid && emailIsNotAlreadyExisting;
+            // TODO: Later on determine if it is bad to register 2 or more people with the same email.
+            //bool emailIsNotAlreadyExisting;
+
+            //using (var userRepository = new UserRepository())
+            //{
+            //    emailIsNotAlreadyExisting = userRepository.GetUserByEmail(email) == null;
+            //}
+
+            return emailFormatIsValid; //&& emailIsNotAlreadyExisting;
         }
 
         private bool BeNonExistingUsername(string username)

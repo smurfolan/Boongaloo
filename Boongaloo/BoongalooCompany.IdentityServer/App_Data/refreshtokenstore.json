@@ -1,1 +1,2388 @@
-[]
+[
+  {
+    "Key": "_9SpdnFf-AckwKWwEFh0nGzg0ud5CehNmBtNX_3sDLo",
+    "Token": {
+      "ClientId": "tripgalleryauthcode",
+      "CreationTime": "2017-12-12T13:01:52.860578+00:00",
+      "LifeTime": 1296000,
+      "AccessToken": {
+        "Audience": "https://boongaloocompanysts/identity/resources",
+        "Issuer": "https://boongaloocompanysts/identity",
+        "CreationTime": "2017-12-12T13:01:52.860578+00:00",
+        "Lifetime": 600,
+        "Type": "access_token",
+        "Client": {
+          "Enabled": true,
+          "ClientId": "tripgalleryauthcode",
+          "ClientSecrets": [
+            {
+              "Description": null,
+              "Value": "ScLxbBxYuOAZTv/P/tISHoS0CH2Iv7edvl255Y2r0Os=",
+              "Expiration": null,
+              "Type": "SharedSecret"
+            }
+          ],
+          "ClientName": "Trip Gallery (Authorization Code)",
+          "ClientUri": null,
+          "LogoUri": null,
+          "RequireConsent": false,
+          "AllowRememberConsent": true,
+          "Flow": 0,
+          "AllowClientCredentialsOnly": false,
+          "RedirectUris": [ "app:/com.boongaloo.ios", "https://localhost:44346/Home/StsCallBackForAuthCodeClient" ],
+          "PostLogoutRedirectUris": [ "app:/com.boongaloo.ios.logout" ],
+          "AllowAccessToAllScopes": true,
+          "AllowedScopes": [],
+          "IdentityTokenLifetime": 300,
+          "AccessTokenLifetime": 600,
+          "AuthorizationCodeLifetime": 300,
+          "AbsoluteRefreshTokenLifetime": 1296000,
+          "SlidingRefreshTokenLifetime": 1296000,
+          "RefreshTokenUsage": 0,
+          "UpdateAccessTokenClaimsOnRefresh": false,
+          "RefreshTokenExpiration": 1,
+          "AccessTokenType": 0,
+          "EnableLocalLogin": true,
+          "IdentityProviderRestrictions": [],
+          "IncludeJwtId": false,
+          "Claims": [],
+          "AlwaysSendClientClaims": false,
+          "PrefixClientClaims": true,
+          "AllowAccessToAllCustomGrantTypes": false,
+          "AllowedCustomGrantTypes": [],
+          "AllowedCorsOrigins": []
+        },
+        "Claims": [
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "client_id",
+            "Value": "tripgalleryauthcode",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "openid",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "profile",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "address",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "boongaloomanagement",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "offline_access",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "sub",
+            "Value": "635ad17b-e658-4674-abb7-80b5e1604049",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "amr",
+            "Value": "external",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "auth_time",
+            "Value": "1513083712",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "idp",
+            "Value": "Google",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "email",
+            "Value": "boongalooapplication@gmail.com",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "given_name",
+            "Value": "Kris",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "family_name",
+            "Value": "Azm",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        ],
+        "Version": 3,
+        "SubjectId": "635ad17b-e658-4674-abb7-80b5e1604049",
+        "ClientId": "tripgalleryauthcode",
+        "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+      },
+      "Subject": {
+        "Claims": [],
+        "Identities": [],
+        "Identity": null
+      },
+      "Version": 4,
+      "SubjectId": "635ad17b-e658-4674-abb7-80b5e1604049",
+      "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+    }
+  },
+  {
+    "Key": "rFHvd_GDIX_nwTfhJhb6BCtHIJu8jUSqO3XGdHH1Pfs",
+    "Token": {
+      "ClientId": "tripgalleryauthcode",
+      "CreationTime": "2017-12-12T13:06:16.1174563+00:00",
+      "LifeTime": 1296000,
+      "AccessToken": {
+        "Audience": "https://boongaloocompanysts/identity/resources",
+        "Issuer": "https://boongaloocompanysts/identity",
+        "CreationTime": "2017-12-12T13:06:16.1174563+00:00",
+        "Lifetime": 600,
+        "Type": "access_token",
+        "Client": {
+          "Enabled": true,
+          "ClientId": "tripgalleryauthcode",
+          "ClientSecrets": [
+            {
+              "Description": null,
+              "Value": "ScLxbBxYuOAZTv/P/tISHoS0CH2Iv7edvl255Y2r0Os=",
+              "Expiration": null,
+              "Type": "SharedSecret"
+            }
+          ],
+          "ClientName": "Trip Gallery (Authorization Code)",
+          "ClientUri": null,
+          "LogoUri": null,
+          "RequireConsent": false,
+          "AllowRememberConsent": true,
+          "Flow": 0,
+          "AllowClientCredentialsOnly": false,
+          "RedirectUris": [ "app:/com.boongaloo.ios", "https://localhost:44346/Home/StsCallBackForAuthCodeClient" ],
+          "PostLogoutRedirectUris": [ "app:/com.boongaloo.ios.logout" ],
+          "AllowAccessToAllScopes": true,
+          "AllowedScopes": [],
+          "IdentityTokenLifetime": 300,
+          "AccessTokenLifetime": 600,
+          "AuthorizationCodeLifetime": 300,
+          "AbsoluteRefreshTokenLifetime": 1296000,
+          "SlidingRefreshTokenLifetime": 1296000,
+          "RefreshTokenUsage": 0,
+          "UpdateAccessTokenClaimsOnRefresh": false,
+          "RefreshTokenExpiration": 1,
+          "AccessTokenType": 0,
+          "EnableLocalLogin": true,
+          "IdentityProviderRestrictions": [],
+          "IncludeJwtId": false,
+          "Claims": [],
+          "AlwaysSendClientClaims": false,
+          "PrefixClientClaims": true,
+          "AllowAccessToAllCustomGrantTypes": false,
+          "AllowedCustomGrantTypes": [],
+          "AllowedCorsOrigins": []
+        },
+        "Claims": [
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "client_id",
+            "Value": "tripgalleryauthcode",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "openid",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "profile",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "address",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "boongaloomanagement",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "offline_access",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "sub",
+            "Value": "63988c97-1ccc-4317-9feb-827566bf0115",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "amr",
+            "Value": "external",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "auth_time",
+            "Value": "1513083975",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "idp",
+            "Value": "Facebook",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "email",
+            "Value": "tommyjenkins947@yahoo.com",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "given_name",
+            "Value": "Tommy Jenkins",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "family_name",
+            "Value": "",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        ],
+        "Version": 3,
+        "SubjectId": "63988c97-1ccc-4317-9feb-827566bf0115",
+        "ClientId": "tripgalleryauthcode",
+        "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+      },
+      "Subject": {
+        "Claims": [],
+        "Identities": [],
+        "Identity": null
+      },
+      "Version": 4,
+      "SubjectId": "63988c97-1ccc-4317-9feb-827566bf0115",
+      "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+    }
+  },
+  {
+    "Key": "RbDKO3KFEbOzv_SWTmIcVjSS6SzPuWoQb7N9L9vMjbo",
+    "Token": {
+      "ClientId": "tripgalleryauthcode",
+      "CreationTime": "2017-12-18T09:47:47.171051+00:00",
+      "LifeTime": 1296000,
+      "AccessToken": {
+        "Audience": "https://boongaloocompanysts/identity/resources",
+        "Issuer": "https://boongaloocompanysts/identity",
+        "CreationTime": "2017-12-18T09:47:47.171051+00:00",
+        "Lifetime": 600,
+        "Type": "access_token",
+        "Client": {
+          "Enabled": true,
+          "ClientId": "tripgalleryauthcode",
+          "ClientSecrets": [
+            {
+              "Description": null,
+              "Value": "ScLxbBxYuOAZTv/P/tISHoS0CH2Iv7edvl255Y2r0Os=",
+              "Expiration": null,
+              "Type": "SharedSecret"
+            }
+          ],
+          "ClientName": "Trip Gallery (Authorization Code)",
+          "ClientUri": null,
+          "LogoUri": null,
+          "RequireConsent": false,
+          "AllowRememberConsent": true,
+          "Flow": 0,
+          "AllowClientCredentialsOnly": false,
+          "RedirectUris": [ "app:/com.boongaloo.ios", "https://localhost:44346/Home/StsCallBackForAuthCodeClient" ],
+          "PostLogoutRedirectUris": [ "app:/com.boongaloo.ios.logout" ],
+          "AllowAccessToAllScopes": true,
+          "AllowedScopes": [],
+          "IdentityTokenLifetime": 300,
+          "AccessTokenLifetime": 600,
+          "AuthorizationCodeLifetime": 300,
+          "AbsoluteRefreshTokenLifetime": 1296000,
+          "SlidingRefreshTokenLifetime": 1296000,
+          "RefreshTokenUsage": 0,
+          "UpdateAccessTokenClaimsOnRefresh": false,
+          "RefreshTokenExpiration": 1,
+          "AccessTokenType": 0,
+          "EnableLocalLogin": true,
+          "IdentityProviderRestrictions": [],
+          "IncludeJwtId": false,
+          "Claims": [],
+          "AlwaysSendClientClaims": false,
+          "PrefixClientClaims": true,
+          "AllowAccessToAllCustomGrantTypes": false,
+          "AllowedCustomGrantTypes": [],
+          "AllowedCorsOrigins": []
+        },
+        "Claims": [
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "client_id",
+            "Value": "tripgalleryauthcode",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "openid",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "profile",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "address",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "boongaloomanagement",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "offline_access",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "sub",
+            "Value": "560493f5-8f4c-43da-a992-529042399f68",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "amr",
+            "Value": "external",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "auth_time",
+            "Value": "1513590464",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "idp",
+            "Value": "Facebook",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "email",
+            "Value": "tommyjenkins947@yahoo.com",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "given_name",
+            "Value": "Tommy Jenkins",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "family_name",
+            "Value": "",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        ],
+        "Version": 3,
+        "SubjectId": "560493f5-8f4c-43da-a992-529042399f68",
+        "ClientId": "tripgalleryauthcode",
+        "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+      },
+      "Subject": {
+        "Claims": [],
+        "Identities": [],
+        "Identity": null
+      },
+      "Version": 4,
+      "SubjectId": "560493f5-8f4c-43da-a992-529042399f68",
+      "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+    }
+  },
+  {
+    "Key": "A_Ub7-VUKPnC2AHTyVnc5iKRgmax1kw1A2OL7j3PPSI",
+    "Token": {
+      "ClientId": "tripgalleryauthcode",
+      "CreationTime": "2018-02-02T19:23:16.9454486+00:00",
+      "LifeTime": 1296000,
+      "AccessToken": {
+        "Audience": "https://boongaloocompanysts/identity/resources",
+        "Issuer": "https://boongaloocompanysts/identity",
+        "CreationTime": "2018-02-02T19:23:16.9454486+00:00",
+        "Lifetime": 600,
+        "Type": "access_token",
+        "Client": {
+          "Enabled": true,
+          "ClientId": "tripgalleryauthcode",
+          "ClientSecrets": [
+            {
+              "Description": null,
+              "Value": "ScLxbBxYuOAZTv/P/tISHoS0CH2Iv7edvl255Y2r0Os=",
+              "Expiration": null,
+              "Type": "SharedSecret"
+            }
+          ],
+          "ClientName": "Trip Gallery (Authorization Code)",
+          "ClientUri": null,
+          "LogoUri": null,
+          "RequireConsent": false,
+          "AllowRememberConsent": true,
+          "Flow": 0,
+          "AllowClientCredentialsOnly": false,
+          "RedirectUris": [ "app:/com.boongaloo.ios", "https://localhost:44346/Home/StsCallBackForAuthCodeClient" ],
+          "PostLogoutRedirectUris": [ "app:/com.boongaloo.ios.logout" ],
+          "AllowAccessToAllScopes": true,
+          "AllowedScopes": [],
+          "IdentityTokenLifetime": 300,
+          "AccessTokenLifetime": 600,
+          "AuthorizationCodeLifetime": 300,
+          "AbsoluteRefreshTokenLifetime": 1296000,
+          "SlidingRefreshTokenLifetime": 1296000,
+          "RefreshTokenUsage": 0,
+          "UpdateAccessTokenClaimsOnRefresh": false,
+          "RefreshTokenExpiration": 1,
+          "AccessTokenType": 0,
+          "EnableLocalLogin": true,
+          "IdentityProviderRestrictions": [],
+          "IncludeJwtId": false,
+          "Claims": [],
+          "AlwaysSendClientClaims": false,
+          "PrefixClientClaims": true,
+          "AllowAccessToAllCustomGrantTypes": false,
+          "AllowedCustomGrantTypes": [],
+          "AllowedCorsOrigins": []
+        },
+        "Claims": [
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "client_id",
+            "Value": "tripgalleryauthcode",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "openid",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "profile",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "address",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "boongaloomanagement",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "offline_access",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "sub",
+            "Value": "44c8dd39-c558-49d3-9646-18e5cf296511",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "amr",
+            "Value": "external",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "auth_time",
+            "Value": "1517599395",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "idp",
+            "Value": "Google",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "email",
+            "Value": "Veeranjain04@gmail.com",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "given_name",
+            "Value": "Test",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        ],
+        "Version": 3,
+        "SubjectId": "44c8dd39-c558-49d3-9646-18e5cf296511",
+        "ClientId": "tripgalleryauthcode",
+        "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+      },
+      "Subject": {
+        "Claims": [],
+        "Identities": [],
+        "Identity": null
+      },
+      "Version": 4,
+      "SubjectId": "44c8dd39-c558-49d3-9646-18e5cf296511",
+      "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+    }
+  },
+  {
+    "Key": "8wq6CmCI1h1G5rlXlD1TvJI739KzIco3jS6nf6cTrv0",
+    "Token": {
+      "ClientId": "tripgalleryauthcode",
+      "CreationTime": "2018-02-03T13:17:08.4278452+00:00",
+      "LifeTime": 1296000,
+      "AccessToken": {
+        "Audience": "https://boongaloocompanysts/identity/resources",
+        "Issuer": "https://boongaloocompanysts/identity",
+        "CreationTime": "2018-02-03T13:17:08.4278452+00:00",
+        "Lifetime": 600,
+        "Type": "access_token",
+        "Client": {
+          "Enabled": true,
+          "ClientId": "tripgalleryauthcode",
+          "ClientSecrets": [
+            {
+              "Description": null,
+              "Value": "ScLxbBxYuOAZTv/P/tISHoS0CH2Iv7edvl255Y2r0Os=",
+              "Expiration": null,
+              "Type": "SharedSecret"
+            }
+          ],
+          "ClientName": "Trip Gallery (Authorization Code)",
+          "ClientUri": null,
+          "LogoUri": null,
+          "RequireConsent": false,
+          "AllowRememberConsent": true,
+          "Flow": 0,
+          "AllowClientCredentialsOnly": false,
+          "RedirectUris": [ "app:/com.boongaloo.ios", "https://localhost:44346/Home/StsCallBackForAuthCodeClient" ],
+          "PostLogoutRedirectUris": [ "app:/com.boongaloo.ios.logout" ],
+          "AllowAccessToAllScopes": true,
+          "AllowedScopes": [],
+          "IdentityTokenLifetime": 300,
+          "AccessTokenLifetime": 600,
+          "AuthorizationCodeLifetime": 300,
+          "AbsoluteRefreshTokenLifetime": 1296000,
+          "SlidingRefreshTokenLifetime": 1296000,
+          "RefreshTokenUsage": 0,
+          "UpdateAccessTokenClaimsOnRefresh": false,
+          "RefreshTokenExpiration": 1,
+          "AccessTokenType": 0,
+          "EnableLocalLogin": true,
+          "IdentityProviderRestrictions": [],
+          "IncludeJwtId": false,
+          "Claims": [],
+          "AlwaysSendClientClaims": false,
+          "PrefixClientClaims": true,
+          "AllowAccessToAllCustomGrantTypes": false,
+          "AllowedCustomGrantTypes": [],
+          "AllowedCorsOrigins": []
+        },
+        "Claims": [
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "client_id",
+            "Value": "tripgalleryauthcode",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "openid",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "profile",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "address",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "boongaloomanagement",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "offline_access",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "sub",
+            "Value": "903e1699-4e4a-4968-9f56-ddfd70adc6f3",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "amr",
+            "Value": "password",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "auth_time",
+            "Value": "1517663826",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "idp",
+            "Value": "idsrv",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "email",
+            "Value": "oliverqueen62022@gmail.com",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "given_name",
+            "Value": "oliver",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        ],
+        "Version": 3,
+        "SubjectId": "903e1699-4e4a-4968-9f56-ddfd70adc6f3",
+        "ClientId": "tripgalleryauthcode",
+        "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+      },
+      "Subject": {
+        "Claims": [],
+        "Identities": [],
+        "Identity": null
+      },
+      "Version": 4,
+      "SubjectId": "903e1699-4e4a-4968-9f56-ddfd70adc6f3",
+      "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+    }
+  },
+  {
+    "Key": "EK70UYlgVNJ63Iiygch2D7_PmFU5t3-rNG6onamnWN0",
+    "Token": {
+      "ClientId": "tripgalleryauthcode",
+      "CreationTime": "2018-02-03T14:42:15.020807+00:00",
+      "LifeTime": 1296000,
+      "AccessToken": {
+        "Audience": "https://boongaloocompanysts/identity/resources",
+        "Issuer": "https://boongaloocompanysts/identity",
+        "CreationTime": "2018-02-03T14:42:15.0052079+00:00",
+        "Lifetime": 600,
+        "Type": "access_token",
+        "Client": {
+          "Enabled": true,
+          "ClientId": "tripgalleryauthcode",
+          "ClientSecrets": [
+            {
+              "Description": null,
+              "Value": "ScLxbBxYuOAZTv/P/tISHoS0CH2Iv7edvl255Y2r0Os=",
+              "Expiration": null,
+              "Type": "SharedSecret"
+            }
+          ],
+          "ClientName": "Trip Gallery (Authorization Code)",
+          "ClientUri": null,
+          "LogoUri": null,
+          "RequireConsent": false,
+          "AllowRememberConsent": true,
+          "Flow": 0,
+          "AllowClientCredentialsOnly": false,
+          "RedirectUris": [ "app:/com.boongaloo.ios", "https://localhost:44346/Home/StsCallBackForAuthCodeClient" ],
+          "PostLogoutRedirectUris": [ "app:/com.boongaloo.ios.logout" ],
+          "AllowAccessToAllScopes": true,
+          "AllowedScopes": [],
+          "IdentityTokenLifetime": 300,
+          "AccessTokenLifetime": 600,
+          "AuthorizationCodeLifetime": 300,
+          "AbsoluteRefreshTokenLifetime": 1296000,
+          "SlidingRefreshTokenLifetime": 1296000,
+          "RefreshTokenUsage": 0,
+          "UpdateAccessTokenClaimsOnRefresh": false,
+          "RefreshTokenExpiration": 1,
+          "AccessTokenType": 0,
+          "EnableLocalLogin": true,
+          "IdentityProviderRestrictions": [],
+          "IncludeJwtId": false,
+          "Claims": [],
+          "AlwaysSendClientClaims": false,
+          "PrefixClientClaims": true,
+          "AllowAccessToAllCustomGrantTypes": false,
+          "AllowedCustomGrantTypes": [],
+          "AllowedCorsOrigins": []
+        },
+        "Claims": [
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "client_id",
+            "Value": "tripgalleryauthcode",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "openid",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "profile",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "address",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "boongaloomanagement",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "offline_access",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "sub",
+            "Value": "5b7fed53-a098-4cf4-9473-d0c269d31df0",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "amr",
+            "Value": "external",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "auth_time",
+            "Value": "1517668911",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "idp",
+            "Value": "Google",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "email",
+            "Value": "sargiskhachatryan123@gmail.com",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "given_name",
+            "Value": "Sargis",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "family_name",
+            "Value": "Khachatryan",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        ],
+        "Version": 3,
+        "SubjectId": "5b7fed53-a098-4cf4-9473-d0c269d31df0",
+        "ClientId": "tripgalleryauthcode",
+        "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+      },
+      "Subject": {
+        "Claims": [],
+        "Identities": [],
+        "Identity": null
+      },
+      "Version": 4,
+      "SubjectId": "5b7fed53-a098-4cf4-9473-d0c269d31df0",
+      "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+    }
+  },
+  {
+    "Key": "Vz7cNtvxF4Z6v9-mADStsKi7lbT-4PyNAuZ2AFRYXC0",
+    "Token": {
+      "ClientId": "tripgalleryauthcode",
+      "CreationTime": "2018-02-05T11:37:40.4440134+00:00",
+      "LifeTime": 1296000,
+      "AccessToken": {
+        "Audience": "https://boongaloocompanysts/identity/resources",
+        "Issuer": "https://boongaloocompanysts/identity",
+        "CreationTime": "2018-02-05T11:37:40.4284163+00:00",
+        "Lifetime": 600,
+        "Type": "access_token",
+        "Client": {
+          "Enabled": true,
+          "ClientId": "tripgalleryauthcode",
+          "ClientSecrets": [
+            {
+              "Description": null,
+              "Value": "ScLxbBxYuOAZTv/P/tISHoS0CH2Iv7edvl255Y2r0Os=",
+              "Expiration": null,
+              "Type": "SharedSecret"
+            }
+          ],
+          "ClientName": "Trip Gallery (Authorization Code)",
+          "ClientUri": null,
+          "LogoUri": null,
+          "RequireConsent": false,
+          "AllowRememberConsent": true,
+          "Flow": 0,
+          "AllowClientCredentialsOnly": false,
+          "RedirectUris": [ "app:/com.boongaloo.ios", "https://localhost:44346/Home/StsCallBackForAuthCodeClient" ],
+          "PostLogoutRedirectUris": [ "app:/com.boongaloo.ios.logout" ],
+          "AllowAccessToAllScopes": true,
+          "AllowedScopes": [],
+          "IdentityTokenLifetime": 300,
+          "AccessTokenLifetime": 600,
+          "AuthorizationCodeLifetime": 300,
+          "AbsoluteRefreshTokenLifetime": 1296000,
+          "SlidingRefreshTokenLifetime": 1296000,
+          "RefreshTokenUsage": 0,
+          "UpdateAccessTokenClaimsOnRefresh": false,
+          "RefreshTokenExpiration": 1,
+          "AccessTokenType": 0,
+          "EnableLocalLogin": true,
+          "IdentityProviderRestrictions": [],
+          "IncludeJwtId": false,
+          "Claims": [],
+          "AlwaysSendClientClaims": false,
+          "PrefixClientClaims": true,
+          "AllowAccessToAllCustomGrantTypes": false,
+          "AllowedCustomGrantTypes": [],
+          "AllowedCorsOrigins": []
+        },
+        "Claims": [
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "client_id",
+            "Value": "tripgalleryauthcode",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "openid",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "profile",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "address",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "boongaloomanagement",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "offline_access",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "sub",
+            "Value": "7ff31171-1df6-4940-ba12-1845c2d625b7",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "amr",
+            "Value": "external",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "auth_time",
+            "Value": "1517830658",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "idp",
+            "Value": "Google",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "email",
+            "Value": "webastral99@gmail.com",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "given_name",
+            "Value": "webastral",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "family_name",
+            "Value": "infotech",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        ],
+        "Version": 3,
+        "SubjectId": "7ff31171-1df6-4940-ba12-1845c2d625b7",
+        "ClientId": "tripgalleryauthcode",
+        "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+      },
+      "Subject": {
+        "Claims": [],
+        "Identities": [],
+        "Identity": null
+      },
+      "Version": 4,
+      "SubjectId": "7ff31171-1df6-4940-ba12-1845c2d625b7",
+      "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+    }
+  },
+  {
+    "Key": "KmqCViZCdD_CU4FX_aDA5EDRw4gW22jDoAbTw5u5qLw",
+    "Token": {
+      "ClientId": "tripgalleryauthcode",
+      "CreationTime": "2018-02-05T18:42:29.7323754+00:00",
+      "LifeTime": 1296000,
+      "AccessToken": {
+        "Audience": "https://boongaloocompanysts/identity/resources",
+        "Issuer": "https://boongaloocompanysts/identity",
+        "CreationTime": "2018-02-05T18:42:29.7323754+00:00",
+        "Lifetime": 600,
+        "Type": "access_token",
+        "Client": {
+          "Enabled": true,
+          "ClientId": "tripgalleryauthcode",
+          "ClientSecrets": [
+            {
+              "Description": null,
+              "Value": "ScLxbBxYuOAZTv/P/tISHoS0CH2Iv7edvl255Y2r0Os=",
+              "Expiration": null,
+              "Type": "SharedSecret"
+            }
+          ],
+          "ClientName": "Trip Gallery (Authorization Code)",
+          "ClientUri": null,
+          "LogoUri": null,
+          "RequireConsent": false,
+          "AllowRememberConsent": true,
+          "Flow": 0,
+          "AllowClientCredentialsOnly": false,
+          "RedirectUris": [ "app:/com.boongaloo.ios", "https://localhost:44346/Home/StsCallBackForAuthCodeClient" ],
+          "PostLogoutRedirectUris": [ "app:/com.boongaloo.ios.logout" ],
+          "AllowAccessToAllScopes": true,
+          "AllowedScopes": [],
+          "IdentityTokenLifetime": 300,
+          "AccessTokenLifetime": 600,
+          "AuthorizationCodeLifetime": 300,
+          "AbsoluteRefreshTokenLifetime": 1296000,
+          "SlidingRefreshTokenLifetime": 1296000,
+          "RefreshTokenUsage": 0,
+          "UpdateAccessTokenClaimsOnRefresh": false,
+          "RefreshTokenExpiration": 1,
+          "AccessTokenType": 0,
+          "EnableLocalLogin": true,
+          "IdentityProviderRestrictions": [],
+          "IncludeJwtId": false,
+          "Claims": [],
+          "AlwaysSendClientClaims": false,
+          "PrefixClientClaims": true,
+          "AllowAccessToAllCustomGrantTypes": false,
+          "AllowedCustomGrantTypes": [],
+          "AllowedCorsOrigins": []
+        },
+        "Claims": [
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "client_id",
+            "Value": "tripgalleryauthcode",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "openid",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "profile",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "address",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "boongaloomanagement",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "offline_access",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "sub",
+            "Value": "27fd5a66-bae5-4b82-ad7d-917b26ebe1fb",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "amr",
+            "Value": "password",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "auth_time",
+            "Value": "1517850860",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "idp",
+            "Value": "idsrv",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "email",
+            "Value": "Avaganz@gmail.com",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "given_name",
+            "Value": "JackL",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        ],
+        "Version": 3,
+        "SubjectId": "27fd5a66-bae5-4b82-ad7d-917b26ebe1fb",
+        "ClientId": "tripgalleryauthcode",
+        "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+      },
+      "Subject": {
+        "Claims": [],
+        "Identities": [],
+        "Identity": null
+      },
+      "Version": 4,
+      "SubjectId": "27fd5a66-bae5-4b82-ad7d-917b26ebe1fb",
+      "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+    }
+  },
+  {
+    "Key": "rIyqF5xpB4cB6FDTcZgRvEl6tTd2NFNurQ8Ath92ivc",
+    "Token": {
+      "ClientId": "tripgalleryauthcode",
+      "CreationTime": "2018-02-05T19:04:34.7821265+00:00",
+      "LifeTime": 1296000,
+      "AccessToken": {
+        "Audience": "https://boongaloocompanysts/identity/resources",
+        "Issuer": "https://boongaloocompanysts/identity",
+        "CreationTime": "2018-02-05T19:04:34.7821265+00:00",
+        "Lifetime": 600,
+        "Type": "access_token",
+        "Client": {
+          "Enabled": true,
+          "ClientId": "tripgalleryauthcode",
+          "ClientSecrets": [
+            {
+              "Description": null,
+              "Value": "ScLxbBxYuOAZTv/P/tISHoS0CH2Iv7edvl255Y2r0Os=",
+              "Expiration": null,
+              "Type": "SharedSecret"
+            }
+          ],
+          "ClientName": "Trip Gallery (Authorization Code)",
+          "ClientUri": null,
+          "LogoUri": null,
+          "RequireConsent": false,
+          "AllowRememberConsent": true,
+          "Flow": 0,
+          "AllowClientCredentialsOnly": false,
+          "RedirectUris": [ "app:/com.boongaloo.ios", "https://localhost:44346/Home/StsCallBackForAuthCodeClient" ],
+          "PostLogoutRedirectUris": [ "app:/com.boongaloo.ios.logout" ],
+          "AllowAccessToAllScopes": true,
+          "AllowedScopes": [],
+          "IdentityTokenLifetime": 300,
+          "AccessTokenLifetime": 600,
+          "AuthorizationCodeLifetime": 300,
+          "AbsoluteRefreshTokenLifetime": 1296000,
+          "SlidingRefreshTokenLifetime": 1296000,
+          "RefreshTokenUsage": 0,
+          "UpdateAccessTokenClaimsOnRefresh": false,
+          "RefreshTokenExpiration": 1,
+          "AccessTokenType": 0,
+          "EnableLocalLogin": true,
+          "IdentityProviderRestrictions": [],
+          "IncludeJwtId": false,
+          "Claims": [],
+          "AlwaysSendClientClaims": false,
+          "PrefixClientClaims": true,
+          "AllowAccessToAllCustomGrantTypes": false,
+          "AllowedCustomGrantTypes": [],
+          "AllowedCorsOrigins": []
+        },
+        "Claims": [
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "client_id",
+            "Value": "tripgalleryauthcode",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "openid",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "profile",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "address",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "boongaloomanagement",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "offline_access",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "sub",
+            "Value": "bb61e881-3a49-42a7-8b62-c13dbe102018",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "amr",
+            "Value": "password",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "auth_time",
+            "Value": "1517857474",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "idp",
+            "Value": "idsrv",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "given_name",
+            "Value": "Sven",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "family_name",
+            "Value": "Vercauteren",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "email",
+            "Value": "svenisanonymous@somedomain.com",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        ],
+        "Version": 3,
+        "SubjectId": "bb61e881-3a49-42a7-8b62-c13dbe102018",
+        "ClientId": "tripgalleryauthcode",
+        "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+      },
+      "Subject": {
+        "Claims": [],
+        "Identities": [],
+        "Identity": null
+      },
+      "Version": 4,
+      "SubjectId": "bb61e881-3a49-42a7-8b62-c13dbe102018",
+      "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+    }
+  },
+  {
+    "Key": "n8uqk5Sra4b4YvA3F2BAIPnJl_lE9mnT72lvzIachnk",
+    "Token": {
+      "ClientId": "tripgalleryauthcode",
+      "CreationTime": "2018-02-05T20:09:00.2402663+00:00",
+      "LifeTime": 1296000,
+      "AccessToken": {
+        "Audience": "https://boongaloocompanysts/identity/resources",
+        "Issuer": "https://boongaloocompanysts/identity",
+        "CreationTime": "2018-02-05T20:09:00.2402663+00:00",
+        "Lifetime": 600,
+        "Type": "access_token",
+        "Client": {
+          "Enabled": true,
+          "ClientId": "tripgalleryauthcode",
+          "ClientSecrets": [
+            {
+              "Description": null,
+              "Value": "ScLxbBxYuOAZTv/P/tISHoS0CH2Iv7edvl255Y2r0Os=",
+              "Expiration": null,
+              "Type": "SharedSecret"
+            }
+          ],
+          "ClientName": "Trip Gallery (Authorization Code)",
+          "ClientUri": null,
+          "LogoUri": null,
+          "RequireConsent": false,
+          "AllowRememberConsent": true,
+          "Flow": 0,
+          "AllowClientCredentialsOnly": false,
+          "RedirectUris": [ "app:/com.boongaloo.ios", "https://localhost:44346/Home/StsCallBackForAuthCodeClient" ],
+          "PostLogoutRedirectUris": [ "app:/com.boongaloo.ios.logout" ],
+          "AllowAccessToAllScopes": true,
+          "AllowedScopes": [],
+          "IdentityTokenLifetime": 300,
+          "AccessTokenLifetime": 600,
+          "AuthorizationCodeLifetime": 300,
+          "AbsoluteRefreshTokenLifetime": 1296000,
+          "SlidingRefreshTokenLifetime": 1296000,
+          "RefreshTokenUsage": 0,
+          "UpdateAccessTokenClaimsOnRefresh": false,
+          "RefreshTokenExpiration": 1,
+          "AccessTokenType": 0,
+          "EnableLocalLogin": true,
+          "IdentityProviderRestrictions": [],
+          "IncludeJwtId": false,
+          "Claims": [],
+          "AlwaysSendClientClaims": false,
+          "PrefixClientClaims": true,
+          "AllowAccessToAllCustomGrantTypes": false,
+          "AllowedCustomGrantTypes": [],
+          "AllowedCorsOrigins": []
+        },
+        "Claims": [
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "client_id",
+            "Value": "tripgalleryauthcode",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "openid",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "profile",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "address",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "boongaloomanagement",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "offline_access",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "sub",
+            "Value": "029c2d41-27da-454c-83c8-298101788969",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "amr",
+            "Value": "password",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "auth_time",
+            "Value": "1517861339",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "idp",
+            "Value": "idsrv",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "email",
+            "Value": "boongalooapplication@gmail.com",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "given_name",
+            "Value": "Robin",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        ],
+        "Version": 3,
+        "SubjectId": "029c2d41-27da-454c-83c8-298101788969",
+        "ClientId": "tripgalleryauthcode",
+        "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+      },
+      "Subject": {
+        "Claims": [],
+        "Identities": [],
+        "Identity": null
+      },
+      "Version": 4,
+      "SubjectId": "029c2d41-27da-454c-83c8-298101788969",
+      "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+    }
+  },
+  {
+    "Key": "MFfCdcUw9Z9pLSFEcr4-OrXUXgLF9uGMzb7oeXnlaM0",
+    "Token": {
+      "ClientId": "tripgalleryauthcode",
+      "CreationTime": "2018-02-05T20:11:49.7394743+00:00",
+      "LifeTime": 1296000,
+      "AccessToken": {
+        "Audience": "https://boongaloocompanysts/identity/resources",
+        "Issuer": "https://boongaloocompanysts/identity",
+        "CreationTime": "2018-02-05T20:11:49.7394743+00:00",
+        "Lifetime": 600,
+        "Type": "access_token",
+        "Client": {
+          "Enabled": true,
+          "ClientId": "tripgalleryauthcode",
+          "ClientSecrets": [
+            {
+              "Description": null,
+              "Value": "ScLxbBxYuOAZTv/P/tISHoS0CH2Iv7edvl255Y2r0Os=",
+              "Expiration": null,
+              "Type": "SharedSecret"
+            }
+          ],
+          "ClientName": "Trip Gallery (Authorization Code)",
+          "ClientUri": null,
+          "LogoUri": null,
+          "RequireConsent": false,
+          "AllowRememberConsent": true,
+          "Flow": 0,
+          "AllowClientCredentialsOnly": false,
+          "RedirectUris": [ "app:/com.boongaloo.ios", "https://localhost:44346/Home/StsCallBackForAuthCodeClient" ],
+          "PostLogoutRedirectUris": [ "app:/com.boongaloo.ios.logout" ],
+          "AllowAccessToAllScopes": true,
+          "AllowedScopes": [],
+          "IdentityTokenLifetime": 300,
+          "AccessTokenLifetime": 600,
+          "AuthorizationCodeLifetime": 300,
+          "AbsoluteRefreshTokenLifetime": 1296000,
+          "SlidingRefreshTokenLifetime": 1296000,
+          "RefreshTokenUsage": 0,
+          "UpdateAccessTokenClaimsOnRefresh": false,
+          "RefreshTokenExpiration": 1,
+          "AccessTokenType": 0,
+          "EnableLocalLogin": true,
+          "IdentityProviderRestrictions": [],
+          "IncludeJwtId": false,
+          "Claims": [],
+          "AlwaysSendClientClaims": false,
+          "PrefixClientClaims": true,
+          "AllowAccessToAllCustomGrantTypes": false,
+          "AllowedCustomGrantTypes": [],
+          "AllowedCorsOrigins": []
+        },
+        "Claims": [
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "client_id",
+            "Value": "tripgalleryauthcode",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "openid",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "profile",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "address",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "boongaloomanagement",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "scope",
+            "Value": "offline_access",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "sub",
+            "Value": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "amr",
+            "Value": "password",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "auth_time",
+            "Value": "1517861508",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "idp",
+            "Value": "idsrv",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "given_name",
+            "Value": "Kevin",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "family_name",
+            "Value": "Dockx",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": null,
+            "Type": "email",
+            "Value": "kevin.dockx@gmail.com",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        ],
+        "Version": 3,
+        "SubjectId": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+        "ClientId": "tripgalleryauthcode",
+        "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+      },
+      "Subject": {
+        "Claims": [
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": {
+              "AuthenticationType": "idsrv",
+              "IsAuthenticated": true,
+              "Actor": null,
+              "BootstrapContext": null,
+              "Claims": [
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "name",
+                  "Value": "Kevin",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "amr",
+                  "Value": "password",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "idp",
+                  "Value": "idsrv",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "auth_time",
+                  "Value": "1517861508",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+                }
+              ],
+              "Label": null,
+              "Name": "Kevin",
+              "NameClaimType": "name",
+              "RoleClaimType": "role"
+            },
+            "Type": "sub",
+            "Value": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": {
+              "AuthenticationType": "idsrv",
+              "IsAuthenticated": true,
+              "Actor": null,
+              "BootstrapContext": null,
+              "Claims": [
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "sub",
+                  "Value": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "amr",
+                  "Value": "password",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "idp",
+                  "Value": "idsrv",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "auth_time",
+                  "Value": "1517861508",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+                }
+              ],
+              "Label": null,
+              "Name": "Kevin",
+              "NameClaimType": "name",
+              "RoleClaimType": "role"
+            },
+            "Type": "name",
+            "Value": "Kevin",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": {
+              "AuthenticationType": "idsrv",
+              "IsAuthenticated": true,
+              "Actor": null,
+              "BootstrapContext": null,
+              "Claims": [
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "sub",
+                  "Value": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "name",
+                  "Value": "Kevin",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "idp",
+                  "Value": "idsrv",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "auth_time",
+                  "Value": "1517861508",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+                }
+              ],
+              "Label": null,
+              "Name": "Kevin",
+              "NameClaimType": "name",
+              "RoleClaimType": "role"
+            },
+            "Type": "amr",
+            "Value": "password",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": {
+              "AuthenticationType": "idsrv",
+              "IsAuthenticated": true,
+              "Actor": null,
+              "BootstrapContext": null,
+              "Claims": [
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "sub",
+                  "Value": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "name",
+                  "Value": "Kevin",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "amr",
+                  "Value": "password",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "auth_time",
+                  "Value": "1517861508",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+                }
+              ],
+              "Label": null,
+              "Name": "Kevin",
+              "NameClaimType": "name",
+              "RoleClaimType": "role"
+            },
+            "Type": "idp",
+            "Value": "idsrv",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          {
+            "Issuer": "LOCAL AUTHORITY",
+            "OriginalIssuer": "LOCAL AUTHORITY",
+            "Properties": {},
+            "Subject": {
+              "AuthenticationType": "idsrv",
+              "IsAuthenticated": true,
+              "Actor": null,
+              "BootstrapContext": null,
+              "Claims": [
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "sub",
+                  "Value": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "name",
+                  "Value": "Kevin",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "amr",
+                  "Value": "password",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                {
+                  "Issuer": "LOCAL AUTHORITY",
+                  "OriginalIssuer": "LOCAL AUTHORITY",
+                  "Properties": {},
+                  "Type": "idp",
+                  "Value": "idsrv",
+                  "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+                }
+              ],
+              "Label": null,
+              "Name": "Kevin",
+              "NameClaimType": "name",
+              "RoleClaimType": "role"
+            },
+            "Type": "auth_time",
+            "Value": "1517861508",
+            "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+          }
+        ],
+        "Identities": [
+          {
+            "AuthenticationType": "idsrv",
+            "IsAuthenticated": true,
+            "Actor": null,
+            "BootstrapContext": null,
+            "Claims": [
+              {
+                "Issuer": "LOCAL AUTHORITY",
+                "OriginalIssuer": "LOCAL AUTHORITY",
+                "Properties": {},
+                "Type": "sub",
+                "Value": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+                "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+              },
+              {
+                "Issuer": "LOCAL AUTHORITY",
+                "OriginalIssuer": "LOCAL AUTHORITY",
+                "Properties": {},
+                "Type": "name",
+                "Value": "Kevin",
+                "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+              },
+              {
+                "Issuer": "LOCAL AUTHORITY",
+                "OriginalIssuer": "LOCAL AUTHORITY",
+                "Properties": {},
+                "Type": "amr",
+                "Value": "password",
+                "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+              },
+              {
+                "Issuer": "LOCAL AUTHORITY",
+                "OriginalIssuer": "LOCAL AUTHORITY",
+                "Properties": {},
+                "Type": "idp",
+                "Value": "idsrv",
+                "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+              },
+              {
+                "Issuer": "LOCAL AUTHORITY",
+                "OriginalIssuer": "LOCAL AUTHORITY",
+                "Properties": {},
+                "Type": "auth_time",
+                "Value": "1517861508",
+                "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+              }
+            ],
+            "Label": null,
+            "Name": "Kevin",
+            "NameClaimType": "name",
+            "RoleClaimType": "role"
+          }
+        ],
+        "Identity": {
+          "AuthenticationType": "idsrv",
+          "IsAuthenticated": true,
+          "Actor": null,
+          "BootstrapContext": null,
+          "Claims": [
+            {
+              "Issuer": "LOCAL AUTHORITY",
+              "OriginalIssuer": "LOCAL AUTHORITY",
+              "Properties": {},
+              "Type": "sub",
+              "Value": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+              "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            {
+              "Issuer": "LOCAL AUTHORITY",
+              "OriginalIssuer": "LOCAL AUTHORITY",
+              "Properties": {},
+              "Type": "name",
+              "Value": "Kevin",
+              "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            {
+              "Issuer": "LOCAL AUTHORITY",
+              "OriginalIssuer": "LOCAL AUTHORITY",
+              "Properties": {},
+              "Type": "amr",
+              "Value": "password",
+              "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            {
+              "Issuer": "LOCAL AUTHORITY",
+              "OriginalIssuer": "LOCAL AUTHORITY",
+              "Properties": {},
+              "Type": "idp",
+              "Value": "idsrv",
+              "ValueType": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            {
+              "Issuer": "LOCAL AUTHORITY",
+              "OriginalIssuer": "LOCAL AUTHORITY",
+              "Properties": {},
+              "Type": "auth_time",
+              "Value": "1517861508",
+              "ValueType": "http://www.w3.org/2001/XMLSchema#integer"
+            }
+          ],
+          "Label": null,
+          "Name": "Kevin",
+          "NameClaimType": "name",
+          "RoleClaimType": "role"
+        }
+      },
+      "Version": 4,
+      "SubjectId": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+      "Scopes": [ "openid", "profile", "address", "boongaloomanagement", "offline_access" ]
+    }
+  }
+]
