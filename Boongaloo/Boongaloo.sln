@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boongaloo.DTO", "Boongaloo.DTO\Boongaloo.DTO.csproj", "{BB37F09A-7FD4-4480-A065-4511A7899191}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoongalooCompany.Repository", "BoongalooCompany.Repository\BoongalooCompany.Repository.csproj", "{D07A403F-8D9F-4C82-AC8E-F7DE5469E694}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boongaloo.MvcClient.AuthCode", "Boongaloo.MvcClient.AuthCode\Boongaloo.MvcClient.AuthCode.csproj", "{FC8BDF16-F1ED-40F9-A123-38144F51463E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boongaloo.MvcCoreClient.AuthCode", "Boongaloo.MvcCoreClient.AuthCode\Boongaloo.MvcCoreClient.AuthCode.csproj", "{D4D366A3-5550-44FD-AB2A-1F1CC45D561E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{FC8BDF16-F1ED-40F9-A123-38144F51463E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC8BDF16-F1ED-40F9-A123-38144F51463E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC8BDF16-F1ED-40F9-A123-38144F51463E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4D366A3-5550-44FD-AB2A-1F1CC45D561E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4D366A3-5550-44FD-AB2A-1F1CC45D561E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4D366A3-5550-44FD-AB2A-1F1CC45D561E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4D366A3-5550-44FD-AB2A-1F1CC45D561E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +61,9 @@ Global
 		{FBD3CF6A-CDE8-4347-9BEF-9EC877037C9F} = {F9664945-584A-475A-B5AC-C694BAC872F1}
 		{D07A403F-8D9F-4C82-AC8E-F7DE5469E694} = {F9664945-584A-475A-B5AC-C694BAC872F1}
 		{FC8BDF16-F1ED-40F9-A123-38144F51463E} = {72FEFBCB-1305-4DA7-9EB0-73C0D81745E9}
+		{D4D366A3-5550-44FD-AB2A-1F1CC45D561E} = {72FEFBCB-1305-4DA7-9EB0-73C0D81745E9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77437145-378D-41B8-B297-F23E0B0F8AEC}
 	EndGlobalSection
 EndGlobal
