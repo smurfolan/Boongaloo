@@ -2,6 +2,6 @@
 {
     public enum ConfirmationTypeEnum
     {
-        Sms, Email
+        Email, Sms
     }
 }

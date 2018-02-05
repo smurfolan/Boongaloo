@@ -15,65 +15,78 @@
 
 @using (Html.BeginForm())
 {
-    <fieldset style = "margin: 0 auto; width:80%;">
-        <div class="form-group">
-            <label style="color: whitesmoke">Username</label><span class="red-text">*</span>
-            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", required = "required" })
-            @Html.ValidationMessageFor(x => x.Username)
-        </div>
-        <div class="form-group">
-            <label style="color: whitesmoke">Password</label><span class="red-text">*</span>
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required" })
-            @Html.ValidationMessageFor(x => x.Password, null, new { @class = "red-text" })
-        </div>
-        <div class="form-group">
-            <label style="color: whitesmoke">Confirm Password</label><span class="red-text">*</span>
-            @Html.PasswordFor(m => m.ConfirmationPassword, new { @class = "form-control", required = "required" })
-            @Html.ValidationMessageFor(x => x.ConfirmationPassword, null, new { @class = "red-text" })
-        </div>
+<fieldset style="margin: 0 auto; width:80%;">
+    <div class="form-group">
+        <label style="color: whitesmoke">Username</label><span class="red-text">*</span>
+        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", required = "required" })
+        @Html.ValidationMessageFor(x => x.Username)
+    </div>
+    <div class="form-group">
+        <label style="color: whitesmoke">Password</label><span class="red-text">*</span>
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required" })
+        @Html.ValidationMessageFor(x => x.Password, null, new { @class = "red-text" })
+    </div>
+    <div class="form-group">
+        <label style="color: whitesmoke">Confirm Password</label><span class="red-text">*</span>
+        @Html.PasswordFor(m => m.ConfirmationPassword, new { @class = "form-control", required = "required" })
+        @Html.ValidationMessageFor(x => x.ConfirmationPassword, null, new { @class = "red-text" })
+    </div>
 
-        <label style="color: whitesmoke">Verify me by:</label><span class="red-text">*</span>
-        @foreach (var value in ConfirmationTypeEnum.GetValues(typeof(Boongaloo.DTO.Enums.ConfirmationTypeEnum)))
+    <label style="color: whitesmoke">Verify me by:</label><span class="red-text">*</span>
+    @foreach (var value in ConfirmationTypeEnum.GetValues(typeof(Boongaloo.DTO.Enums.ConfirmationTypeEnum)))
+    {
+        <span style="padding-left:13px;"></span>
+
+
+        if (value.ToString() != "Sms")
         {
-            <span style="padding-left:20px;"></span>
             @Html.RadioButtonFor(m => m.ConfirmationType, value)
             @Html.Label(value.ToString(), new { @style = "color: whitesmoke;" })
         }
-        <br/>
-        @Html.ValidationMessageFor(x => x.ConfirmationType, null, new { @class = "red-text" })
+        else
+        {
+            @Html.RadioButton("Sms", "Sms", new { @style = "color: grey;", disabled = "disabled" })
+            @Html.Label("Sms", new { @style = "color: whitesmoke;" })
+            <span style="font-size:10px; color: whitesmoke;">(Coming soon)</span>
+        }
 
-        <div id="emailInput" class="form-group">
-            <label style="color: whitesmoke">Email</label><span class="red-text">*</span>
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control"})
-            @Html.ValidationMessageFor(x => x.Email, null, new { @class = "red-text" })
-        </div>
-        <div id="phoneInput" class="form-group">
-            <label style="color: whitesmoke">Phone</label><span class="red-text">*</span>
-            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control"})
-            @Html.ValidationMessageFor(x => x.PhoneNumber, null, new { @class = "red-text" })
-        </div>
-        <div class="form-group" style="text-align: center">
-            <a href="@loginScreenUrl" class="btn btn-primary">Back</a>
-            <button class="btn btn-primary">Create</button>
-        </div>
-    </fieldset>
+    }
+    <br />
+    @Html.ValidationMessageFor(x => x.ConfirmationType, null, new { @class = "red-text" })
+
+    <div id="emailInput" class="form-group">
+        <label style="color: whitesmoke">Email</label><span class="red-text">*</span>
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Email, null, new { @class = "red-text" })
+    </div>
+    <div id="phoneInput" class="form-group">
+        <label style="color: whitesmoke">Phone</label><span class="red-text">*</span>
+        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PhoneNumber, null, new { @class = "red-text" })
+    </div>
+    <div class="form-group" style="text-align: center">
+        <a href="@loginScreenUrl" class="btn btn-primary">Back</a>
+        <button class="btn btn-primary">Create</button>
+    </div>
+</fieldset>
 }
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#emailInput').hide();
-        $('#phoneInput').show();
+        $('#emailInput').show();
+        $('#phoneInput').hide();
 
-        $('input[type="radio"]').click(function () {
-            if ($(this).attr('value') == 'Sms') {
-                $('#emailInput').hide();
-                $('#phoneInput').show();
-            }
+        // TODO: When SMS option is fully enabled (We've paid to Twillio ...) change according to that 
+        //$('input[type="radio"]').click(function () {
+        //    if ($(this).attr('value') == 'Sms') {
+        //        $('#emailInput').hide();
+        //        $('#phoneInput').show();
+        //    }
 
-            if ($(this).attr('value') == 'Email'){
-                $('#emailInput').show();
-                $('#phoneInput').hide();
-            }
-        });
+        //    if ($(this).attr('value') == 'Email'){
+        //        $('#emailInput').show();
+        //        $('#phoneInput').hide();
+        //    }
+        //});
     });
 </script>
