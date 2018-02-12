@@ -9,11 +9,13 @@ namespace Boongaloo.MvcClient.AuthCode.SignalR
 {
     public static class SignalrManager
     {
+        private static string JackdevUserId = "fb872173-930e-493d-a9f1-643d75f6be09";
+
         public static async Task ConnectToSignalRAsync()
         {
             var hubConnection = new HubConnection(Constants.BoongalooStagingAPI, new Dictionary<string, string>()
             {
-                { "userId", "52360a79-7f57-4a70-9590-c632196f8a56" }
+                { "userId", JackdevUserId }
             });
 
             IHubProxy stockTickerHubProxy = hubConnection.CreateHubProxy("BoongalooGroupsActivityHub");
