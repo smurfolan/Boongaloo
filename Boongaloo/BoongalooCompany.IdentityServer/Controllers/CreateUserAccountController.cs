@@ -36,11 +36,6 @@ namespace BoongalooCompany.IdentityServer.Controllers
         [HttpPost]
         public ActionResult Index(string signin, CreateUserAccountModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("~/Views/CreateUserAccount/Index.cshtml", model);
-            }
-
             model.TemporaryUserId = Guid.NewGuid();
  
             SigninValues.TryAdd(model.TemporaryUserId, signin);
