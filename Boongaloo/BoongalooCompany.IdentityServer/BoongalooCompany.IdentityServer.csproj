@@ -174,10 +174,10 @@
     <Content Include="Certificates\DevRoot.cer" />
     <Content Include="Certificates\idsrv3test.cer" />
     <Content Include="Certificates\idsrv3test.pfx" />
-    <Content Include="App_Data\userstore.json" />
+    <None Include="App_Data\userstore.json" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="App_Data\refreshtokenstore.json" />
+    <None Include="App_Data\refreshtokenstore.json" />
     <None Include="Properties\PublishProfiles\boongalooidsrv.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
