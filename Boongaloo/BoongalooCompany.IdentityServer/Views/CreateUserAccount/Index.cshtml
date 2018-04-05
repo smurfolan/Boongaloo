@@ -23,6 +23,7 @@
 
             <div class="form-group">
                 <input required class="form-control" name="password" type="password" ng-model="model.password" ng-minlength="6" placeholder="Password" password-verify="{{model.confirmationPassword}}"><br>
+                <div style="font-size:10px; color: whitesmoke;" class="text-center">(Minimum 6 digits)</div>
             </div>
 
             <div class="form-group">
@@ -62,7 +63,7 @@
                     url: '/identity/CreateUserAccount/Index',
                     data: { signin: "@signInId", model: $scope.model} 
                 }).success(function (data, status, headers, config) {
-                    alert(JSON.stringify(data));
+                    window.location.href = data;
                 }).error(function (data, status, headers, config) {
 
                 });

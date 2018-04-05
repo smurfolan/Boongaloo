@@ -73,9 +73,19 @@ namespace BoongalooCompany.IdentityServer.Controllers
                 return View("~/Views/CreateUserAccount/Index.cshtml", model);
             }
 
-            return View("ConfirmationCodeInput", new ConfirmationCodeInputModel()
+            return Json(Url.Action("ConfirmationCodeInput", "CreateUserAccount", new ConfirmationCodeInputModel()
             {
                 TemporaryUserId = model.TemporaryUserId,
+                Signin = signin
+            }));
+        }
+
+        [HttpGet]
+        public ActionResult ConfirmationCodeInput(Guid temporaryUserId, string signin)
+        {
+            return View("ConfirmationCodeInput", new ConfirmationCodeInputModel()
+            {
+                TemporaryUserId = temporaryUserId,
                 Signin = signin
             });
         }
