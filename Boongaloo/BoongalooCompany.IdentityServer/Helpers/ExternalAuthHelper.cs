@@ -41,7 +41,7 @@ namespace BoongalooCompany.IdentityServer.Helpers
                 SignInAsAuthenticationType = signInAsType,
                 AppId = "1743032272668435",
                 AppSecret = "3addd5c09d99166f0cb2469164368016",
-                Provider = new FacebookAuthenticationProvider()
+                Provider = new FacebookAuthenticationProviderWrapper()
                 {
                     OnAuthenticated = (context) =>
                     {
