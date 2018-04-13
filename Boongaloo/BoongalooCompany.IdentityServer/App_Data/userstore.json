@@ -1,1 +1,66 @@
-[{"Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf","UserName":"Kevin","Password":"secret","IsActive":true,"UserClaims":[{"Id":"61a9cd7b-9ff3-4f10-bc80-9459a1cff29e","Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf","ClaimType":"given_name","ClaimValue":"Kevin"},{"Id":"e2ccb661-f978-4c3f-8715-6e2d6f822e98","Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf","ClaimType":"family_name","ClaimValue":"Dockx"},{"Id":"9e5f36c9-5b55-4971-af27-c01c0ac47ac7","Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf","ClaimType":"address","ClaimValue":"1, Main Street, Antwerp, Belgium"},{"Id":"1a852299-0ea3-43ca-905b-0df3ec4e8a4f","Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf","ClaimType":"role","ClaimValue":"PayingUser"},{"Id":"613373b9-65d5-44c3-8432-218020f20ae5","Subject":"b05d3546-6ca8-4d32-b95c-77e94d705ddf","ClaimType":"email","ClaimValue":"kevin.dockx@gmail.com"}],"UserLogins":[]},{"Subject":"029c2d41-27da-454c-83c8-298101788969","UserName":"Robin","Password":"secret","IsActive":true,"UserClaims":[{"Id":"578e087e-75f4-4b98-989c-9feb28128281","Subject":"029c2d41-27da-454c-83c8-298101788969","ClaimType":"email","ClaimValue":"boongalooapplication@gmail.com"},{"Id":"76d69c61-4cb6-4efb-a5c8-99875b029688","Subject":"029c2d41-27da-454c-83c8-298101788969","ClaimType":"given_name","ClaimValue":"Robin"}],"UserLogins":[]},{"Subject":"df9546f1-4cde-4424-9041-73864cbdb011","UserName":null,"Password":null,"IsActive":true,"UserClaims":[{"Id":"020b0ce9-443a-4f58-a24e-3db5798ab77d","Subject":"df9546f1-4cde-4424-9041-73864cbdb011","ClaimType":"email","ClaimValue":"tommyjenkins947@yahoo.com"},{"Id":"7359ca9c-45c6-435f-af88-7b3dbf4b5cb6","Subject":"df9546f1-4cde-4424-9041-73864cbdb011","ClaimType":"given_name","ClaimValue":"Tommy Jenkins"},{"Id":"211fb31c-7ebd-4db3-a88f-bc5240390742","Subject":"df9546f1-4cde-4424-9041-73864cbdb011","ClaimType":"family_name","ClaimValue":""}],"UserLogins":[{"Subject":"df9546f1-4cde-4424-9041-73864cbdb011","LoginProvider":"Facebook","ProviderKey":"Facebook"},{"Subject":"df9546f1-4cde-4424-9041-73864cbdb011","LoginProvider":"Facebook","ProviderKey":"1920202781642915"}]}]
+[
+  {
+    "Subject": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+    "UserName": "Kevin",
+    "Password": "secret",
+    "IsActive": true,
+    "UserClaims": [
+      {
+        "Id": "61a9cd7b-9ff3-4f10-bc80-9459a1cff29e",
+        "Subject": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+        "ClaimType": "given_name",
+        "ClaimValue": "Kevin"
+      },
+      {
+        "Id": "e2ccb661-f978-4c3f-8715-6e2d6f822e98",
+        "Subject": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+        "ClaimType": "family_name",
+        "ClaimValue": "Dockx"
+      },
+      {
+        "Id": "9e5f36c9-5b55-4971-af27-c01c0ac47ac7",
+        "Subject": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+        "ClaimType": "address",
+        "ClaimValue": "1, Main Street, Antwerp, Belgium"
+      },
+      {
+        "Id": "1a852299-0ea3-43ca-905b-0df3ec4e8a4f",
+        "Subject": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+        "ClaimType": "role",
+        "ClaimValue": "PayingUser"
+      },
+      {
+        "Id": "613373b9-65d5-44c3-8432-218020f20ae5",
+        "Subject": "b05d3546-6ca8-4d32-b95c-77e94d705ddf",
+        "ClaimType": "email",
+        "ClaimValue": "kevin.dockx@gmail.com"
+      }
+    ],
+    "UserLogins": [
+
+    ]
+  },
+  {
+    "Subject": "029c2d41-27da-454c-83c8-298101788969",
+    "UserName": "Robin",
+    "Password": "secret",
+    "IsActive": true,
+    "UserClaims": [
+      {
+        "Id": "578e087e-75f4-4b98-989c-9feb28128281",
+        "Subject": "029c2d41-27da-454c-83c8-298101788969",
+        "ClaimType": "email",
+        "ClaimValue": "boongalooapplication@gmail.com"
+      },
+      {
+        "Id": "76d69c61-4cb6-4efb-a5c8-99875b029688",
+        "Subject": "029c2d41-27da-454c-83c8-298101788969",
+        "ClaimType": "given_name",
+        "ClaimValue": "Robin"
+      }
+    ],
+    "UserLogins": [
+
+    ]
+  }
+]
